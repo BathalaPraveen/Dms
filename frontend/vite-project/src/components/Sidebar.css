@@ -1,0 +1,31 @@
+.sidebar {
+  width: 220px;
+  background: #1e1e2f;
+  color: white;
+  min-height: 100vh;
+  padding: 10px;
+}
+
+.menu {
+  list-style: none;
+  padding: 0;
+}
+
+.menu li {
+  padding: 10px;
+  cursor: pointer;
+}
+
+.menu li.active {
+  background: #3f51b5;
+}
+
+.submenu {
+  list-style: none;
+  padding-left: 20px;
+}
+
+.logout {
+  margin-top: 20px;
+  color: red;
+}
