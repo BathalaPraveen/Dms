@@ -1,4 +1,11 @@
-
+.sidebar {
+  width: 220px;
+  background: #1e1e2f;
+  color: white;
+  min-height: 100vh;
+  padding: 10px;
+  font-family: Arial, sans-serif;
+}
 .sidebar {
   width: 220px;
   background-color: #1e293b;

@@ -1,23 +1,13 @@
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
+import Header from "../components/Header";
+import Sidebar from "../components/Sidebar";
+import Footer from "../components/Footer";
 import "./Dashboard.css";
-import {
-  FaHome,
-  FaBuilding,
-  FaTruck,
-  FaShoppingCart,
-  FaChartBar,
-  FaSignOutAlt,
-  FaChevronRight,
-  FaChevronDown,
-  FaDrum
-} from "react-icons/fa";
 
 export default function Dashboard() {
   const navigate = useNavigate();
   const user = JSON.parse(localStorage.getItem("user"));
-
-  const [openMenu, setOpenMenu] = useState(null);
   const [activeItem, setActiveItem] = useState("");
 
   const handleLogout = () => {

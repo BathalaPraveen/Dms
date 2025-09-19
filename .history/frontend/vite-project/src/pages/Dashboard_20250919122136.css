@@ -5,6 +5,9 @@
   width: 100vw;
 }
 
+/* Header */
+
+
 /* Body (sidebar + main) */
 .dashboard-body {
   display: flex;
