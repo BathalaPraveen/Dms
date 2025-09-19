@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { FaHome, FaBuilding, FaSignOutAlt, FaChevronRight, FaChevronDown, FaTruck, FaDrum, FaShoppingCart, FaChartBar  } from "react-icons/fa";
+import { FaHome, FaBuilding, FaSignOutAlt, FaChevronRight, FaChevronDown, FaTruck, FaDrum} from "react-icons/fa";
 import "./Sidebar.css";
 import logo from "../assets/logo.png";
 import slogo from "../assets/slogo.png";
@@ -217,6 +217,10 @@ export default function Sidebar({ activeItem, setActiveItem, handleLogout, colla
             )}
           </li>
 
+        <li className="logout" onClick={handleLogout}>
+          <FaSignOutAlt style={{ marginRight: collapsed ? 0 : "8px" }} />
+          {!collapsed && "Logout"}
+        </li>
       </ul>
     </aside>
   );

@@ -1,16 +1,14 @@
 .sidebar {
   width: 220px;
   height: 100vh;
-  background: #002560;
+  background-color: #1e293b;
   color: white;
   flex-shrink: 0;
   display: flex;
   flex-direction: column;
-  padding: 15px;
+  padding: 20px;
   transition: width 0.3s ease;
-  overflow-y: auto;
 }
-
 
 .sidebar.collapsed {
   width: 60px;
@@ -19,34 +17,23 @@
 }
 
 
-
-
-.logo {
-  max-width: 210px;  /* main logo size */
-  height: 43px;
-}
-
 .slogo {
-  max-width: 40px;   /* collapsed logo small ah */
+  max-width: 40px;
   height: auto;
 }
 
-
 .menu {
   list-style: none;
-  padding: 0px;
-  padding-bottom: 30px;
+  padding: 0;
   margin: 0;
 }
 
 /* top level items */
 .menu > li {
   padding: 10px;
-  padding-left: 0px;
   cursor: pointer;
   display: block;   /* flex vachu irundha submenu confuse aagum, so block podu */
   transition: background 0.3s;
-  font-size: 14px;
 }
 
 .menu > li:hover {
@@ -57,30 +44,22 @@
 /* parent menu item row (icon + text + arrow) */
 .menu .menu-item {
   display: flex;
+  justify-content: space-between;
   align-items: center;
-  justify-content: flex-start; /* icon + text left */
-  gap: 8px; /* icon and text gap */
-  width: 100%; /* full row occupy */
-}
-
-/* arrow ku special rule */
-.menu .menu-item svg:last-child {
-  margin-left: auto; /* arrow right end ku pogum */
-  margin-right: 10px;
 }
 
 /* submenu proper indent */
 .submenu {
   list-style: none;
   border-left: 2px solid #3f82e0; /* optional vertical line */
-    margin: 10px 0 0 0;  /* top gap only */
-  padding-left: 30px; /* more space to push inside (end la varanum nu) */
+    margin: 5px 0 0 0;  /* top gap only */
+  padding-left: 10px; /* more space to push inside (end la varanum nu) */
 }
 
 .submenu li {
   padding: 8px 10px;
   cursor: pointer;
-  font-size: 13px;
+  font-size: 14px;
   color: #e2e8f0;
   transition: background 0.3s;
 }

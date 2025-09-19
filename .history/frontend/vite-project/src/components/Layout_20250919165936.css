@@ -6,6 +6,17 @@
   overflow: hidden;
 }
 
+/* Sidebar left */
+.sidebar {
+  width: 220px;
+  background: #1e293b;
+  color: white;
+  display: flex;
+  flex-direction: column;
+  padding: 20px;
+  overflow-y: auto;
+}
+
 /* Main area */
 .main-area {
   flex: 1;

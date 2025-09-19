@@ -217,6 +217,10 @@ export default function Sidebar({ activeItem, setActiveItem, handleLogout, colla
             )}
           </li>
 
+        <li className="logout" onClick={handleLogout}>
+          <FaSignOutAlt style={{ marginRight: collapsed ? 0 : "8px" }} />
+          {!collapsed && "Logout"}
+        </li>
       </ul>
     </aside>
   );

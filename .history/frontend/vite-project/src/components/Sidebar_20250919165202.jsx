@@ -4,7 +4,7 @@ import "./Sidebar.css";
 import logo from "../assets/logo.png";
 import slogo from "../assets/slogo.png";
 
-export default function Sidebar({ activeItem, setActiveItem, handleLogout, collapsed }) {
+export default function Sidebar({ activeItem, setActiveItem, collapsed }) {
   const [openMenu, setOpenMenu] = useState(null);
 
   const toggleMenu = (menu) => setOpenMenu(openMenu === menu ? null : menu);
@@ -217,6 +217,10 @@ export default function Sidebar({ activeItem, setActiveItem, handleLogout, colla
             )}
           </li>
 
+        <li className="logout" onClick={handleLogout}>
+          <FaSignOutAlt style={{ marginRight: collapsed ? 0 : "8px" }} />
+          {!collapsed && "Logout"}
+        </li>
       </ul>
     </aside>
   );

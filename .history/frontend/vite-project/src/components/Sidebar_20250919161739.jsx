@@ -1,5 +1,140 @@
 import { useState } from "react";
-import { FaHome, FaBuilding, FaSignOutAlt, FaChevronRight, FaChevronDown, FaTruck, FaDrum, FaShoppingCart, FaChartBar  } from "react-icons/fa";
+import { FaHome, FaBuilding, FaSignOutAlt, FaChevronRight, FaChevronDown, FaTruck, {/* Employee Management */}
+          <li
+            className={activeItem === "Employee Management" ? "active" : ""}
+            onClick={() => handleItemClick("Employee Management")}
+          >
+            <FaShoppingCart style={{ marginRight: "8px" }} /> Employee Management
+          </li>
+ 
+          {/* Holiday Management */}
+          <li
+            className={activeItem === "Holiday Management" ? "active" : ""}
+            onClick={() => handleItemClick("Holiday Management")}
+          >
+            <FaChartBar style={{ marginRight: "8px" }} /> Holiday Management
+          </li>
+ 
+          {/* Supplier Management */}
+          <li>
+            <div className="menu-item" onClick={() => toggleMenu("Supplier Management")}>
+              <FaTruck style={{ marginRight: "8px" }} /> Supplier Management
+              {openMenu === "Supplier Management" ? <FaChevronDown /> : <FaChevronRight />}
+            </div>
+            {openMenu === "Supplier Management" && (
+              <ul className="submenu">
+                {["Supplier Management", "All Suppliers", "Import Suppliers", "Add Suppliers"].map(
+                  (item) => (
+                    <li
+                      key={item}
+                      className={activeItem === item ? "active" : ""}
+                      onClick={() => handleItemClick(item)}
+                    >
+                      {item}
+                    </li>
+                  )
+                )}
+              </ul>
+            )}
+          </li>
+ 
+          {/* Other Management Items */}
+          {[
+            "Log Capture Management",
+            "BE Delivery Information",
+            "Clinics Management",
+            "Zone/State/Districts",
+            "Document Management",
+            "Tracking Management",
+            "Tender Packages",
+            "PKD/PPD Contact Lists",
+            "Subscription Management",
+          ].map((item) => (
+            <li
+              key={item}
+              className={activeItem === item ? "active" : ""}
+              onClick={() => handleItemClick(item)}
+            >
+              <FaChartBar style={{ marginRight: "8px" }} /> {item}
+            </li>
+          ))}
+ 
+          {/* Reports Management */}
+          <li>
+            <div className="menu-item" onClick={() => toggleMenu("Reports Management")}>
+              <FaDrum style={{ marginRight: "8px" }} /> Reports Management
+              {openMenu === "Reports Management" ? <FaChevronDown /> : <FaChevronRight />}
+            </div>
+            {openMenu === "Reports Management" && (
+              <ul className="submenu">
+                {[
+                  "DMS Detail Report",
+                  "Pending Action",
+                  "Dispatch Delay",
+                  "Delivery Delay",
+                  "Delivery Rescheduled",
+                  "Completed Deliveries",
+                  "PKD/PPD Report",
+                  "DMS MGMT Report",
+                  "LAD Report",
+                  "TnC Aging report",
+                  "Bank report",
+                  "T & C Certificate",
+                  "Batch Rescheduled DRNs",
+                ].map((item) => (
+                  <li
+                    key={item}
+                    className={activeItem === item ? "active" : ""}
+                    onClick={() => handleItemClick(item)}
+                  >
+                    {item}
+                  </li>
+                ))}
+              </ul>
+            )}
+          </li>
+ 
+          {/* User Access Reports */}
+          <li>
+            <div className="menu-item" onClick={() => toggleMenu("User Access Reports")}>
+              <FaTruck style={{ marginRight: "8px" }} /> User Access Reports
+              {openMenu === "User Access Reports" ? <FaChevronDown /> : <FaChevronRight />}
+            </div>
+            {openMenu === "User Access Reports" && (
+              <ul className="submenu">
+                {["User Access Reports", "User Activity Reports"].map((item) => (
+                  <li
+                    key={item}
+                    className={activeItem === item ? "active" : ""}
+                    onClick={() => handleItemClick(item)}
+                  >
+                    {item}
+                  </li>
+                ))}
+              </ul>
+            )}
+          </li>
+ 
+          {/* Work Order */}
+          <li>
+            <div className="menu-item" onClick={() => toggleMenu("Work Order")}>
+              <FaTruck style={{ marginRight: "8px" }} /> Work Order
+              {openMenu === "Work Order" ? <FaChevronDown /> : <FaChevronRight />}
+            </div>
+            {openMenu === "Work Order" && (
+              <ul className="submenu">
+                {["Import Work Order", "Work Order Status"].map((item) => (
+                  <li
+                    key={item}
+                    className={activeItem === item ? "active" : ""}
+                    onClick={() => handleItemClick(item)}
+                  >
+                    {item}
+                  </li>
+                ))}
+              </ul>
+            )}
+          </li>} from "react-icons/fa";
 import "./Sidebar.css";
 import logo from "../assets/logo.png";
 import slogo from "../assets/slogo.png";
@@ -217,6 +352,10 @@ export default function Sidebar({ activeItem, setActiveItem, handleLogout, colla
             )}
           </li>
 
+        <li className="logout" onClick={handleLogout}>
+          <FaSignOutAlt style={{ marginRight: collapsed ? 0 : "8px" }} />
+          {!collapsed && "Logout"}
+        </li>
       </ul>
     </aside>
   );

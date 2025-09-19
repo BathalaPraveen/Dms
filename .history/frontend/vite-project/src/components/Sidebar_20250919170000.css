@@ -1,13 +1,22 @@
 .sidebar {
   width: 220px;
   height: 100vh;
-  background: #002560;
+  background: #1e293b;
+  background-color: #1e293b;
   color: white;
   flex-shrink: 0;
   display: flex;
   flex-direction: column;
   padding: 15px;
   transition: width 0.3s ease;
+}
+.sidebar {
+  width: 220px;
+  background: #1e293b;
+  color: white;
+  display: flex;
+  flex-direction: column;
+  padding: 20px;
   overflow-y: auto;
 }
 
@@ -19,11 +28,21 @@
 }
 
 
-
+.logo-container {
+  width: 100%;           /* full sidebar width occupy aagum */
+  padding: 15px 10px 10px 10px;    /* top/bottom 15px, left/right 10px */
+  display: flex;
+  justify-content: center; /* center la irukkum */
+  align-items: center;
+  box-sizing: border-box;  /* padding add panna overflow aagama irukkum */
+  margin-bottom: 20px;     /* menu start aaga gap */
+    background-color: #fff;   /* white background */
+  border-radius: 8px;       /* corner smooth ah venumna */
+}
 
 .logo {
-  max-width: 210px;  /* main logo size */
-  height: 43px;
+  max-width: 140px;  /* main logo size */
+  height: auto;
 }
 
 .slogo {

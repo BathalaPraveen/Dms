@@ -1,7 +1,8 @@
 .sidebar {
   width: 220px;
   height: 100vh;
-  background: #002560;
+  background: #052458;
+  background-color: #1e293b;
   color: white;
   flex-shrink: 0;
   display: flex;
@@ -23,7 +24,7 @@
 
 .logo {
   max-width: 210px;  /* main logo size */
-  height: 43px;
+  height: auto;
 }
 
 .slogo {
