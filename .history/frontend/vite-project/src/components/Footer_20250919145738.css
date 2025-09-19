@@ -1,0 +1,13 @@
+/* Footer fixed inside main area */
+.footer {
+  height: 40px;
+  background: #3f82e0;
+  color: white;
+  display: flex;
+  align-items: center;
+  justify-content: start;
+  flex-shrink: 0;
+  position: sticky;
+  bottom: 0;
+  z-index: 10;
+}

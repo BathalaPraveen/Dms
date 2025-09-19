@@ -1,0 +1,56 @@
+/* Layout container */
+.layout {
+  display: flex;
+  height: 100vh;
+  width: 100%;
+  overflow: hidden; /* prevent whole layout from scrolling */
+}
+
+/* Sidebar left */
+.sidebar {
+  width: 220px;
+  background: #1e293b;
+  color: white;
+  display: flex;
+  flex-direction: column;
+  padding: 20px;
+  overflow-y: auto; /* scroll if menu is long */
+}
+
+/* Main area */
+.main-area {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  height: 100vh;
+  overflow: hidden; /* prevent main area scrolling */
+}
+
+/* Header fixed inside main area */
+.header {
+  height: 60px;
+  background: #3f82e0;
+  color: white;
+  display: flex;
+  align-items: center;
+  padding: 0 20px;
+  flex-shrink: 0; /* don’t shrink */
+}
+
+/* Footer fixed inside main area */
+.footer {
+  height: 40px;
+  background: #3f82e0;
+  color: white;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0; /* don’t shrink */
+}
+
+/* Content scrollable only */
+.content-area {
+  flex: 1; /* fill space between header and footer */
+  padding: 20px;
+  background: #f1f5f9;
+}
