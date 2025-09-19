@@ -8,17 +8,12 @@
 .sidebar {
     width: 220px;
     background-color: #1e293b;
-    /* dark slate */
     color: white;
     padding: 20px;
     height: 100vh;
-    /* full screen height */
     overflow-y: auto;
-    /* vertical scroll */
     overflow-x: hidden;
-    /* hide horizontal scroll */
     scrollbar-width: thin;
-    /* Firefox thin scrollbar */
 }
 
 /* Optional: style scrollbar for Chrome, Edge, Safari */
