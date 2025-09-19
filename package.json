@@ -1,0 +1,20 @@
+{
+  "name": "mernstack",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "start:all": "concurrently \"npm run dev --prefix backend\" \"npm run dev --prefix frontend/vite-project\""
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "concurrently": "^9.2.1"
+  },
+  "dependencies": {
+    "nodemailer": "^7.0.6",
+    "react-icons": "^5.5.0",
+    "sweetalert2": "^11.23.0"
+  }
+}
