@@ -1,24 +1,27 @@
 
-
+import Sidebar from "../components/Sidebar";
+import Footer from "../components/Footer";
 import "./Dashboard.css";
- 
+
 export default function Dashboard() {
-  const user = JSON.parse(localStorage.getItem("user"));
 
 return (
     <div className="dashboard-layout">
-
       <div className="dashboard-body">
         {/* Sidebar */}
+
 
         {/* Main Content */}
         <main className="dashboard-main">
           <div className="dashboard-card">
             <h4>Welcome Back {user?.name}</h4>
+            <p>Selected: {activeItem}</p>
           </div>
         </main>
       </div>
+
+      {/* Footer */}
+      <Footer />
     </div>
   );
 }
- 

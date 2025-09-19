@@ -1,0 +1,36 @@
+import { BrowserRouter as Router, Routes, Route, NavLink } from "react-router-dom";
+import Signup from "./pages/Signup";
+import Header from "./components/Header";
+import Login from "./pages/Login";
+import "./App.css";
+import logo from "./assets/logo.png"; 
+import Dashboard from "./pages/Dashboard";
+
+function App() {
+    const navigate = useNavigate();
+  const user = JSON.parse(localStorage.getItem("user"));
+  const [activeItem, setActiveItem] = useState("");
+
+  const handleLogout = () => {
+    localStorage.removeItem("token");
+    localStorage.removeItem("user");
+    navigate("/login");
+  };
+  return (
+    <Router>
+      <Header user={user} />
+              <Sidebar
+          activeItem={activeItem}
+          setActiveItem={setActiveItem}
+          handleLogout={handleLogout}
+        />
+      <Routes>
+        <Route path="/signup" element={<Signup />} />
+        <Route path="/login" element={<Login />} />
+        <Route path="/Dashboard" element={<Dashboard />} />
+      </Routes>
+    </Router>
+  );
+}
+
+export default App;
