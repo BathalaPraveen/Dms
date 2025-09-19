@@ -16,30 +16,26 @@ export default function Dashboard() {
     navigate("/login");
   };
 
-return (
+  return (
     <div className="dashboard-layout">
-      {/* Header */}
-      <Header user={user} />
+      {/* Sidebar */}
+      <Sidebar
+        activeItem={activeItem}
+        setActiveItem={setActiveItem}
+        handleLogout={handleLogout}
+      />
 
-      <div className="dashboard-body">
-        {/* Sidebar */}
-        <Sidebar
-          activeItem={activeItem}
-          setActiveItem={setActiveItem}
-          handleLogout={handleLogout}
-        />
-
-        {/* Main Content */}
+      {/* Main content (Header + Body + Footer) */}
+      <div className="dashboard-content">
+        <Header user={user} />
         <main className="dashboard-main">
           <div className="dashboard-card">
             <h4>Welcome Back {user?.name}</h4>
             <p>Selected: {activeItem}</p>
           </div>
         </main>
+        <Footer />
       </div>
-
-      {/* Footer */}
-      <Footer />
     </div>
   );
 }
