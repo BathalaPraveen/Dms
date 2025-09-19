@@ -7,7 +7,7 @@ import Dashboard from "./pages/Dashboard";
 function App() {
   return (
     <Router>
-      <header className="navbar">
+      {/* <header className="navbar">
        <div className="nav-logo">
           <img src={logo} alt="MyApp Logo" />
         </div>
@@ -19,7 +19,7 @@ function App() {
             Login
           </NavLink>
         </nav>
-      </header>
+      </header> */}
       <Routes>
         <Route path="/signup" element={<Signup />} />
         <Route path="/login" element={<Login />} />
