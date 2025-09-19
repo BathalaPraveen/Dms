@@ -1,0 +1,78 @@
+.dashboard-layout {
+    display: flex;
+    height: 100vh;
+    width: 100vw;
+}
+
+/* Sidebar */
+.sidebar {
+    width: 220px;
+    background-color: #1e293b;
+    /* dark slate */
+    color: white;
+    padding: 20px;
+    height: 100vh;
+    /* full screen height */
+    overflow-y: auto;
+    /* vertical scroll */
+    overflow-x: hidden;
+    /* hide horizontal scroll */
+    scrollbar-width: thin;
+    /* Firefox thin scrollbar */
+}
+
+/* Optional: style scrollbar for Chrome, Edge, Safari */
+.sidebar::-webkit-scrollbar {
+    width: 6px;
+}
+
+.sidebar::-webkit-scrollbar-thumb {
+    background: #475569;
+    /* scrollbar color */
+    border-radius: 3px;
+}
+
+.sidebar::-webkit-scrollbar-thumb:hover {
+    background: #64748b;
+}
+.sidebar .logo {
+    font-size: 20px;
+    margin-bottom: 30px;
+}
+
+.menu {
+    list-style: none;
+    padding: 0;
+}
+
+.menu li {
+    margin: 15px 0;
+    cursor: pointer;
+    padding: 8px;
+    border-radius: 5px;
+    transition: background 0.2s;
+}
+
+.menu li:hover {
+    background: #334155;
+    /* hover effect */
+}
+
+.menu .logout {
+    color: #f87171;
+    /* red logout */
+}
+
+/* Main content */
+.dashboard-main {
+    flex: 1;
+    padding: 30px;
+    background: #f8fafc;
+}
+
+.dashboard-card {
+    background: white;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+}
