@@ -4,12 +4,12 @@ import Header from "../components/Header";
 import Sidebar from "../components/Sidebar";
 import Footer from "../components/Footer";
 import "./Dashboard.css";
- 
+
 export default function Dashboard() {
   const navigate = useNavigate();
   const user = JSON.parse(localStorage.getItem("user"));
   const [activeItem, setActiveItem] = useState("");
- 
+
   const handleLogout = () => {
     localStorage.removeItem("token");
     localStorage.removeItem("user");
@@ -43,4 +43,3 @@ return (
     </div>
   );
 }
- 
