@@ -1,0 +1,64 @@
+/* Parent container: sidebar + right container side by side */
+.dashboard-layout {
+  display: flex;
+  height: 100vh;
+  width: 100vw;
+}
+
+/* Sidebar */
+.sidebar-container {
+  width: 220px;
+  min-width: 220px;      /* important to avoid collapse */
+  background-color: #1e293b;
+  color: white;
+  height: 100vh;
+  flex-shrink: 0;
+  display: flex;
+  flex-direction: column;
+  overflow-y: auto;
+}
+
+.sidebar-container.collapsed {
+  width: 60px;
+  min-width: 60px;
+}
+
+/* Right container: header + content + footer stacked vertically */
+.right-container {
+  flex: 1;                 /* takes remaining width */
+  display: flex;
+  flex-direction: column;
+  height: 100vh;
+  min-width: 0;            /* prevents collapse */
+}
+
+/* Header */
+.navbar {
+  height: 60px;
+  flex-shrink: 0;
+  background-color: #1e293b;
+  color: white;
+  display: flex;
+  align-items: center;
+  padding: 0 20px;
+}
+
+/* Content */
+.dashboard-content {
+  flex: 1;                 /* fills space between header and footer */
+  overflow-y: auto;
+  background-color: #f1f5f9;
+  padding: 20px;
+  min-width: 0;            /* prevents collapse */
+}
+
+/* Footer */
+footer {
+  height: 40px;
+  flex-shrink: 0;
+  background-color: #1e293b;
+  color: white;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}

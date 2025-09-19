@@ -1,40 +1,26 @@
 import { useState } from "react";
-import { useNavigate } from "react-router-dom";
-import Header from "./Header";
 import Sidebar from "./Sidebar";
+import Header from "./Header";
 import Footer from "./Footer";
+import "./Layout.css";
 
 export default function Layout({ children }) {
-  const navigate = useNavigate();
-  const user = JSON.parse(localStorage.getItem("user"));
-  const [activeItem, setActiveItem] = useState("");
+  const [sidebarCollapsed, setSidebarCollapsed] = useState(false);
 
-  const handleLogout = () => {
-    localStorage.removeItem("token");
-    localStorage.removeItem("user");
-    navigate("/login");
+  const toggleSidebar = () => {
+    setSidebarCollapsed(!sidebarCollapsed);
   };
 
   return (
     <div className="dashboard-layout">
-      {/* Header on top */}
-      <Header user={user} />
+      {/* Sidebar */}
+      <Sidebar collapsed={sidebarCollapsed} />
 
-      {/* Body: sidebar + main content */}
-      <div className="dashboard-body">
-        {/* Sidebar left */}
-        <Sidebar
-          activeItem={activeItem}
-          setActiveItem={setActiveItem}
-          handleLogout={handleLogout}
-        />
-
-        {/* Main content right */}
-        <div className="dashboard-content">
-          {children}
-          {/* Footer inside main content */}
-          <Footer />
-        </div>
+      {/* Right container */}
+      <div className="right-container">
+        <Header toggleSidebar={toggleSidebar} />
+        <main className="dashboard-content">{children}</main>
+        <Footer />
       </div>
     </div>
   );

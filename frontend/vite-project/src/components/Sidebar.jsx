@@ -1,10 +1,12 @@
 import { useState } from "react";
 import {
-  FaHome, FaBuilding, FaTruck, FaShoppingCart,
-  FaChartBar, FaSignOutAlt, FaChevronRight, FaChevronDown, FaDrum
+  FaHome, FaBuilding, FaSignOutAlt,
+  FaChevronRight, FaChevronDown
 } from "react-icons/fa";
+import logo from "../assets/logo.png";
+import "./Sidebar.css";
 
-export default function Sidebar({ activeItem, setActiveItem, handleLogout }) {
+export default function Sidebar({ activeItem, setActiveItem, handleLogout, collapsed }) {
   const [openMenu, setOpenMenu] = useState(null);
 
   const toggleMenu = (menu) => {
@@ -16,7 +18,11 @@ export default function Sidebar({ activeItem, setActiveItem, handleLogout }) {
   };
 
   return (
-    <aside className="sidebar">
+    <aside className={`sidebar ${collapsed ? "collapsed" : ""}`}>
+      <div className="nav-logo">
+        <img src={logo} alt="MyApp Logo" />
+      </div>
+
       <ul className="menu">
         {/* Dashboard */}
         <li
@@ -26,7 +32,7 @@ export default function Sidebar({ activeItem, setActiveItem, handleLogout }) {
           <FaHome style={{ marginRight: "8px" }} /> Dashboard
         </li>
 
-        {/* Example submenu */}
+        {/* Submenu example */}
         <li>
           <div className="menu-item" onClick={() => toggleMenu("construction")}>
             <FaBuilding style={{ marginRight: "8px" }} /> Construction Work
