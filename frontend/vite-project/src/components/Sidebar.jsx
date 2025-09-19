@@ -2,6 +2,8 @@ import { useState } from "react";
 import { FaHome, FaBuilding, FaSignOutAlt, FaChevronRight, FaChevronDown } from "react-icons/fa";
 import "./Sidebar.css";
 import logo from "../assets/logo.png";
+import slogo from "../assets/slogo.png";
+
 export default function Sidebar({ activeItem, setActiveItem, handleLogout, collapsed }) {
   const [openMenu, setOpenMenu] = useState(null);
 
@@ -10,13 +12,21 @@ export default function Sidebar({ activeItem, setActiveItem, handleLogout, colla
 
   return (
     <aside className={`sidebar ${collapsed ? "collapsed" : ""}`}>
-      <div className="logo">{!collapsed && <img src={logo} alt="Logo" />}</div>
+      <div className="logo-container">
+        {collapsed ? (
+          <img src={slogo} alt="Small Logo" className="slogo" />
+        ) : (
+          <img src={logo} alt="Main Logo" className="logo" />
+        )}
+      </div>
+
       <ul className="menu">
         <li
           className={activeItem === "Dashboard" ? "active" : ""}
           onClick={() => handleItemClick("Dashboard")}
         >
-          <FaHome style={{ marginRight: collapsed ? 0 : "8px" }} /> {!collapsed && "Dashboard"}
+          <FaHome style={{ marginRight: collapsed ? 0 : "8px" }} />
+          {!collapsed && "Dashboard"}
         </li>
 
         <li>
@@ -42,7 +52,8 @@ export default function Sidebar({ activeItem, setActiveItem, handleLogout, colla
         </li>
 
         <li className="logout" onClick={handleLogout}>
-          <FaSignOutAlt style={{ marginRight: collapsed ? 0 : "8px" }} /> {!collapsed && "Logout"}
+          <FaSignOutAlt style={{ marginRight: collapsed ? 0 : "8px" }} />
+          {!collapsed && "Logout"}
         </li>
       </ul>
     </aside>
