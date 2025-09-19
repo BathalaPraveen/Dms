@@ -1,0 +1,30 @@
+<<<<<<< HEAD
+/* Footer fixed inside main area */
+.footer {
+  height: 40px;
+  background: #f9f9f9;
+  color: black;
+  padding-left: 50px;
+  padding-top: 10px;
+  padding-bottom: 10px;
+  display: flex;
+  align-items: center;
+  justify-content: start;
+  flex-shrink: 0;
+  position: sticky;
+  bottom: 0;
+  z-index: 10;
+  border-top: 1px solid #ccc;
+}
+=======
+
+/* Footer */
+.footer p{
+  width: 100%;
+  margin-left: 20%;
+  padding: 10px;
+  background: #0e0d0d;
+  color: white;
+  text-align: left;
+}
+>>>>>>> ad932467a59e94c5f01b939aca0a4c8745a79cb2
