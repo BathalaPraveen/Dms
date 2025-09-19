@@ -1,9 +1,8 @@
 import { useState } from "react";
 import {
   FaHome, FaBuilding, FaTruck, FaShoppingCart,
-  FaChartBar, FaSignOutAlt, FaChevronRight, FaChevronDown, FaDrum
+  FaChartBar, FaSignOutAlt, FaChevronRight, FaChevronDown
 } from "react-icons/fa";
-import "./Sidebar.css";
 
 export default function Sidebar({ activeItem, setActiveItem, handleLogout }) {
   const [openMenu, setOpenMenu] = useState(null);
@@ -24,14 +23,21 @@ export default function Sidebar({ activeItem, setActiveItem, handleLogout }) {
           className={activeItem === "Dashboard" ? "active" : ""}
           onClick={() => handleItemClick("Dashboard")}
         >
-          <FaHome style={{ marginRight: "8px" }} /> Dashboard
+          <FaHome className="icon" /> <span>Dashboard</span>
         </li>
 
-        {/* Example submenu */}
+        {/* Construction Work submenu */}
         <li>
-          <div className="menu-item" onClick={() => toggleMenu("construction")}>
-            <FaBuilding style={{ marginRight: "8px" }} /> Construction Work
-            {openMenu === "construction" ? <FaChevronDown /> : <FaChevronRight />}
+          <div
+            className="menu-item"
+            onClick={() => toggleMenu("construction")}
+          >
+            <div className="menu-left">
+              <FaBuilding className="icon" /> <span>Construction Work</span>
+            </div>
+            <div className="arrow">
+              {openMenu === "construction" ? <FaChevronDown /> : <FaChevronRight />}
+            </div>
           </div>
           {openMenu === "construction" && (
             <ul className="submenu">
@@ -50,7 +56,7 @@ export default function Sidebar({ activeItem, setActiveItem, handleLogout }) {
 
         {/* Logout */}
         <li className="logout" onClick={handleLogout}>
-          <FaSignOutAlt style={{ marginRight: "8px" }} /> Logout
+          <FaSignOutAlt className="icon" /> <span>Logout</span>
         </li>
       </ul>
     </aside>
