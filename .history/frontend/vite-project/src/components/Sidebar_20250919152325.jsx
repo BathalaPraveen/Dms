@@ -1,7 +1,3 @@
-import { useState } from "react";
-import { FaHome, FaBuilding, FaSignOutAlt, FaChevronRight, FaChevronDown } from "react-icons/fa";
-import "./Sidebar.css";
-import logo from "../assets/logo.png";
 export default function Sidebar({ activeItem, setActiveItem, handleLogout, collapsed }) {
   const [openMenu, setOpenMenu] = useState(null);
 
