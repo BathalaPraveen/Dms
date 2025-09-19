@@ -1,5 +1,5 @@
 
-
+import Sidebar from "../components/Sidebar";
 import "./Dashboard.css";
 
 export default function Dashboard() {
@@ -10,6 +10,11 @@ return (
 
       <div className="dashboard-body">
         {/* Sidebar */}
+        <Sidebar
+          activeItem={activeItem}
+          setActiveItem={setActiveItem}
+          handleLogout={handleLogout}
+        />
 
         {/* Main Content */}
         <main className="dashboard-main">
