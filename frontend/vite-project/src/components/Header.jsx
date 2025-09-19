@@ -3,21 +3,32 @@ import { NavLink } from "react-router-dom";
 import { FaUser, FaSignOutAlt } from "react-icons/fa";
 import profile from "../assets/profile.png";
 
-export default function Header({ toggleSidebar }) {
+export default function Header({ toggleSidebar, setCollapsed }) {
   const [open, setOpen] = useState(false);
   const user = JSON.parse(localStorage.getItem("user")) || { name: "John Doe" };
+
+  // Optional: detect mobile width
+  const handleSidebarToggle = () => {
+    const isMobile = window.innerWidth < 992; // Bootstrap lg breakpoint
+    toggleSidebar(); // toggle normally
+
+    if (isMobile) {
+      setCollapsed(true); // close sidebar on mobile
+    }
+  };
 
   return (
     <nav className="navbar navbar-expand-lg navbar-light bg-white shadow-sm sticky-top">
       {/* Left: Sidebar toggle */}
       <div className="d-flex align-items-center">
         <button
-          className="btn text-dark ms-3 "
-          onClick={toggleSidebar}
+          className="btn text-dark ms-3"
+          onClick={handleSidebarToggle}
         >
           ☰
         </button>
       </div>
+
       {/* Right: Profile */}
       <div className="ms-auto me-4">
         <div className="dropdown mx-4">
@@ -36,7 +47,10 @@ export default function Header({ toggleSidebar }) {
           </button>
 
           {open && (
-            <ul className="dropdown-menu dropdown-menu-end show mt-2 shadow "style={{ minWidth: "120px" }}>
+            <ul
+              className="dropdown-menu dropdown-menu-end show mt-2 shadow"
+              style={{ minWidth: "120px" }}
+            >
               <li>
                 <NavLink className="dropdown-item d-flex align-items-center mb-2" to="/profile">
                   <FaUser className="me-2" /> My Profile
