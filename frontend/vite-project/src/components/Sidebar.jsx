@@ -3,7 +3,6 @@ import {
   FaHome, FaBuilding, FaTruck, FaShoppingCart,
   FaChartBar, FaSignOutAlt, FaChevronRight, FaChevronDown, FaDrum
 } from "react-icons/fa";
-import "./Sidebar.css";
 
 export default function Sidebar({ activeItem, setActiveItem, handleLogout }) {
   const [openMenu, setOpenMenu] = useState(null);

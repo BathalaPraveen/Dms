@@ -1,7 +1,7 @@
 
 
 import "./Dashboard.css";
-
+ 
 export default function Dashboard() {
   const user = JSON.parse(localStorage.getItem("user"));
 
@@ -21,3 +21,4 @@ return (
     </div>
   );
 }
+ 
