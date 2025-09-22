@@ -17,15 +17,7 @@ import {
   FaClipboardList,
   FaTruckMoving,
   FaHospital,
-  FaMapMarkedAlt,
-  FaFileAlt,
-  FaSearchLocation,
-  FaFileContract,
-  FaAddressBook,
-  FaIdCard,
-  FaChartPie,
-  FaUserShield,
-  FaTasks
+  FaMapMarkedAlt
 } from "react-icons/fa";
 import logo from "../assets/logo.png";
 import slogo from "../assets/slogo.png";
@@ -310,18 +302,18 @@ export default function Sidebar({ activeItem, setActiveItem, collapsed }) {
             FaTruckMoving,
             "BE Delivery Information"
           )}
-          {renderSingleMenu("clinics", FaHospital, "Clinics Management")}
-          {renderSingleMenu("zone", FaMapMarkedAlt, "Zone/State/Districts")}
-          {renderSingleMenu("document", FaFileAlt, "Document Management")}
-          {renderSingleMenu("tracking", FaSearchLocation, "Tracking Management")}
-          {renderSingleMenu("tender", FaFileContract, "Tender Packages")}
-          {renderSingleMenu("pkd", FaAddressBook, "PKD/PPD Contact Lists")}
+          {renderSingleMenu("clinics", FaChartBar, "Clinics Management")}
+          {renderSingleMenu("zone", FaChartBar, "Zone/State/Districts")}
+          {renderSingleMenu("document", FaChartBar, "Document Management")}
+          {renderSingleMenu("tracking", FaChartBar, "Tracking Management")}
+          {renderSingleMenu("tender", FaChartBar, "Tender Packages")}
+          {renderSingleMenu("pkd", FaChartBar, "PKD/PPD Contact Lists")}
           {renderSingleMenu(
             "subscription",
-            FaIdCard,
+            FaChartBar,
             "Subscription Management"
           )}
-          {renderMenuSection("reports", FaChartPie, "Reports Management", [
+          {renderMenuSection("reports", FaDrum, "Reports Management", [
             "DMS Detail Report",
             "Pending Action",
             "Dispatch Delay",
@@ -336,11 +328,11 @@ export default function Sidebar({ activeItem, setActiveItem, collapsed }) {
             "T & C Certificate",
             "Batch Rescheduled DRNs",
           ])}
-          {renderMenuSection("userAccess", FaUserShield, "User Access Reports", [
+          {renderMenuSection("userAccess", FaTruck, "User Access Reports", [
             "User Access Reports",
             "User Activity Reports",
           ])}
-          {renderMenuSection("workOrder", FaTasks, "Work Order", [
+          {renderMenuSection("workOrder", FaTruck, "Work Order", [
             "Import Work Order",
             "Work Order Status",
           ])}

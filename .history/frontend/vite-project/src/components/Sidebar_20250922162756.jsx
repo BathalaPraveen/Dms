@@ -340,7 +340,7 @@ export default function Sidebar({ activeItem, setActiveItem, collapsed }) {
             "User Access Reports",
             "User Activity Reports",
           ])}
-          {renderMenuSection("workOrder", FaTasks, "Work Order", [
+          {renderMenuSection("workOrder", FaTruck, "Work Order", [
             "Import Work Order",
             "Work Order Status",
           ])}
