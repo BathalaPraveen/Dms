@@ -1,4 +1,6 @@
 import { useState } from "react";
+import { useNavigate } from "react-router-dom";
+
 import {
   FaHome,
   FaBuilding,
@@ -17,7 +19,8 @@ export default function Sidebar({ activeItem, setActiveItem, collapsed }) {
 
   const toggleMenu = (menu) => setOpenMenu(openMenu === menu ? null : menu);
   const handleItemClick = (item) => setActiveItem(item);
-
+  const navigate = useNavigate();
+  
   return (
    <aside
   className={`d-flex flex-column bg-white text-dark p-3 vh-100 ${
@@ -126,16 +129,19 @@ export default function Sidebar({ activeItem, setActiveItem, collapsed }) {
         </li>
 
         {/* Employee Management */}
-        <li
-          className={`nav-item nav-link d-flex align-items-center ${
-            activeItem === "Employee Management" ? "bg-secondary rounded" : ""
-          }`}
-          style={{ cursor: "pointer" }}
-          onClick={() => handleItemClick("Employee Management")}
-        >
-          <FaShoppingCart className="me-2" />
-          {!collapsed && "Employee Management"}
-        </li>
+          <li
+        className={`nav-item nav-link d-flex align-items-center ${
+          activeItem === "Employee Management" ? "bg-secondary rounded" : ""
+        }`}
+        style={{ cursor: "pointer" }}
+        onClick={() => {
+          handleItemClick("Employee Management");
+          navigate("/employee");
+        }}
+      >
+        <FaShoppingCart className="me-2" />
+        {!collapsed && "Employee Management"}
+      </li>
 
         {/* Holiday Management */}
         <li

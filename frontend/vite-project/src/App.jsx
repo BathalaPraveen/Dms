@@ -3,6 +3,9 @@ import Signup from "./pages/Signup";
 import Login from "./pages/Login";
 import Dashboard from "./pages/Dashboard";
 import Layout from "./components/Layout";
+import Employee from "./Employee/Employee";
+
+
 
 function App() {
   return (
@@ -10,7 +13,8 @@ function App() {
       <Routes>
         <Route path="/signup" element={<Layout><Signup /></Layout>} />
         <Route path="/login" element={<Login />} />
-        <Route path="/dashboard" element={<Layout><Dashboard /></Layout>} />
+        <Route path="/dashboard" element={<Layout><Dashboard /></Layout>} />     
+        <Route path="/employee" element={<Layout><Employee /></Layout>} />
       </Routes>
     </Router>
   );
