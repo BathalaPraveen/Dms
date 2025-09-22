@@ -1,7 +1,5 @@
 // Sidebar.jsx
 import { useState } from "react";
-import { useNavigate } from "react-router-dom";
-
 import {
   FaHome,
   FaBuilding,
@@ -48,69 +46,49 @@ export default function Sidebar({ activeItem, setActiveItem, collapsed }) {
 
   // 🔹 Render popup (submenu OR single menu) for collapsed mode
 // 🔹 Render popup (collapsed mode)
-  const renderPopup = (menu, items, title) => {
-    if (!collapsed || hoverMenu !== menu) return null;
-
-    // calculate max height to fit in viewport
-    const viewportHeight = window.innerHeight;
-    const padding = 16; // some spacing from bottom
-    const maxHeight = viewportHeight - hoverPos.top - padding;
-
-    return (
-      <ul
-        className="list-unstyled bg-white shadow rounded"
-        style={{
-          position: "fixed",
-          top: `${hoverPos.top}px`,
-          left: `${hoverPos.left + 8}px`,
-          minWidth: "220px",
-          maxHeight: `${maxHeight}px`,  // ✅ dynamic max height
-          overflowY: "auto",            // scroll if submenu too long
-          zIndex: 1050,
-          padding: "4px 0",
-          margin: 0,
-        }}
-        onMouseEnter={() => setHoverMenu(menu)}
-        onMouseLeave={() => setHoverMenu(null)}
+const renderPopup = (menu, items, title) => {
+  if (!collapsed || hoverMenu !== menu) return null;
+  return (
+    <ul
+      className="list-unstyled bg-white shadow rounded p-2"
+      style={{
+        position: "fixed",
+        top: `${hoverPos.top}px`,
+        left: `${hoverPos.left + 8}px`,
+        minWidth: "200px",
+        zIndex: 1050,
+      }}
+      onMouseEnter={() => setHoverMenu(menu)}
+      onMouseLeave={() => setHoverMenu(null)}
+    >
+      {/* Main menu always on top */}
+      <li
+        className={`nav-link small ${
+          activeItem === title ? "bg-info text-white rounded" : "text-dark"
+        }`}
+        style={{ cursor: "pointer", fontWeight: "600" }}
+        onClick={() => handleItemClick(title)}
       >
-        {/* Main menu always visible */}
-        <li
-          className={`nav-link small ${
-            activeItem === title ? "bg-info text-white rounded" : "text-dark"
-          }`}
-          style={{
-            cursor: "pointer",
-            fontWeight: "600",
-            padding: "6px 12px",
-            whiteSpace: "nowrap",
-          }}
-          onClick={() => handleItemClick(title)}
-        >
-          {title}
-        </li>
+        {title}
+      </li>
 
-        {/* Submenu items */}
-        {items.map((it) => (
+      {/* Submenus if exist */}
+      {items &&
+        items.map((it) => (
           <li
             key={it}
             className={`nav-link small ${
               activeItem === it ? "bg-info text-white rounded" : "text-dark"
             }`}
-            style={{
-              cursor: "pointer",
-              padding: "4px 24px",
-              whiteSpace: "nowrap",
-            }}
+            style={{ cursor: "pointer", paddingLeft: "15px" }}
             onClick={() => handleItemClick(it)}
           >
             {it}
           </li>
         ))}
-      </ul>
-    );
-  };
-
-
+    </ul>
+  );
+};
 
 
   // 🔹 Parent with submenu
@@ -123,7 +101,7 @@ export default function Sidebar({ activeItem, setActiveItem, collapsed }) {
     >
       <div
         className="d-flex align-items-center justify-content-between nav-link"
-        style={{ cursor: "pointer",color: "#ffffffff" }}
+        style={{ cursor: "pointer" }}
         onClick={(e) => handleParentClick(key, e)}
       >
         <span className="d-flex align-items-center">
@@ -143,9 +121,9 @@ export default function Sidebar({ activeItem, setActiveItem, collapsed }) {
               className={`nav-link small ${
                 activeItem === item
                   ? "bg-info text-white rounded"
-                  : ""
+                  : "text-dark"
               }`}
-              style={{ cursor: "pointer",color: "#000000ff",whiteSpace: "nowrap",backgroundColor: "#ffffffff" }}
+              style={{ cursor: "pointer" }}
               onClick={() => handleItemClick(item)}
             >
               {item}
@@ -171,7 +149,7 @@ export default function Sidebar({ activeItem, setActiveItem, collapsed }) {
         className={`d-flex align-items-center nav-link ${
           activeItem === title ? "bg-secondary rounded text-white" : ""
         }`}
-        style={{ cursor: "pointer",color: "#ffffffff" }}
+        style={{ cursor: "pointer" }}
         onClick={() => handleItemClick(title)}
       >
         <Icon className="me-2" />
@@ -185,13 +163,13 @@ export default function Sidebar({ activeItem, setActiveItem, collapsed }) {
 
   return (
     <aside
-      className={`d-flex flex-column p-3 vh-100 ${collapsed ? "align-items-center" : ""}`}
+      className={`d-flex flex-column bg-white text-dark p-3 vh-100 ${
+        collapsed ? "align-items-center" : ""
+      }`}
       style={{
         width: collapsed ? "60px" : "280px",
         transition: "width 0.3s ease",
         overflow: "visible",
-        backgroundColor: "#002560", // sidebar background
-        color: "#ffffffff",     
       }}
     >
       {/* Logo */}

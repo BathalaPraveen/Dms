@@ -1,7 +1,5 @@
 // Sidebar.jsx
 import { useState } from "react";
-import { useNavigate } from "react-router-dom";
-
 import {
   FaHome,
   FaBuilding,
@@ -143,9 +141,9 @@ export default function Sidebar({ activeItem, setActiveItem, collapsed }) {
               className={`nav-link small ${
                 activeItem === item
                   ? "bg-info text-white rounded"
-                  : ""
+                  : "text-dark"
               }`}
-              style={{ cursor: "pointer",color: "#000000ff",whiteSpace: "nowrap",backgroundColor: "#ffffffff" }}
+              style={{ cursor: "pointer" }}
               onClick={() => handleItemClick(item)}
             >
               {item}
@@ -191,7 +189,7 @@ export default function Sidebar({ activeItem, setActiveItem, collapsed }) {
         transition: "width 0.3s ease",
         overflow: "visible",
         backgroundColor: "#002560", // sidebar background
-        color: "#ffffffff",     
+        color: "#ad2424ff",     
       }}
     >
       {/* Logo */}
