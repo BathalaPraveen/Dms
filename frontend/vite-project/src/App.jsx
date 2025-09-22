@@ -4,6 +4,7 @@ import Login from "./pages/Login";
 import Dashboard from "./pages/Dashboard";
 import Layout from "./components/Layout";
 import Employee from "./Employee/Employee";
+import EmployeeView from "./Employee/EmployeeView";
 
 
 
@@ -15,6 +16,7 @@ function App() {
         <Route path="/login" element={<Login />} />
         <Route path="/dashboard" element={<Layout><Dashboard /></Layout>} />     
         <Route path="/employee" element={<Layout><Employee /></Layout>} />
+        <Route path="/employee/employeeview/:id" element={<Layout><EmployeeView /></Layout>} />
       </Routes>
     </Router>
   );

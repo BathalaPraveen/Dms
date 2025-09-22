@@ -46,8 +46,6 @@ export default function Sidebar({ activeItem, setActiveItem, collapsed }) {
     setHoverMenu(null);
   };
 
-  // 🔹 Render popup (submenu OR single menu) for collapsed mode
-// 🔹 Render popup (collapsed mode)
   const renderPopup = (menu, items, title) => {
     if (!collapsed || hoverMenu !== menu) return null;
 
