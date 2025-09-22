@@ -19,7 +19,7 @@ export default function Sidebar({ activeItem, setActiveItem, collapsed }) {
   const [openMenu, setOpenMenu] = useState(null);
   const [hoverMenu, setHoverMenu] = useState(null);
   const [hoverPos, setHoverPos] = useState({ top: 0, left: 0 });
-
+  const navigate = useNavigate();
   const toggleMenu = (menu) =>
     setOpenMenu((prev) => (prev === menu ? null : menu));
 
@@ -160,28 +160,32 @@ export default function Sidebar({ activeItem, setActiveItem, collapsed }) {
   );
 
   // 🔹 Single menu (no submenu)
-  const renderSingleMenu = (key, Icon, title) => (
-    <li
-      key={key}
-      className="nav-item position-relative"
-      onMouseEnter={(e) => handleMouseEnter(key, e)}
-      onMouseLeave={handleMouseLeave}
+ // 🔹 Single menu (no submenu)
+const renderSingleMenu = (key, Icon, title, onClick) => (
+  <li
+    key={key}
+    className="nav-item position-relative"
+    onMouseEnter={(e) => handleMouseEnter(key, e)}
+    onMouseLeave={handleMouseLeave}
+  >
+    <div
+      className={`d-flex align-items-center nav-link ${
+        activeItem === title ? "bg-secondary rounded text-white" : ""
+      }`}
+      style={{ cursor: "pointer", color: "#ffffffff" }}
+      onClick={() => {
+        handleItemClick(title); // highlight the menu
+        if (onClick) onClick(); // navigate if provided
+      }}
     >
-      <div
-        className={`d-flex align-items-center nav-link ${
-          activeItem === title ? "bg-secondary rounded text-white" : ""
-        }`}
-        style={{ cursor: "pointer",color: "#ffffffff" }}
-        onClick={() => handleItemClick(title)}
-      >
-        <Icon className="me-2" />
-        {!collapsed && title}
-      </div>
+      <Icon className="me-2" />
+      {!collapsed && title}
+    </div>
 
-      {/* Popup only shows title (collapsed mode) */}
-      {renderPopup(key, [], title)}
-    </li>
-  );
+    {/* Popup only shows title (collapsed mode) */}
+    {renderPopup(key, [], title)}
+  </li>
+);
 
   return (
     <aside
@@ -207,7 +211,7 @@ export default function Sidebar({ activeItem, setActiveItem, collapsed }) {
       {/* Menu list */}
       <div className="flex-grow-1" style={{ overflowX: "hidden", minHeight: 0 }}>
         <ul className="nav flex-column gap-1">
-          {renderSingleMenu("dashboard", FaHome, "Dashboard")}
+         {renderSingleMenu("dashboard", FaHome, "Dashboard", () => navigate("/dashboard"))}
           {renderMenuSection("construction", FaBuilding, "Construction Work", [
             "CW-Dashboard",
             "CW-Management",
@@ -223,7 +227,9 @@ export default function Sidebar({ activeItem, setActiveItem, collapsed }) {
             "Completed Deliveries",
             "Close DRNs",
           ])}
-          {renderSingleMenu("employee", FaShoppingCart, "Employee Management")}
+          {renderSingleMenu("employee", FaShoppingCart, "Employee Management", () => navigate("/employee"))}
+
+       
           {renderSingleMenu("holiday", FaChartBar, "Holiday Management")}
           {renderMenuSection("supplier", FaTruck, "Supplier Management", [
             "Supplier Management",
