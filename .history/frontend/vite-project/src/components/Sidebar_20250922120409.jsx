@@ -143,7 +143,7 @@ export default function Sidebar({ activeItem, setActiveItem, collapsed }) {
                   ? "bg-info text-white rounded"
                   : ""
               }`}
-              style={{ cursor: "pointer",color: "#000000ff",whiteSpace: "nowrap",backgroundColor: "#ffffffff" }}
+              style={{ cursor: "pointer",color: "#f7f7f7ff",whiteSpace: "nowrap",backgroundColor:#fffff }}
               onClick={() => handleItemClick(item)}
             >
               {item}

@@ -121,7 +121,7 @@ export default function Sidebar({ activeItem, setActiveItem, collapsed }) {
     >
       <div
         className="d-flex align-items-center justify-content-between nav-link"
-        style={{ cursor: "pointer",color: "#ffffffff" }}
+        style={{ cursor: "pointer" }}
         onClick={(e) => handleParentClick(key, e)}
       >
         <span className="d-flex align-items-center">
@@ -141,9 +141,9 @@ export default function Sidebar({ activeItem, setActiveItem, collapsed }) {
               className={`nav-link small ${
                 activeItem === item
                   ? "bg-info text-white rounded"
-                  : ""
+                  : "text-dark"
               }`}
-              style={{ cursor: "pointer",color: "#000000ff",whiteSpace: "nowrap",backgroundColor: "#ffffffff" }}
+              style={{ cursor: "pointer" }}
               onClick={() => handleItemClick(item)}
             >
               {item}
@@ -169,7 +169,7 @@ export default function Sidebar({ activeItem, setActiveItem, collapsed }) {
         className={`d-flex align-items-center nav-link ${
           activeItem === title ? "bg-secondary rounded text-white" : ""
         }`}
-        style={{ cursor: "pointer",color: "#ffffffff" }}
+        style={{ cursor: "pointer" }}
         onClick={() => handleItemClick(title)}
       >
         <Icon className="me-2" />
@@ -183,13 +183,13 @@ export default function Sidebar({ activeItem, setActiveItem, collapsed }) {
 
   return (
     <aside
-      className={`d-flex flex-column p-3 vh-100 ${collapsed ? "align-items-center" : ""}`}
+      className={`d-flex flex-column p-3 vh-100 ${
+        collapsed ? "align-items-center" : ""
+      }`}
       style={{
         width: collapsed ? "60px" : "280px",
         transition: "width 0.3s ease",
         overflow: "visible",
-        backgroundColor: "#002560", // sidebar background
-        color: "#ffffffff",     
       }}
     >
       {/* Logo */}

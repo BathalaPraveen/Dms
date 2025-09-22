@@ -143,7 +143,7 @@ export default function Sidebar({ activeItem, setActiveItem, collapsed }) {
                   ? "bg-info text-white rounded"
                   : ""
               }`}
-              style={{ cursor: "pointer",color: "#000000ff",whiteSpace: "nowrap",backgroundColor: "#ffffffff" }}
+              style={{ cursor: "pointer",color: "#f7f7f7ff",whiteSpace: "nowrap", }}
               onClick={() => handleItemClick(item)}
             >
               {item}
@@ -189,7 +189,7 @@ export default function Sidebar({ activeItem, setActiveItem, collapsed }) {
         transition: "width 0.3s ease",
         overflow: "visible",
         backgroundColor: "#002560", // sidebar background
-        color: "#ffffffff",     
+        color: "#ad2424ff",     
       }}
     >
       {/* Logo */}
