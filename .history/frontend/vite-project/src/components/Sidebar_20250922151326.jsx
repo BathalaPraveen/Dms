@@ -193,32 +193,40 @@ export default function Sidebar({ activeItem, setActiveItem, collapsed }) {
     </li>
   );
 
-  const renderSingleMenu = (key, Icon, title, onClick) => (
-    <li
-      key={key}
-      className="nav-item position-relative"
-      onMouseEnter={(e) => handleMouseEnter(key, e)}
-      onMouseLeave={handleMouseLeave}
+const renderSingleMenu = (key, Icon, title, onClick) => (
+  <li
+    key={key}
+    className="nav-item position-relative"
+    onMouseEnter={(e) => handleMouseEnter(key, e)}
+    onMouseLeave={handleMouseLeave}
+    style={{
+      cursor: "pointer",
+      backgroundColor: activeItem === title ? "#002560" : "transparent", // active background
+      borderRadius: activeItem === title ? "5px" : 0, // rounded corners if active
+      padding: activeItem === title ? "1px" : 0, // padding only if active
+    }}
+  >
+    <div
+      className="d-flex align-items-center nav-link rounded"
+      style={{
+        cursor: "pointer",
+        color: activeItem === title ? "#ffffff" : "#ffffff", // text color
+        fontSize: "14px",
+        padding: "6px 12px",
+        backgroundColor: "transparent", // li handles bg
+      }}
+      onClick={() => {
+        handleItemClick(title);
+        if (onClick) onClick();
+      }}
     >
-      <div
-        className="d-flex align-items-center nav-link rounded"
-        style={{
-          cursor: "pointer",
-          color: activeItem === title ? "#002560" : "#ffffff",
-          backgroundColor: activeItem === title ? "#ffffff" : "#002560",
-          fontSize: "14px",
-        }}
-        onClick={() => {
-          handleItemClick(title);
-          if (onClick) onClick();
-        }}
-      >
-        <Icon className="me-2" />
-        {!collapsed && title}
-      </div>
-      {renderPopup(key, [], title)}
-    </li>
-  );
+      <Icon className="me-2" />
+      {!collapsed && title}
+    </div>
+    {renderPopup(key, [], title)}
+  </li>
+);
+
 
   return (
     <aside

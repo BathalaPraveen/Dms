@@ -22,11 +22,10 @@ export default function Sidebar({ activeItem, setActiveItem, collapsed }) {
   const [activeParent, setActiveParent] = useState(null);
 
   const navigate = useNavigate();
-
   const toggleMenu = (menu) =>
     setOpenMenu((prev) => (prev === menu ? null : menu));
 
-  const handleParentClick = (menu) => {
+  const handleParentClick = (menu, e) => {
     if (collapsed) return;
     toggleMenu(menu);
   };
@@ -43,62 +42,69 @@ export default function Sidebar({ activeItem, setActiveItem, collapsed }) {
     setHoverMenu(null);
   };
 
-  const handleItemClick = (item, parent = null) => {
+  const handleItemClick = (item) => {
     setActiveItem(item);
-    setActiveParent(parent);
-    setOpenMenu(parent);
+    setActiveParent(parent); // ✅ highlight parent
+    setOpenMenu(null);
     setHoverMenu(null);
   };
 
+  // 🔹 Render popup (submenu OR single menu) for collapsed mode
+  // 🔹 Render popup (collapsed mode)
   const renderPopup = (menu, items, title) => {
     if (!collapsed || hoverMenu !== menu) return null;
 
+    // calculate max height to fit in viewport
     const viewportHeight = window.innerHeight;
-    const padding = 16;
+    const padding = 16; // some spacing from bottom
     const maxHeight = viewportHeight - hoverPos.top - padding;
 
     return (
       <ul
-        className="list-unstyled shadow rounded"
+        className="list-unstyled bg-white shadow rounded"
         style={{
           position: "fixed",
           top: `${hoverPos.top}px`,
           left: `${hoverPos.left + 8}px`,
           minWidth: "220px",
-          maxHeight: `${maxHeight}px`,
-          overflowY: "auto",
+          maxHeight: `${maxHeight}px`, // ✅ dynamic max height
+          overflowY: "auto", // scroll if submenu too long
           zIndex: 1050,
           padding: "4px 0",
           margin: 0,
-          backgroundColor: "#002560",
         }}
         onMouseEnter={() => setHoverMenu(menu)}
         onMouseLeave={() => setHoverMenu(null)}
       >
+        {/* Main menu always visible */}
         <li
+          className={`nav-link small ${
+            activeItem === title ? "bg-info text-white rounded" : "text-dark"
+          }`}
           style={{
             cursor: "pointer",
             fontWeight: "600",
             padding: "6px 12px",
             whiteSpace: "nowrap",
-            backgroundColor: activeItem === title ? "#ffffff" : "transparent",
-            color: activeItem === title ? "#002560" : "#ffffff",
           }}
           onClick={() => handleItemClick(title)}
         >
           {title}
         </li>
+
+        {/* Submenu items */}
         {items.map((it) => (
           <li
             key={it}
+            className={`nav-link small ${
+              activeItem === it ? "bg-info text-white rounded" : "text-dark"
+            }`}
             style={{
               cursor: "pointer",
               padding: "4px 24px",
               whiteSpace: "nowrap",
-              backgroundColor: activeItem === it ? "#ffffff" : "transparent",
-              color: activeItem === it ? "#002560" : "#ffffff",
             }}
-            onClick={() => handleItemClick(it, menu)}
+            onClick={() => handleItemClick(it)}
           >
             {it}
           </li>
@@ -107,28 +113,20 @@ export default function Sidebar({ activeItem, setActiveItem, collapsed }) {
     );
   };
 
+  // 🔹 Parent with submenu
   const renderMenuSection = (key, Icon, title, items) => (
     <li
       key={key}
       className="nav-item position-relative"
       onMouseEnter={(e) => handleMouseEnter(key, e)}
       onMouseLeave={handleMouseLeave}
-      style={{
-        cursor: "pointer",
-        backgroundColor: activeParent === key ? "#ffffff" : "#002560", // only if selected
-        borderRadius: activeParent === key ? "5px" : 0,
-        padding: activeParent === key ? "1px" : 0,
-      }}
     >
-      <div
-        className="d-flex align-items-center justify-content-between nav-link rounded"
-        style={{
-          cursor: "pointer",
-          color: "#ffffff",
-          backgroundColor: "#002560",
-          fontSize: "14px",
-        }}
-        onClick={() => handleParentClick(key)}
+     <div
+        className={`d-flex align-items-center justify-content-between nav-link ${
+          activeParent === key ? "bg-info text-white rounded" : ""
+        }`}
+        style={{ cursor: "pointer", color: "#ffffffff", fontSize: "14px" }}
+        onClick={(e) => handleParentClick(key, e)}
       >
         <span className="d-flex align-items-center">
           <Icon className="me-2" />
@@ -138,39 +136,40 @@ export default function Sidebar({ activeItem, setActiveItem, collapsed }) {
           (openMenu === key ? <FaChevronDown /> : <FaChevronRight />)}
       </div>
 
+      {/* Inline submenu (expanded mode) */}
       {!collapsed && openMenu === key && (
         <ul
           className="nav flex-column"
           style={{
-            paddingLeft: "0px",
-            paddingTop: "3px",
+            paddingLeft: "0px", // ✅ indent whole submenu from main menu
             margin: 0,
             listStyle: "none",
-            backgroundColor: "#ffffff",
-            color: "#002560",
-            fontSize: "14px",
+            fontSize: "14px"
           }}
         >
           {items.map((item) => (
             <li
               key={item}
+              className={`nav-link small ${
+                activeItem === item ? "bg-info text-white rounded" : ""
+              }`}
               style={{
                 cursor: "pointer",
-                color: activeItem === item ? "#ffffff" : "#002560",
-                backgroundColor:
-                  activeItem === item ? "#002560" : "transparent",
-                borderRadius: activeItem === item ? "4px" : 0,
+                color: "#000000ff",
                 whiteSpace: "nowrap",
-                textAlign: "left",
-                width: "100%",
-                paddingLeft: "55px",
-                paddingTop: "5px",
+                backgroundColor: "#ffffffff",
+                textAlign: "left", // text left start
+                width: "100%", // full width box
+                paddingLeft: "55px", // text start from left but box full width
+                paddingTop: "4px",
                 paddingBottom: "4px",
-                boxSizing: "border-box",
+                boxSizing: "border-box", // ensures padding inside li
                 position: "relative",
               }}
+              onClick={() => handleItemClick(item)}
               onClick={() => handleItemClick(item, key)}
             >
+              {/* Round icon */}
               <span
                 style={{
                   position: "absolute",
@@ -189,10 +188,13 @@ export default function Sidebar({ activeItem, setActiveItem, collapsed }) {
         </ul>
       )}
 
+      {/* Popup submenu (collapsed mode) */}
       {renderPopup(key, items, title)}
     </li>
   );
 
+  // 🔹 Single menu (no submenu)
+  // 🔹 Single menu (no submenu)
   const renderSingleMenu = (key, Icon, title, onClick) => (
     <li
       key={key}
@@ -201,21 +203,20 @@ export default function Sidebar({ activeItem, setActiveItem, collapsed }) {
       onMouseLeave={handleMouseLeave}
     >
       <div
-        className="d-flex align-items-center nav-link rounded"
-        style={{
-          cursor: "pointer",
-          color: activeItem === title ? "#002560" : "#ffffff",
-          backgroundColor: activeItem === title ? "#ffffff" : "#002560",
-          fontSize: "14px",
-        }}
+        className={`d-flex align-items-center nav-link ${
+          activeItem === title ? "bg-secondary rounded text-white" : ""
+        }`}
+        style={{ cursor: "pointer", color: "#ffffffff",fontSize: "14px" }}
         onClick={() => {
-          handleItemClick(title);
-          if (onClick) onClick();
+          handleItemClick(title); // highlight the menu
+          if (onClick) onClick(); // navigate if provided
         }}
       >
         <Icon className="me-2" />
         {!collapsed && title}
       </div>
+
+      {/* Popup only shows title (collapsed mode) */}
       {renderPopup(key, [], title)}
     </li>
   );
@@ -229,16 +230,17 @@ export default function Sidebar({ activeItem, setActiveItem, collapsed }) {
         width: collapsed ? "60px" : "250px",
         transition: "width 0.3s ease",
         overflow: "visible",
-        backgroundColor: "#002560",
+        backgroundColor: "#002560", // sidebar background
         padding: "0px",
-        color: "#ffffff",
+        color: "#ffffffff",
       }}
     >
+      {/* Logo */}
       <div
         className="text-center"
         style={{
-          padding: collapsed ? "5px" : "14px",
-          backgroundColor: "#ffffff",
+          padding: collapsed ? "5px" : "14px", // ✅ add padding
+          backgroundColor: "#ffffff", // ✅ background white
         }}
       >
         <img
@@ -249,6 +251,7 @@ export default function Sidebar({ activeItem, setActiveItem, collapsed }) {
         />
       </div>
 
+      {/* Menu list */}
       <div
         className="flex-grow-1"
         style={{ overflowX: "hidden", minHeight: 0 }}
@@ -278,6 +281,7 @@ export default function Sidebar({ activeItem, setActiveItem, collapsed }) {
             "Employee Management",
             () => navigate("/employee")
           )}
+
           {renderSingleMenu("holiday", FaChartBar, "Holiday Management")}
           {renderMenuSection("supplier", FaTruck, "Supplier Management", [
             "Supplier Management",

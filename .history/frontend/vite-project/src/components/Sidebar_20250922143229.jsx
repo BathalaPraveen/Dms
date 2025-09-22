@@ -43,6 +43,7 @@ export default function Sidebar({ activeItem, setActiveItem, collapsed }) {
     setHoverMenu(null);
   };
 
+  // ✅ Fixed: accept parent key
   const handleItemClick = (item, parent = null) => {
     setActiveItem(item);
     setActiveParent(parent);
@@ -59,7 +60,7 @@ export default function Sidebar({ activeItem, setActiveItem, collapsed }) {
 
     return (
       <ul
-        className="list-unstyled shadow rounded"
+        className="list-unstyled bg-white shadow rounded"
         style={{
           position: "fixed",
           top: `${hoverPos.top}px`,
@@ -70,19 +71,19 @@ export default function Sidebar({ activeItem, setActiveItem, collapsed }) {
           zIndex: 1050,
           padding: "4px 0",
           margin: 0,
-          backgroundColor: "#002560",
         }}
         onMouseEnter={() => setHoverMenu(menu)}
         onMouseLeave={() => setHoverMenu(null)}
       >
         <li
+          className={`nav-link small ${
+            activeItem === title ? "bg-info text-white rounded" : "text-dark"
+          }`}
           style={{
             cursor: "pointer",
             fontWeight: "600",
             padding: "6px 12px",
             whiteSpace: "nowrap",
-            backgroundColor: activeItem === title ? "#ffffff" : "transparent",
-            color: activeItem === title ? "#002560" : "#ffffff",
           }}
           onClick={() => handleItemClick(title)}
         >
@@ -91,14 +92,15 @@ export default function Sidebar({ activeItem, setActiveItem, collapsed }) {
         {items.map((it) => (
           <li
             key={it}
+            className={`nav-link small ${
+              activeItem === it ? "bg-info text-white rounded" : "text-dark"
+            }`}
             style={{
               cursor: "pointer",
               padding: "4px 24px",
               whiteSpace: "nowrap",
-              backgroundColor: activeItem === it ? "#ffffff" : "transparent",
-              color: activeItem === it ? "#002560" : "#ffffff",
             }}
-            onClick={() => handleItemClick(it, menu)}
+            onClick={() => handleItemClick(it, menu)} // ✅ pass parent
           >
             {it}
           </li>
@@ -113,21 +115,12 @@ export default function Sidebar({ activeItem, setActiveItem, collapsed }) {
       className="nav-item position-relative"
       onMouseEnter={(e) => handleMouseEnter(key, e)}
       onMouseLeave={handleMouseLeave}
-      style={{
-        cursor: "pointer",
-        backgroundColor: activeParent === key ? "#ffffff" : "#002560", // only if selected
-        borderRadius: activeParent === key ? "5px" : 0,
-        padding: activeParent === key ? "1px" : 0,
-      }}
     >
       <div
-        className="d-flex align-items-center justify-content-between nav-link rounded"
-        style={{
-          cursor: "pointer",
-          color: "#ffffff",
-          backgroundColor: "#002560",
-          fontSize: "14px",
-        }}
+        className={`d-flex align-items-center justify-content-between nav-link ${
+          activeParent === key ? "bg-info text-white rounded" : ""
+        }`}
+        style={{ cursor: "pointer", color: "#ffffffff", fontSize: "14px" }}
         onClick={() => handleParentClick(key)}
       >
         <span className="d-flex align-items-center">
@@ -143,32 +136,32 @@ export default function Sidebar({ activeItem, setActiveItem, collapsed }) {
           className="nav flex-column"
           style={{
             paddingLeft: "0px",
-            paddingTop: "3px",
             margin: 0,
             listStyle: "none",
-            backgroundColor: "#ffffff",
-            color: "#002560",
             fontSize: "14px",
           }}
         >
           {items.map((item) => (
             <li
               key={item}
-              style={{
-                cursor: "pointer",
-                color: activeItem === item ? "#ffffff" : "#002560",
-                backgroundColor:
-                  activeItem === item ? "#002560" : "transparent",
-                borderRadius: activeItem === item ? "4px" : 0,
-                whiteSpace: "nowrap",
-                textAlign: "left",
-                width: "100%",
-                paddingLeft: "55px",
-                paddingTop: "5px",
-                paddingBottom: "4px",
-                boxSizing: "border-box",
-                position: "relative",
-              }}
+              className={`nav-link small ${
+                activeItem === item ? "bg-info text-white rounded" : ""
+              }`}
+               style={{
+    cursor: "pointer",
+    padding: "4px 24px",
+    whiteSpace: "nowrap",
+    backgroundColor: activeItem === item ? "#ffffff" : "#ffffffff", // white if selected
+    color: activeItem === item ? "#002560" : "#000000ff", // sidebar color if selected
+    fontWeight: activeItem === item ? "600" : "400",
+    textAlign: "left",
+    width: "100%",
+    paddingLeft: "55px",
+    paddingTop: "4px",
+    paddingBottom: "4px",
+    boxSizing: "border-box",
+    position: "relative",
+  }}
               onClick={() => handleItemClick(item, key)}
             >
               <span
@@ -201,15 +194,12 @@ export default function Sidebar({ activeItem, setActiveItem, collapsed }) {
       onMouseLeave={handleMouseLeave}
     >
       <div
-        className="d-flex align-items-center nav-link rounded"
-        style={{
-          cursor: "pointer",
-          color: activeItem === title ? "#002560" : "#ffffff",
-          backgroundColor: activeItem === title ? "#ffffff" : "#002560",
-          fontSize: "14px",
-        }}
+        className={`d-flex align-items-center nav-link ${
+          activeItem === title ? "bg-secondary rounded text-white" : ""
+        }`}
+        style={{ cursor: "pointer", color: "#ffffffff", fontSize: "14px" }}
         onClick={() => {
-          handleItemClick(title);
+          handleItemClick(title); // ✅ single menu
           if (onClick) onClick();
         }}
       >
@@ -231,7 +221,7 @@ export default function Sidebar({ activeItem, setActiveItem, collapsed }) {
         overflow: "visible",
         backgroundColor: "#002560",
         padding: "0px",
-        color: "#ffffff",
+        color: "#ffffffff",
       }}
     >
       <div
@@ -249,10 +239,7 @@ export default function Sidebar({ activeItem, setActiveItem, collapsed }) {
         />
       </div>
 
-      <div
-        className="flex-grow-1"
-        style={{ overflowX: "hidden", minHeight: 0 }}
-      >
+      <div className="flex-grow-1" style={{ overflowX: "hidden", minHeight: 0 }}>
         <ul className="nav flex-column gap-1">
           {renderSingleMenu("dashboard", FaHome, "Dashboard", () =>
             navigate("/dashboard")

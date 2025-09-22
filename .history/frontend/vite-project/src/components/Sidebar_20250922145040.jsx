@@ -79,10 +79,11 @@ export default function Sidebar({ activeItem, setActiveItem, collapsed }) {
           style={{
             cursor: "pointer",
             fontWeight: "600",
-            padding: "6px 12px",
+            padding: activeItem === title ? "1px" : "6px 12px",
             whiteSpace: "nowrap",
             backgroundColor: activeItem === title ? "#ffffff" : "transparent",
             color: activeItem === title ? "#002560" : "#ffffff",
+            borderRadius: activeItem === title ? "5px" : "0px",
           }}
           onClick={() => handleItemClick(title)}
         >
@@ -93,10 +94,11 @@ export default function Sidebar({ activeItem, setActiveItem, collapsed }) {
             key={it}
             style={{
               cursor: "pointer",
-              padding: "4px 24px",
+              padding: activeItem === it ? "1px" : "4px 24px",
               whiteSpace: "nowrap",
               backgroundColor: activeItem === it ? "#ffffff" : "transparent",
               color: activeItem === it ? "#002560" : "#ffffff",
+              borderRadius: activeItem === it ? "5px" : "0px",
             }}
             onClick={() => handleItemClick(it, menu)}
           >
@@ -114,19 +116,18 @@ export default function Sidebar({ activeItem, setActiveItem, collapsed }) {
       onMouseEnter={(e) => handleMouseEnter(key, e)}
       onMouseLeave={handleMouseLeave}
       style={{
-        cursor: "pointer",
-        backgroundColor: activeParent === key ? "#ffffff" : "#002560", // only if selected
-        borderRadius: activeParent === key ? "5px" : 0,
-        padding: activeParent === key ? "1px" : 0,
+        borderRadius: activeParent === key ? "5px" : "0px",
+        backgroundColor: activeParent === key ? "#ffffff" : "transparent",
       }}
     >
       <div
         className="d-flex align-items-center justify-content-between nav-link rounded"
         style={{
           cursor: "pointer",
-          color: "#ffffff",
-          backgroundColor: "#002560",
+          color: activeParent === key ? "#002560" : "#ffffff",
+          backgroundColor: "transparent",
           fontSize: "14px",
+          padding: activeParent === key ? "10px" : "6px 12px",
         }}
         onClick={() => handleParentClick(key)}
       >
@@ -143,11 +144,8 @@ export default function Sidebar({ activeItem, setActiveItem, collapsed }) {
           className="nav flex-column"
           style={{
             paddingLeft: "0px",
-            paddingTop: "3px",
             margin: 0,
             listStyle: "none",
-            backgroundColor: "#ffffff",
-            color: "#002560",
             fontSize: "14px",
           }}
         >
@@ -156,18 +154,17 @@ export default function Sidebar({ activeItem, setActiveItem, collapsed }) {
               key={item}
               style={{
                 cursor: "pointer",
-                color: activeItem === item ? "#ffffff" : "#002560",
-                backgroundColor:
-                  activeItem === item ? "#002560" : "transparent",
-                borderRadius: activeItem === item ? "4px" : 0,
+                color: activeItem === item ? "#002560" : "#ffffff",
+                backgroundColor: activeItem === item ? "#ffffff" : "transparent",
                 whiteSpace: "nowrap",
                 textAlign: "left",
                 width: "100%",
-                paddingLeft: "55px",
-                paddingTop: "5px",
+                paddingLeft: activeItem === item ? "1px" : "55px",
+                paddingTop: "4px",
                 paddingBottom: "4px",
                 boxSizing: "border-box",
                 position: "relative",
+                borderRadius: activeItem === item ? "5px" : "0px",
               }}
               onClick={() => handleItemClick(item, key)}
             >
@@ -199,14 +196,19 @@ export default function Sidebar({ activeItem, setActiveItem, collapsed }) {
       className="nav-item position-relative"
       onMouseEnter={(e) => handleMouseEnter(key, e)}
       onMouseLeave={handleMouseLeave}
+      style={{
+        borderRadius: activeItem === title ? "5px" : "0px",
+        backgroundColor: activeItem === title ? "#ffffff" : "transparent",
+      }}
     >
       <div
         className="d-flex align-items-center nav-link rounded"
         style={{
           cursor: "pointer",
           color: activeItem === title ? "#002560" : "#ffffff",
-          backgroundColor: activeItem === title ? "#ffffff" : "#002560",
+          backgroundColor: "transparent",
           fontSize: "14px",
+          padding: activeItem === title ? "1px" : "6px 12px",
         }}
         onClick={() => {
           handleItemClick(title);
@@ -249,10 +251,7 @@ export default function Sidebar({ activeItem, setActiveItem, collapsed }) {
         />
       </div>
 
-      <div
-        className="flex-grow-1"
-        style={{ overflowX: "hidden", minHeight: 0 }}
-      >
+      <div className="flex-grow-1" style={{ overflowX: "hidden", minHeight: 0 }}>
         <ul className="nav flex-column gap-1">
           {renderSingleMenu("dashboard", FaHome, "Dashboard", () =>
             navigate("/dashboard")

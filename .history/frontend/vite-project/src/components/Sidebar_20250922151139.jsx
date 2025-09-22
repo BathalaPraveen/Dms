@@ -203,10 +203,9 @@ export default function Sidebar({ activeItem, setActiveItem, collapsed }) {
       <div
         className="d-flex align-items-center nav-link rounded"
         style={{
-          cursor: "pointer",
-          color: activeItem === title ? "#002560" : "#ffffff",
-          backgroundColor: activeItem === title ? "#ffffff" : "#002560",
-          fontSize: "14px",
+            backgroundColor: activeParent === key ? "#ffffff" : "#002560", // only if selected
+        borderRadius: activeParent === key ? "5px" : 0,
+        padding: activeParent === key ? "1px" : 0,
         }}
         onClick={() => {
           handleItemClick(title);

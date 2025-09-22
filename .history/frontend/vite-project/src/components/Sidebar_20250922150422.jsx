@@ -107,91 +107,93 @@ export default function Sidebar({ activeItem, setActiveItem, collapsed }) {
     );
   };
 
-  const renderMenuSection = (key, Icon, title, items) => (
-    <li
-      key={key}
-      className="nav-item position-relative"
-      onMouseEnter={(e) => handleMouseEnter(key, e)}
-      onMouseLeave={handleMouseLeave}
+const renderMenuSection = (key, Icon, title, items) => (
+  <li
+    key={key}
+    className="nav-item position-relative"
+    onMouseEnter={(e) => handleMouseEnter(key, e)}
+    onMouseLeave={handleMouseLeave}
+    style={{
+      cursor: "pointer",
+      backgroundColor: activeParent === key ? "#ffffff" : "transparent", // only if selected
+      borderRadius: activeParent === key ? "5px" : 0,
+      padding: activeParent === key ? "1px" : 0,
+    }}
+  >
+    <div
+      className="d-flex align-items-center justify-content-between nav-link rounded"
       style={{
         cursor: "pointer",
-        backgroundColor: activeParent === key ? "#ffffff" : "#002560", // only if selected
-        borderRadius: activeParent === key ? "5px" : 0,
-        padding: activeParent === key ? "1px" : 0,
+        color: activeParent === key ? "#002560" : "#ffffff",
+        fontSize: "14px",
+        backgroundColor: "transparent", // keep div transparent, li handles bg
+        padding: "6px 12px",
       }}
+      onClick={() => handleParentClick(key)}
     >
-      <div
-        className="d-flex align-items-center justify-content-between nav-link rounded"
+      <span className="d-flex align-items-center">
+        <Icon className="me-2" />
+        {!collapsed && title}
+      </span>
+      {!collapsed &&
+        (openMenu === key ? <FaChevronDown /> : <FaChevronRight />)}
+    </div>
+
+    {!collapsed && openMenu === key && (
+      <ul
+        className="nav flex-column"
         style={{
-          cursor: "pointer",
-          color: "#ffffff",
-          backgroundColor: "#002560",
+          paddingLeft: "0px",
+          paddingTop: "3px",
+          margin: 0,
+          listStyle: "none",
+          backgroundColor: "#ffffff",
+          color: "#002560",
           fontSize: "14px",
         }}
-        onClick={() => handleParentClick(key)}
       >
-        <span className="d-flex align-items-center">
-          <Icon className="me-2" />
-          {!collapsed && title}
-        </span>
-        {!collapsed &&
-          (openMenu === key ? <FaChevronDown /> : <FaChevronRight />)}
-      </div>
-
-      {!collapsed && openMenu === key && (
-        <ul
-          className="nav flex-column"
-          style={{
-            paddingLeft: "0px",
-            paddingTop: "3px",
-            margin: 0,
-            listStyle: "none",
-            backgroundColor: "#ffffff",
-            color: "#002560",
-            fontSize: "14px",
-          }}
-        >
-          {items.map((item) => (
-            <li
-              key={item}
+        {items.map((item) => (
+          <li
+            key={item}
+            style={{
+              cursor: "pointer",
+              color: activeItem === item ? "#ffffff" : "#002560",
+              backgroundColor:
+                activeItem === item ? "#002560" : "transparent",
+              borderRadius: activeItem === item ? "4px" : 0,
+              whiteSpace: "nowrap",
+              textAlign: "left",
+              width: "100%",
+              paddingLeft: "55px",
+              paddingTop: "5px",
+              paddingBottom: "4px",
+              boxSizing: "border-box",
+              position: "relative",
+            }}
+            onClick={() => handleItemClick(item, key)}
+          >
+            <span
               style={{
-                cursor: "pointer",
-                color: activeItem === item ? "#ffffff" : "#002560",
-                backgroundColor:
-                  activeItem === item ? "#002560" : "transparent",
-                borderRadius: activeItem === item ? "4px" : 0,
-                whiteSpace: "nowrap",
-                textAlign: "left",
-                width: "100%",
-                paddingLeft: "55px",
-                paddingTop: "5px",
-                paddingBottom: "4px",
-                boxSizing: "border-box",
-                position: "relative",
+                position: "absolute",
+                left: "30px",
+                top: "50%",
+                transform: "translateY(-50%)",
+                width: "10px",
+                height: "10px",
+                borderRadius: "50%",
+                backgroundColor: "#ee943fff",
               }}
-              onClick={() => handleItemClick(item, key)}
-            >
-              <span
-                style={{
-                  position: "absolute",
-                  left: "30px",
-                  top: "50%",
-                  transform: "translateY(-50%)",
-                  width: "10px",
-                  height: "10px",
-                  borderRadius: "50%",
-                  backgroundColor: "#ee943fff",
-                }}
-              ></span>
-              {item}
-            </li>
-          ))}
-        </ul>
-      )}
+            ></span>
+            {item}
+          </li>
+        ))}
+      </ul>
+    )}
 
-      {renderPopup(key, items, title)}
-    </li>
-  );
+    {renderPopup(key, items, title)}
+  </li>
+);
+
 
   const renderSingleMenu = (key, Icon, title, onClick) => (
     <li
@@ -249,10 +251,7 @@ export default function Sidebar({ activeItem, setActiveItem, collapsed }) {
         />
       </div>
 
-      <div
-        className="flex-grow-1"
-        style={{ overflowX: "hidden", minHeight: 0 }}
-      >
+      <div className="flex-grow-1" style={{ overflowX: "hidden", minHeight: 0 }}>
         <ul className="nav flex-column gap-1">
           {renderSingleMenu("dashboard", FaHome, "Dashboard", () =>
             navigate("/dashboard")
