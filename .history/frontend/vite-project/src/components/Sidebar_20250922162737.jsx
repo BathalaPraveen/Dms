@@ -318,10 +318,10 @@ export default function Sidebar({ activeItem, setActiveItem, collapsed }) {
           {renderSingleMenu("pkd", FaAddressBook, "PKD/PPD Contact Lists")}
           {renderSingleMenu(
             "subscription",
-            FaIdCard,
+            FaChartBar,
             "Subscription Management"
           )}
-          {renderMenuSection("reports", FaChartPie, "Reports Management", [
+          {renderMenuSection("reports", FaDrum, "Reports Management", [
             "DMS Detail Report",
             "Pending Action",
             "Dispatch Delay",
@@ -336,11 +336,11 @@ export default function Sidebar({ activeItem, setActiveItem, collapsed }) {
             "T & C Certificate",
             "Batch Rescheduled DRNs",
           ])}
-          {renderMenuSection("userAccess", FaUserShield, "User Access Reports", [
+          {renderMenuSection("userAccess", FaTruck, "User Access Reports", [
             "User Access Reports",
             "User Activity Reports",
           ])}
-          {renderMenuSection("workOrder", FaTasks, "Work Order", [
+          {renderMenuSection("workOrder", FaTruck, "Work Order", [
             "Import Work Order",
             "Work Order Status",
           ])}
