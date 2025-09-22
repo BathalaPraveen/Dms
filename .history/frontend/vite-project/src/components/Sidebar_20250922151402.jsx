@@ -199,13 +199,14 @@ export default function Sidebar({ activeItem, setActiveItem, collapsed }) {
       className="nav-item position-relative"
       onMouseEnter={(e) => handleMouseEnter(key, e)}
       onMouseLeave={handleMouseLeave}
+      
     >
       <div
         className="d-flex align-items-center nav-link rounded"
         style={{
           cursor: "pointer",
-          color: activeItem === title ? "#002560" : "#ffffff",
-          backgroundColor: activeItem === title ? "#ffffff" : "#002560",
+          color:"#ffffff",
+          backgroundColor: "#002560",
           fontSize: "14px",
         }}
         onClick={() => {

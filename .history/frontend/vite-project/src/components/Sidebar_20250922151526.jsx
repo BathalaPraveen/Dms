@@ -199,6 +199,10 @@ export default function Sidebar({ activeItem, setActiveItem, collapsed }) {
       className="nav-item position-relative"
       onMouseEnter={(e) => handleMouseEnter(key, e)}
       onMouseLeave={handleMouseLeave}
+      style={{
+        cursor: "pointer",
+        padding: activeParent === key ? "10px" : 10,
+      }}
     >
       <div
         className="d-flex align-items-center nav-link rounded"

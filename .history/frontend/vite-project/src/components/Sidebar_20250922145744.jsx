@@ -113,19 +113,13 @@ export default function Sidebar({ activeItem, setActiveItem, collapsed }) {
       className="nav-item position-relative"
       onMouseEnter={(e) => handleMouseEnter(key, e)}
       onMouseLeave={handleMouseLeave}
-      style={{
-        cursor: "pointer",
-        backgroundColor: activeParent === key ? "#ffffff" : "#002560", // only if selected
-        borderRadius: activeParent === key ? "5px" : 0,
-        padding: activeParent === key ? "1px" : 0,
-      }}
     >
       <div
         className="d-flex align-items-center justify-content-between nav-link rounded"
         style={{
           cursor: "pointer",
-          color: "#ffffff",
-          backgroundColor: "#002560",
+          color: activeParent === key ? "#002560" : "#ffffff",
+          backgroundColor: activeParent === key ? "#ffffff" : "#002560",
           fontSize: "14px",
         }}
         onClick={() => handleParentClick(key)}
@@ -146,8 +140,7 @@ export default function Sidebar({ activeItem, setActiveItem, collapsed }) {
             paddingTop: "3px",
             margin: 0,
             listStyle: "none",
-            backgroundColor: "#ffffff",
-            color: "#002560",
+                backgroundColor:"#ffffff"
             fontSize: "14px",
           }}
         >
@@ -156,9 +149,8 @@ export default function Sidebar({ activeItem, setActiveItem, collapsed }) {
               key={item}
               style={{
                 cursor: "pointer",
-                color: activeItem === item ? "#ffffff" : "#002560",
-                backgroundColor:
-                  activeItem === item ? "#002560" : "transparent",
+                color: activeItem === item ? "#002560" : "#ffffff",
+                backgroundColor: activeItem === item ? "#ffffff" : "transparent",
                 borderRadius: activeItem === item ? "4px" : 0,
                 whiteSpace: "nowrap",
                 textAlign: "left",
@@ -249,10 +241,7 @@ export default function Sidebar({ activeItem, setActiveItem, collapsed }) {
         />
       </div>
 
-      <div
-        className="flex-grow-1"
-        style={{ overflowX: "hidden", minHeight: 0 }}
-      >
+      <div className="flex-grow-1" style={{ overflowX: "hidden", minHeight: 0 }}>
         <ul className="nav flex-column gap-1">
           {renderSingleMenu("dashboard", FaHome, "Dashboard", () =>
             navigate("/dashboard")
