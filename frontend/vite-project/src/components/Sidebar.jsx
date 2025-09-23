@@ -1,7 +1,7 @@
 // Sidebar.jsx
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
-
+import { useTranslation } from "react-i18next";
 import {
   FaHome,
   FaBuilding,
@@ -35,6 +35,7 @@ export default function Sidebar({ activeItem, setActiveItem, collapsed }) {
   const [hoverMenu, setHoverMenu] = useState(null);
   const [hoverPos, setHoverPos] = useState({ top: 0, left: 0 });
   const [activeParent, setActiveParent] = useState(null);
+  const { t } = useTranslation();
 
   const navigate = useNavigate();
 
@@ -272,79 +273,87 @@ export default function Sidebar({ activeItem, setActiveItem, collapsed }) {
         className="flex-grow-1"
         style={{ overflowX: "hidden", minHeight: 0 }}
       >
-        <ul className="nav flex-column gap-1">
-          {renderSingleMenu("dashboard", FaHome, "Dashboard", () =>
-            navigate("/dashboard")
-          )}
-          {renderMenuSection("construction", FaBuilding, "Construction Work", [
-            "CW-Dashboard",
-            "CW-Management",
-            "CW-A03",
-          ])}
-          {renderMenuSection("delivery", FaTruck, "Delivery Management", [
-            "All Deliveries",
-            "Planned Deliveries",
-            "Confirmation Request",
-            "Confirmed Deliveries",
-            "Dispatched",
-            "T&C Pending",
-            "Completed Deliveries",
-            "Close DRNs",
-          ])}
-          {renderSingleMenu(
-            "employee",
-            FaUserTie,
-            "Employee Management",
-            () => navigate("/employee")
-          )}
-          {renderSingleMenu("holiday", FaUmbrellaBeach, "Holiday Management")}
-          {renderMenuSection("supplier", FaTruckLoading, "Supplier Management", [
-            "Supplier Management",
-            "All Suppliers",
-            "Import Suppliers",
-            "Add Suppliers",
-          ])}
-          {renderSingleMenu("logCapture", FaClipboardList, "Log Capture Management")}
-          {renderSingleMenu(
-            "beDelivery",
-            FaTruckMoving,
-            "BE Delivery Information"
-          )}
-          {renderSingleMenu("clinics", FaHospital, "Clinics Management")}
-          {renderSingleMenu("zone", FaMapMarkedAlt, "Zone/State/Districts")}
-          {renderSingleMenu("document", FaFileAlt, "Document Management")}
-          {renderSingleMenu("tracking", FaSearchLocation, "Tracking Management")}
-          {renderSingleMenu("tender", FaFileContract, "Tender Packages")}
-          {renderSingleMenu("pkd", FaAddressBook, "PKD/PPD Contact Lists")}
-          {renderSingleMenu(
-            "subscription",
-            FaIdCard,
-            "Subscription Management"
-          )}
-          {renderMenuSection("reports", FaChartPie, "Reports Management", [
-            "DMS Detail Report",
-            "Pending Action",
-            "Dispatch Delay",
-            "Delivery Delay",
-            "Delivery Rescheduled",
-            "Completed Deliveries",
-            "PKD/PPD Report",
-            "DMS MGMT Report",
-            "LAD Report",
-            "TnC Aging report",
-            "Bank report",
-            "T & C Certificate",
-            "Batch Rescheduled DRNs",
-          ])}
-          {renderMenuSection("userAccess", FaUserShield, "User Access Reports", [
-            "User Access Reports",
-            "User Activity Reports",
-          ])}
-          {renderMenuSection("workOrder", FaTasks, "Work Order", [
-            "Import Work Order",
-            "Work Order Status",
-          ])}
-        </ul>
+  
+<ul className="nav flex-column gap-1">
+  {renderSingleMenu("dashboard", FaHome, t("sidebar.dashboard"), () =>
+    navigate("/dashboard")
+  )}
+
+  {renderMenuSection("construction", FaBuilding, t("sidebar.constructionWork"), [
+    t("sidebar.cwDashboard"),
+    t("sidebar.cwManagement"),
+    t("sidebar.cwA03"),
+  ])}
+
+  {renderMenuSection("delivery", FaTruck, t("sidebar.deliveryManagement"), [
+    t("sidebar.allDeliveries"),
+    t("sidebar.plannedDeliveries"),
+    t("sidebar.confirmationRequest"),
+    t("sidebar.confirmedDeliveries"),
+    t("sidebar.dispatched"),
+    t("sidebar.tcPending"),
+    t("sidebar.completedDeliveries"),
+    t("sidebar.closeDRNs"),
+  ])}
+
+  {renderSingleMenu("employee", FaUserTie, t("sidebar.employeeManagement"), () =>
+    navigate("/employee")
+  )}
+
+  {renderSingleMenu("holiday", FaUmbrellaBeach, t("sidebar.holidayManagement"))}
+
+  {renderMenuSection("supplier", FaTruckLoading, t("sidebar.supplierManagement"), [
+    t("sidebar.supplierManagement"),
+    t("sidebar.allSuppliers"),
+    t("sidebar.importSuppliers"),
+    t("sidebar.addSuppliers"),
+  ])}
+
+  {renderSingleMenu("logCapture", FaClipboardList, t("sidebar.logCaptureManagement"))}
+
+  {renderSingleMenu("beDelivery", FaTruckMoving, t("sidebar.beDeliveryInformation"))}
+
+  {renderSingleMenu("clinics", FaHospital, t("sidebar.clinicsManagement"))}
+
+  {renderSingleMenu("zone", FaMapMarkedAlt, t("sidebar.zoneStateDistricts"))}
+
+  {renderSingleMenu("document", FaFileAlt, t("sidebar.documentManagement"))}
+
+  {renderSingleMenu("tracking", FaSearchLocation, t("sidebar.trackingManagement"))}
+
+  {renderSingleMenu("tender", FaFileContract, t("sidebar.tenderPackages"))}
+
+  {renderSingleMenu("pkd", FaAddressBook, t("sidebar.pkdPpdContactLists"))}
+
+  {renderSingleMenu("subscription", FaIdCard, t("sidebar.subscriptionManagement"))}
+
+  {renderMenuSection("reports", FaChartPie, t("sidebar.reportsManagement"), [
+    t("sidebar.dmsDetailReport"),
+    t("sidebar.pendingAction"),
+    t("sidebar.dispatchDelay"),
+    t("sidebar.deliveryDelay"),
+    t("sidebar.deliveryRescheduled"),
+    t("sidebar.completedDeliveries"),
+    t("sidebar.pkdPpdReport"),
+    t("sidebar.dmsMgmtReport"),
+    t("sidebar.ladReport"),
+    t("sidebar.tncAgingReport"),
+    t("sidebar.bankReport"),
+    t("sidebar.tncCertificate"),
+    t("sidebar.batchRescheduledDRNs"),
+  ])}
+
+  {renderMenuSection("userAccess", FaUserShield, t("sidebar.userAccessReports"), [
+    t("sidebar.userAccessReports"),
+    t("sidebar.userActivityReports"),
+  ])}
+
+  {renderMenuSection("workOrder", FaTasks, t("sidebar.workOrder"), [
+    t("sidebar.importWorkOrder"),
+    t("sidebar.workOrderStatus"),
+  ])}
+</ul>
+
       </div>
     </aside>
   );

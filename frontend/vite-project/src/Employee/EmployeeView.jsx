@@ -3,7 +3,9 @@ import React, { useState, useEffect } from 'react';
 import { useParams, Link } from 'react-router-dom';
 import axios from 'axios';
 import 'bootstrap/dist/css/bootstrap.min.css';
-
+import {
+  FaBackward,
+} from "react-icons/fa";
 const EmployeeView = () => {
     const { id } = useParams();
     const [employee, setEmployee] = useState(null);
@@ -43,7 +45,7 @@ const EmployeeView = () => {
                 <div className="d-flex justify-content-between align-items-center mb-4">
                     <h4 className="card-title text-center " style={{ color: "#2d4059" }}>Employee Details</h4>
                     <div className="text-center">
-                    <Link to="/employee" className="btn btn-primary">Back</Link>
+                    <Link to="/employee" className="btn btn-primary"><FaBackward /> Back</Link>
                     </div>
                 </div>
                 <div className="table-responsive">
