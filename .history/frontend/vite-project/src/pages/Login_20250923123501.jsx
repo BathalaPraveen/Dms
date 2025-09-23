@@ -95,7 +95,6 @@ export default function Login() {
             }}
             required
           />
-          <label>Email <span className="required">*</span></label>
           {errors.email && <span className="error">{errors.email}</span>}
         </div>
 

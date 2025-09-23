@@ -41,7 +41,7 @@ export default function Login() {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-
+    // Validate all fields
     const isEmailValid = validate("email", email);
     const isPasswordValid = validate("password", password);
 
@@ -88,28 +88,26 @@ export default function Login() {
         <div className="input-group">
           <input
             type="email"
+            placeholder="Email"
             value={email}
             onChange={(e) => {
               setEmail(e.target.value);
               validate("email", e.target.value);
             }}
-            required
           />
-          <label>Email <span className="required">*</span></label>
           {errors.email && <span className="error">{errors.email}</span>}
         </div>
 
         <div className="input-group password-container">
           <input
             type={showPassword ? "text" : "password"}
+            placeholder="Password"
             value={password}
             onChange={(e) => {
               setPassword(e.target.value);
               validate("password", e.target.value);
             }}
-            required
           />
-          <label>Password <span className="required">*</span></label>
           <span
             className="eye-icon"
             onClick={() => setShowPassword(!showPassword)}

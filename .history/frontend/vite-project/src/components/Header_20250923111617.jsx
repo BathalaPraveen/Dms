@@ -1,5 +1,5 @@
 // src/components/Header.jsx
-import React, { useState, useEffect, useRef } from "react";
+import React, { useState } from "react";
 import { FaUser, FaSignOutAlt } from "react-icons/fa";
 import profileImg from "../assets/profile.png";
 import ProfileModal from "./ProfileModal";
@@ -8,24 +8,12 @@ export default function Header({ toggleSidebar, setCollapsed }) {
   const [open, setOpen] = useState(false);
   const [showProfile, setShowProfile] = useState(false);
   const user = JSON.parse(localStorage.getItem("user")) || { name: "John Doe" };
-  const dropdownRef = useRef(null);
 
   const handleSidebarToggle = () => {
     const isMobile = window.innerWidth < 992;
     toggleSidebar();
     if (isMobile) setCollapsed(true);
   };
-
-  // Close dropdown if clicked outside
-  useEffect(() => {
-    const handleClickOutside = (event) => {
-      if (dropdownRef.current && !dropdownRef.current.contains(event.target)) {
-        setOpen(false);
-      }
-    };
-    document.addEventListener("mousedown", handleClickOutside);
-    return () => document.removeEventListener("mousedown", handleClickOutside);
-  }, []);
 
   return (
     <>
@@ -34,7 +22,7 @@ export default function Header({ toggleSidebar, setCollapsed }) {
           <button className="btn text-dark ms-3" onClick={handleSidebarToggle}>☰</button>
         </div>
 
-        <div className="ms-auto me-4" ref={dropdownRef}>
+        <div className="ms-auto me-4">
           <div className="dropdown mx-4">
             <button className="btn btn-light d-flex align-items-center" onClick={() => setOpen(!open)}>
               <img src={profileImg} alt="profile" className="rounded-circle me-2" width="40" height="40" />

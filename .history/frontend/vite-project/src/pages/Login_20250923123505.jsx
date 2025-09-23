@@ -86,6 +86,7 @@ export default function Login() {
         <h2>Login</h2>
 
         <div className="input-group">
+                    <label>Email <span className="required">*</span></label>
           <input
             type="email"
             value={email}
@@ -95,7 +96,6 @@ export default function Login() {
             }}
             required
           />
-          <label>Email <span className="required">*</span></label>
           {errors.email && <span className="error">{errors.email}</span>}
         </div>
 
