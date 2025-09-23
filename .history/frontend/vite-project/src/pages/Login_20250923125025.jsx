@@ -46,24 +46,16 @@ export default function Login() {
       localStorage.setItem("token", res.data.token);
       localStorage.setItem("user", JSON.stringify(res.data.user));
       const toast = Swal.mixin({
-          toast: true,
-          position: "top-right",
-          showConfirmButton: false,
-          width: 400,
-          showCloseButton: true,
-          timer: 3000,
-          timerProgressBar: true,
-          background: "#fff",
-          color: "#333",
-          customClass: {
-            popup: "rounded shadow-lg",
-          },
-          didOpen: (toastEl) => {
-            toastEl.addEventListener("mouseenter", Swal.stopTimer);
-            toastEl.addEventListener("mouseleave", Swal.resumeTimer);
-          },
-        });
-
+        toast: true,
+        position: "top-right",
+        showConfirmButton: false,
+        timer: 3000,
+        timerProgressBar: true,
+        didOpen: (toastEl) => {
+          toastEl.addEventListener("mouseenter", Swal.stopTimer);
+          toastEl.addEventListener("mouseleave", Swal.resumeTimer);
+        },
+      });
       toast.fire({
         icon: "success",
         title: "You have successfully logged In!",
@@ -75,15 +67,8 @@ export default function Login() {
         toast: true,
         position: "top-right",
         showConfirmButton: false,
-        showCloseButton: true,
-        width: 300,
         timer: 3000,
-        background: "#fff", 
-        color: "#333", 
         timerProgressBar: true,
-        customClass: {
-            popup: "rounded shadow-lg",
-          },
         didOpen: (toastEl) => {
           toastEl.addEventListener("mouseenter", Swal.stopTimer);
           toastEl.addEventListener("mouseleave", Swal.resumeTimer);
@@ -99,40 +84,37 @@ export default function Login() {
 
   return (
     <div className="login-container">
-<form className="login-form" onSubmit={handleSubmit}>
-  <h2>Login</h2>
+      <form className="login-form" onSubmit={handleSubmit}>
+        <h2>Login</h2>
+        <div className="form-group">
+          <label className="required">Email</label>
+          <input
+              type="email"
+              placeholder="Email"
+              value={email}
+              onChange={(e) => setEmail(e.target.value)}
+            />
+          {errors.email && <span className="error">{errors.email}</span>}
+        </div>
 
-  <label htmlFor="email">Email</label>
-  <input
-    id="email"
-    type="email"
-    placeholder="Enter your email"
-    value={email}
-    onChange={(e) => setEmail(e.target.value)}
-  />
-  {errors.email && <p className="error">{errors.email}</p>}
-
-  <label htmlFor="password">Password</label>
-  <div className="password-container">
-    <input
-      id="password"
-      type={showPassword ? "text" : "password"}
-      placeholder="Enter your password"
-      value={password}
-      onChange={(e) => setPassword(e.target.value)}
-    />
-    <span
-      className="eye-icon"
-      onClick={() => setShowPassword(!showPassword)}
-    >
-      {showPassword ? <FaEyeSlash /> : <FaEye />}
-    </span>
-  </div>
-  {errors.password && <p className="error">{errors.password}</p>}
-
-  <button type="submit">Login</button>
-</form>
-
+        {errors.email && <p className="error">{errors.email}</p>}
+         <div className="password-container">
+                  <input
+                    type={showPassword ? "text" : "password"}
+                    placeholder="Password"
+                    value={password}
+                    onChange={(e) => setPassword(e.target.value)}
+                  />
+                  <span
+                    className="eye-icon"
+                    onClick={() => setShowPassword(!showPassword)}
+                  >
+                    {showPassword ? <FaEyeSlash /> : <FaEye />}
+                  </span>
+                </div>
+        {errors.password && <p className="error">{errors.password}</p>}
+        <button type="submit">Login</button>
+      </form>
     </div>
   );
 }

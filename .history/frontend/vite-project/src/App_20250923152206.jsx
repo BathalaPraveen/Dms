@@ -3,9 +3,8 @@ import Signup from "./pages/Signup";
 import Login from "./pages/Login";
 import Dashboard from "./pages/Dashboard";
 import Layout from "./components/Layout";
-import Employee from "./employee/Employee";
-import EmployeeView from "./employee/EmployeeView";
-import "./i18n";
+import Employee from "./Employee/Employee";
+import EmployeeView from "./Employee/EmployeeView";
 import PrivateRoute from "./components/PrivateRoute";
 
 function App() {

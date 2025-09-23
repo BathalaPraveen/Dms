@@ -3,18 +3,14 @@ import Signup from "./pages/Signup";
 import Login from "./pages/Login";
 import Dashboard from "./pages/Dashboard";
 import Layout from "./components/Layout";
-import Employee from "./employee/Employee";
-import EmployeeView from "./employee/EmployeeView";
-import "./i18n";
+import Employee from "./Employee/Employee";
+import EmployeeView from "./Employee/EmployeeView";
 import PrivateRoute from "./components/PrivateRoute";
 
 function App() {
   return (
     <Router>
       <Routes>
-        {/* Default redirect to login */}
-        <Route path="/" element={<Login />} />
-        
         {/* Public routes */}
         <Route path="/signup" element={<Layout><Signup /></Layout>} />
         <Route path="/login" element={<Login />} />
