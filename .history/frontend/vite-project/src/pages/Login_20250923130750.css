@@ -1,0 +1,18 @@
+.login-container {
+  background: url('../assets/login-bg.jpg') no-repeat center center;
+  background-size: cover;
+}
+
+.eye-icon {
+  position: absolute;
+  right: 15px;
+  top: 50%;
+  transform: translateY(-50%);
+  cursor: pointer;
+  color: #6c757d;
+}
+
+.error {
+  color: red;
+  font-size: 0.875rem;
+}

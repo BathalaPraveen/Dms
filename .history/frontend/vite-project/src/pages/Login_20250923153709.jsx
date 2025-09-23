@@ -47,7 +47,7 @@ export default function Login() {
       localStorage.setItem("user", JSON.stringify(res.data.user));
       const toast = Swal.mixin({
           toast: true,
-          position: "top-right",
+          position: "top-right",   // can try "bottom-right" also
           showConfirmButton: false,
           width: 400,
           showCloseButton: true,

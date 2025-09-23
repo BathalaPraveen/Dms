@@ -12,8 +12,7 @@ function App() {
     <Router>
       <Routes>
         {/* Default redirect to login */}
-        <Route path="/" element={<Login />} />
-        
+        {/* <Route path="/" element={<Navigate to="/login" replace />} /> */}
         {/* Public routes */}
         <Route path="/signup" element={<Layout><Signup /></Layout>} />
         <Route path="/login" element={<Login />} />

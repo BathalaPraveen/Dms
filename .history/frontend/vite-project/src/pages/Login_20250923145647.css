@@ -21,8 +21,8 @@
   background-color: rgba(255, 255, 255, 0.95);
   padding: 25px 30px;
   border-radius: 12px;
-  max-width: 370px;
-  height: 360px;
+  max-width: 400px;
+  max-width: 400px;
   width: 100%;
   box-shadow: 0 0 20px rgba(0, 0, 0, 0.3);
   text-align: center;
@@ -31,7 +31,7 @@
   gap: 0px;
   }
 .login-form h2 {
-    margin-bottom: 25px;
+    margin-bottom: 40px;
     color: #333;
 }
 
@@ -99,7 +99,6 @@
     margin-bottom: 0px;
     font-weight: 500;
     color: #333;
-    margin-top: 10px;
 }
 
 .error {

@@ -47,14 +47,14 @@ export default function Login() {
       localStorage.setItem("user", JSON.stringify(res.data.user));
       const toast = Swal.mixin({
           toast: true,
-          position: "top-right",
+          position: "top-right",   // can try "bottom-right" also
           showConfirmButton: false,
           width: 400,
           showCloseButton: true,
           timer: 3000,
           timerProgressBar: true,
-          background: "#fff",
-          color: "#333",
+          background: "#fff",       // white clean background
+          color: "#333",            // text color
           customClass: {
             popup: "rounded shadow-lg",
           },
