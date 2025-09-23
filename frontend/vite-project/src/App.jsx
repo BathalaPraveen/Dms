@@ -7,12 +7,13 @@ import Employee from "./employee/Employee";
 import EmployeeView from "./employee/EmployeeView";
 import "./i18n";
 import PrivateRoute from "./components/PrivateRoute";
-
+import { ThemeProvider } from "./contexts/ThemeContext";
 function App() {
   return (
-    <Router>
-      <Routes>
-        {/* Default redirect to login */}
+    <ThemeProvider>
+      <Router>
+        <Routes>
+          {/* Default redirect to login */}
         <Route path="/" element={<Login />} />
         
         {/* Public routes */}
@@ -36,7 +37,8 @@ function App() {
           </PrivateRoute>
         } />
       </Routes>
-    </Router>
+      </Router>
+      </ThemeProvider>
   );
 }
 

@@ -1,6 +1,6 @@
-// src/components/ProfileModal.jsx
 import React, { useState, useEffect } from "react";
 import { FaSave, FaTimes, FaLock } from "react-icons/fa";
+import { useTheme } from "../contexts/ThemeContext";
 
 export default function ProfileModal({ show, onClose }) {
   const [tab, setTab] = useState("profile");
@@ -10,6 +10,7 @@ export default function ProfileModal({ show, onClose }) {
   const [pwdErrors, setPwdErrors] = useState({});
   const [msg, setMsg] = useState(null);
   const [loading, setLoading] = useState(false);
+  const { darkMode, toggleTheme } = useTheme();
 
   useEffect(() => {
     if (show) {
@@ -100,8 +101,10 @@ export default function ProfileModal({ show, onClose }) {
         right: "20px",
         width: "320px",
         zIndex: 1100,
-        background: "#fff",
-        border: "1px solid #ccc",
+        // Apply dark mode styles here
+        background: darkMode ? "#343a40" : "#fff",
+        color: darkMode ? "#f8f9fa" : "#212529",
+        border: `1px solid ${darkMode ? "#495057" : "#ccc"}`,
         borderRadius: "5px",
         boxShadow: "0 4px 10px rgba(0,0,0,0.15)",
         padding: "10px"
@@ -110,59 +113,69 @@ export default function ProfileModal({ show, onClose }) {
       {/* Header */}
       <div className="d-flex justify-content-between align-items-center mb-2">
         <strong>My Profile</strong>
-        <button className="btn btn-light btn-sm" onClick={onClose}><FaTimes /></button>
+        {/* Use conditional classes for the Close button */}
+        <button className={`btn btn-sm ${darkMode ? "btn-dark text-white" : "btn-light"}`} onClick={onClose}><FaTimes /></button>
       </div>
 
-      {msg && <div style={{ background: "#f0f0f0", padding: "5px", marginBottom: "10px" }}>{msg}</div>}
+      {msg && (
+        <div style={{
+          // Apply dark mode styles for the message box
+          background: darkMode ? "#495057" : "#f0f0f0",
+          color: darkMode ? "#f8f9fa" : "#212529",
+          padding: "5px",
+          marginBottom: "10px"
+        }}>{msg}</div>
+      )}
 
       {/* Tabs */}
       <div className="d-flex mb-2">
-        <button className={`btn btn-sm me-2 ${tab === "profile" ? "btn-primary" : "btn-light"}`} onClick={() => setTab("profile")}>Profile</button>
-        <button className={`btn btn-sm ${tab === "password" ? "btn-warning" : "btn-light"}`} onClick={() => setTab("password")}>Change Password</button>
+        {/* Conditional classes for the tab buttons */}
+        <button className={`btn btn-sm me-2 ${tab === "profile" ? (darkMode ? "btn-info" : "btn-primary") : (darkMode ? "btn-secondary text-white" : "btn-light")}`} onClick={() => setTab("profile")}>Profile</button>
+        <button className={`btn btn-sm ${tab === "password" ? (darkMode ? "btn-warning" : "btn-warning") : (darkMode ? "btn-secondary text-white" : "btn-light")}`} onClick={() => setTab("password")}>Change Password</button>
       </div>
 
       {tab === "profile" ? (
         <div>
           <div className="mb-2">
             <label>Name</label>
-            <input className="form-control form-control-sm" value={user.name} name="name" onChange={handleChange} />
+            <input className={`form-control form-control-sm ${darkMode ? "bg-dark text-white border-secondary" : ""}`} value={user.name} name="name" onChange={handleChange} />
             {errors.name && <div style={{ color: "red", fontSize: "12px" }}>{errors.name}</div>}
           </div>
           <div className="mb-2">
             <label>Email</label>
-            <input className="form-control form-control-sm" value={user.email} name="email" onChange={handleChange} />
+            <input className={`form-control form-control-sm ${darkMode ? "bg-dark text-white border-secondary" : ""}`} value={user.email} name="email" onChange={handleChange} />
             {errors.email && <div style={{ color: "red", fontSize: "12px" }}>{errors.email}</div>}
           </div>
           <div className="mb-2">
             <label>Phone</label>
-            <input className="form-control form-control-sm" value={user.phone} name="phone" onChange={handleChange} />
+            <input className={`form-control form-control-sm ${darkMode ? "bg-dark text-white border-secondary" : ""}`} value={user.phone} name="phone" onChange={handleChange} />
             {errors.phone && <div style={{ color: "red", fontSize: "12px" }}>{errors.phone}</div>}
           </div>
           <div className="d-flex justify-content-between mt-2">
-            <button className="btn btn-secondary btn-sm" onClick={onClose}><FaTimes /> Close</button>
-            <button className="btn btn-primary btn-sm" onClick={handleSave}><FaSave /> Save</button>
+            <button className={`btn btn-sm ${darkMode ? "btn-dark text-white border-secondary" : "btn-secondary"}`} onClick={onClose}><FaTimes /> Close</button>
+            <button className={`btn btn-sm ${darkMode ? "btn-info" : "btn-primary"}`} onClick={handleSave}><FaSave /> Save</button>
           </div>
         </div>
       ) : (
         <div>
           <div className="mb-2">
             <label>Current Password</label>
-            <input type="password" className="form-control form-control-sm" value={pwdForm.currentPassword} name="currentPassword" onChange={handlePwdChange} />
+            <input type="password" className={`form-control form-control-sm ${darkMode ? "bg-dark text-white border-secondary" : ""}`} value={pwdForm.currentPassword} name="currentPassword" onChange={handlePwdChange} />
             {pwdErrors.currentPassword && <div style={{ color: "red", fontSize: "12px" }}>{pwdErrors.currentPassword}</div>}
           </div>
           <div className="mb-2">
             <label>New Password</label>
-            <input type="password" className="form-control form-control-sm" value={pwdForm.newPassword} name="newPassword" onChange={handlePwdChange} />
+            <input type="password" className={`form-control form-control-sm ${darkMode ? "bg-dark text-white border-secondary" : ""}`} value={pwdForm.newPassword} name="newPassword" onChange={handlePwdChange} />
             {pwdErrors.newPassword && <div style={{ color: "red", fontSize: "12px" }}>{pwdErrors.newPassword}</div>}
           </div>
           <div className="mb-2">
             <label>Confirm Password</label>
-            <input type="password" className="form-control form-control-sm" value={pwdForm.confirmPassword} name="confirmPassword" onChange={handlePwdChange} />
+            <input type="password" className={`form-control form-control-sm ${darkMode ? "bg-dark text-white border-secondary" : ""}`} value={pwdForm.confirmPassword} name="confirmPassword" onChange={handlePwdChange} />
             {pwdErrors.confirmPassword && <div style={{ color: "red", fontSize: "12px" }}>{pwdErrors.confirmPassword}</div>}
           </div>
           <div className="d-flex justify-content-between mt-2">
-            <button className="btn btn-secondary btn-sm" onClick={onClose}><FaTimes /> Close</button>
-            <button className="btn btn-warning btn-sm" onClick={handleChangePassword}><FaLock /> Change</button>
+            <button className={`btn btn-sm ${darkMode ? "btn-dark text-white border-secondary" : "btn-secondary"}`} onClick={onClose}><FaTimes /> Close</button>
+            <button className={`btn btn-sm ${darkMode ? "btn-warning" : "btn-warning"}`} onClick={handleChangePassword}><FaLock /> Change</button>
           </div>
         </div>
       )}

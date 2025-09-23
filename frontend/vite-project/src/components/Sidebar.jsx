@@ -273,86 +273,86 @@ export default function Sidebar({ activeItem, setActiveItem, collapsed }) {
         className="flex-grow-1"
         style={{ overflowX: "hidden", minHeight: 0 }}
       >
-  
-<ul className="nav flex-column gap-1">
-  {renderSingleMenu("dashboard", FaHome, t("sidebar.dashboard"), () =>
-    navigate("/dashboard")
-  )}
+      
+      <ul className="nav flex-column gap-1">
+        {renderSingleMenu("dashboard", FaHome, t("sidebar.dashboard"), () =>
+          navigate("/dashboard")
+        )}
 
-  {renderMenuSection("construction", FaBuilding, t("sidebar.constructionWork"), [
-    t("sidebar.cwDashboard"),
-    t("sidebar.cwManagement"),
-    t("sidebar.cwA03"),
-  ])}
+        {renderMenuSection("construction", FaBuilding, t("sidebar.constructionWork"), [
+          t("sidebar.cwDashboard"),
+          t("sidebar.cwManagement"),
+          t("sidebar.cwA03"),
+        ])}
 
-  {renderMenuSection("delivery", FaTruck, t("sidebar.deliveryManagement"), [
-    t("sidebar.allDeliveries"),
-    t("sidebar.plannedDeliveries"),
-    t("sidebar.confirmationRequest"),
-    t("sidebar.confirmedDeliveries"),
-    t("sidebar.dispatched"),
-    t("sidebar.tcPending"),
-    t("sidebar.completedDeliveries"),
-    t("sidebar.closeDRNs"),
-  ])}
+        {renderMenuSection("delivery", FaTruck, t("sidebar.deliveryManagement"), [
+          t("sidebar.allDeliveries"),
+          t("sidebar.plannedDeliveries"),
+          t("sidebar.confirmationRequest"),
+          t("sidebar.confirmedDeliveries"),
+          t("sidebar.dispatched"),
+          t("sidebar.tcPending"),
+          t("sidebar.completedDeliveries"),
+          t("sidebar.closeDRNs"),
+        ])}
 
-  {renderSingleMenu("employee", FaUserTie, t("sidebar.employeeManagement"), () =>
-    navigate("/employee")
-  )}
+        {renderSingleMenu("employee", FaUserTie, t("sidebar.employeeManagement"), () =>
+          navigate("/employee")
+        )}
 
-  {renderSingleMenu("holiday", FaUmbrellaBeach, t("sidebar.holidayManagement"))}
+        {renderSingleMenu("holiday", FaUmbrellaBeach, t("sidebar.holidayManagement"))}
 
-  {renderMenuSection("supplier", FaTruckLoading, t("sidebar.supplierManagement"), [
-    t("sidebar.supplierManagement"),
-    t("sidebar.allSuppliers"),
-    t("sidebar.importSuppliers"),
-    t("sidebar.addSuppliers"),
-  ])}
+        {renderMenuSection("supplier", FaTruckLoading, t("sidebar.supplierManagement"), [
+          t("sidebar.supplierManagement"),
+          t("sidebar.allSuppliers"),
+          t("sidebar.importSuppliers"),
+          t("sidebar.addSuppliers"),
+        ])}
 
-  {renderSingleMenu("logCapture", FaClipboardList, t("sidebar.logCaptureManagement"))}
+        {renderSingleMenu("logCapture", FaClipboardList, t("sidebar.logCaptureManagement"))}
 
-  {renderSingleMenu("beDelivery", FaTruckMoving, t("sidebar.beDeliveryInformation"))}
+        {renderSingleMenu("beDelivery", FaTruckMoving, t("sidebar.beDeliveryInformation"))}
 
-  {renderSingleMenu("clinics", FaHospital, t("sidebar.clinicsManagement"))}
+        {renderSingleMenu("clinics", FaHospital, t("sidebar.clinicsManagement"))}
 
-  {renderSingleMenu("zone", FaMapMarkedAlt, t("sidebar.zoneStateDistricts"))}
+        {renderSingleMenu("zone", FaMapMarkedAlt, t("sidebar.zoneStateDistricts"))}
 
-  {renderSingleMenu("document", FaFileAlt, t("sidebar.documentManagement"))}
+        {renderSingleMenu("document", FaFileAlt, t("sidebar.documentManagement"))}
 
-  {renderSingleMenu("tracking", FaSearchLocation, t("sidebar.trackingManagement"))}
+        {renderSingleMenu("tracking", FaSearchLocation, t("sidebar.trackingManagement"))}
 
-  {renderSingleMenu("tender", FaFileContract, t("sidebar.tenderPackages"))}
+        {renderSingleMenu("tender", FaFileContract, t("sidebar.tenderPackages"))}
 
-  {renderSingleMenu("pkd", FaAddressBook, t("sidebar.pkdPpdContactLists"))}
+        {renderSingleMenu("pkd", FaAddressBook, t("sidebar.pkdPpdContactLists"))}
 
-  {renderSingleMenu("subscription", FaIdCard, t("sidebar.subscriptionManagement"))}
+        {renderSingleMenu("subscription", FaIdCard, t("sidebar.subscriptionManagement"))}
 
-  {renderMenuSection("reports", FaChartPie, t("sidebar.reportsManagement"), [
-    t("sidebar.dmsDetailReport"),
-    t("sidebar.pendingAction"),
-    t("sidebar.dispatchDelay"),
-    t("sidebar.deliveryDelay"),
-    t("sidebar.deliveryRescheduled"),
-    t("sidebar.completedDeliveries"),
-    t("sidebar.pkdPpdReport"),
-    t("sidebar.dmsMgmtReport"),
-    t("sidebar.ladReport"),
-    t("sidebar.tncAgingReport"),
-    t("sidebar.bankReport"),
-    t("sidebar.tncCertificate"),
-    t("sidebar.batchRescheduledDRNs"),
-  ])}
+        {renderMenuSection("reports", FaChartPie, t("sidebar.reportsManagement"), [
+          t("sidebar.dmsDetailReport"),
+          t("sidebar.pendingAction"),
+          t("sidebar.dispatchDelay"),
+          t("sidebar.deliveryDelay"),
+          t("sidebar.deliveryRescheduled"),
+          t("sidebar.completedDeliveries"),
+          t("sidebar.pkdPpdReport"),
+          t("sidebar.dmsMgmtReport"),
+          t("sidebar.ladReport"),
+          t("sidebar.tncAgingReport"),
+          t("sidebar.bankReport"),
+          t("sidebar.tncCertificate"),
+          t("sidebar.batchRescheduledDRNs"),
+        ])}
 
-  {renderMenuSection("userAccess", FaUserShield, t("sidebar.userAccessReports"), [
-    t("sidebar.userAccessReports"),
-    t("sidebar.userActivityReports"),
-  ])}
+        {renderMenuSection("userAccess", FaUserShield, t("sidebar.userAccessReports"), [
+          t("sidebar.userAccessReports"),
+          t("sidebar.userActivityReports"),
+        ])}
 
-  {renderMenuSection("workOrder", FaTasks, t("sidebar.workOrder"), [
-    t("sidebar.importWorkOrder"),
-    t("sidebar.workOrderStatus"),
-  ])}
-</ul>
+        {renderMenuSection("workOrder", FaTasks, t("sidebar.workOrder"), [
+          t("sidebar.importWorkOrder"),
+          t("sidebar.workOrderStatus"),
+        ])}
+      </ul>
 
       </div>
     </aside>
