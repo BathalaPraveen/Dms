@@ -1,9 +1,12 @@
 import React, { useState } from "react";
 import "bootstrap/dist/css/bootstrap.min.css";
 import Select from "react-select";
-import { FaSave, FaTimes } from "react-icons/fa"; // icons
+import { FaSave, FaTimes ,FaBackward} from "react-icons/fa"; // icons
 import axios from "axios";
+import { useParams, Link } from 'react-router-dom';
+import { toast, ToastContainer } from "react-toastify";
 
+import { useNavigate } from "react-router-dom";
 const EmployeeAdd = () => {
   const initialFormData = {
     userType: "",
@@ -19,6 +22,7 @@ const EmployeeAdd = () => {
 
   const [formData, setFormData] = useState(initialFormData);
   const [errors, setErrors] = useState({});
+  const navigate = useNavigate();
 
   const validate = () => {
     const newErrors = {};
@@ -60,8 +64,31 @@ const EmployeeAdd = () => {
     { value: "North", label: "North" },
     { value: "South", label: "South" },
   ];
-
-  const handleSave = async () => {
+  // const handleSave = async () => {
+  //   const validationErrors = validate();
+  //   if (Object.keys(validationErrors).length > 0) {
+  //     setErrors(validationErrors);
+  //     return;
+  //   }
+  //   setErrors({});
+  //   try {
+  //     const response = await axios.post(
+  //       "http://localhost:5000/api/employee/employeestore",
+  //       formData
+  //     );
+  //     if (response.data.success) {
+  //       toast.success("Employee added successfully!"); 
+  //       setFormData(initialFormData);
+  //       setTimeout(() => {
+  //         navigate("/employee");
+  //       }, 1000);
+  //     }
+  //   } catch (error) {
+  //     console.error(error);
+  //     toast.error("Something went wrong!");
+  //   }
+  // };
+  const handleSave = () => {
     const validationErrors = validate();
     if (Object.keys(validationErrors).length > 0) {
       setErrors(validationErrors);
@@ -69,24 +96,18 @@ const EmployeeAdd = () => {
     }
     setErrors({});
 
-      try {
-        // Send employee data to backend
-        const response = await axios.post("http://localhost:5000/api/employee/employeestore", formData);
+    // Read existing employees or empty array
+    const existingEmployees = JSON.parse(localStorage.getItem("employeeData")) || [];
+    const updatedEmployees = [...existingEmployees, formData];
+    localStorage.setItem("employeeData", JSON.stringify(updatedEmployees));
 
-        if (response.data.success) {
-        toast.success("Employee added successfully!");
-        setFormData(initialFormData);
+    toast.success("Employee added successfully!");
+    setFormData(initialFormData);
 
-        setTimeout(() => {
-            navigate("/employee"); // go to employee list
-        }, 1000);
-        }
-    } catch (error) {
-        console.error(error);
-        toast.error("Something went wrong!");
-    }
+    setTimeout(() => {
+      navigate("/employee"); // go to employee list
+    }, 1000);
   };
-
   const handleCancel = () => {
     setFormData(initialFormData);
     setErrors({});
@@ -94,14 +115,18 @@ const EmployeeAdd = () => {
 
   return (
     <div className="container mt-3">
-      <div className="card mb-2 p-2 d-flex">
-        <h4
-          className="mb-0 "
-          style={{ paddingLeft: "12px", fontSize: "22px", fontWeight: 630 }}
-        >
-          Add Employee
-        </h4>
+        
+      <div className="card mb-4">
+        <div className="card-body d-flex justify-content-between align-items-center">
+          <h4 className="card-title mb-0" style={{ color: "#2d4059" }}>
+            Add Employee
+          </h4>
+          <Link to="/employee" className="btn btn-primary">
+            <FaBackward className="me-1" /> Back
+          </Link>
+        </div>
       </div>
+
       <div className="card shadow-sm p-4">
         {/* Row 1: User Type, Zone, Employee ID */}
         <div className="row mb-3">

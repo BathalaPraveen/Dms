@@ -25,7 +25,6 @@ router.post("/employeestore", (req, res) => {
     const data = fs.readFileSync(filePath);
     employees = JSON.parse(data);
   }
-
   employees.push(newEmployee);
 
   fs.writeFileSync(filePath, JSON.stringify(employees, null, 2));

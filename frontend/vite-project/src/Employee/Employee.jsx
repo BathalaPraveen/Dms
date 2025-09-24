@@ -34,6 +34,24 @@ const ApiTable = () => {
     fetchUsers();
   }, [t]);
 
+  // useEffect(() => {
+  //   setLoading(true); // show loading while fetching
+  //   try {
+  //     // Get data from localStorage
+  //     const storedUsers = localStorage.getItem("employeeData"); // your key
+  //     if (storedUsers) {
+  //       setUsers(JSON.parse(storedUsers)); // parse JSON string to array
+  //     } else {
+  //       setUsers([]); // if nothing in localStorage
+  //     }
+  //   } catch (err) {
+  //     setError("Failed to load data from localStorage");
+  //     console.error("LocalStorage Error:", err);
+  //   } finally {
+  //     setLoading(false);
+  //   }
+  // }, []);
+
   const handleView = (id) => navigate(`/employee/employeeview/${id}`);
 
   const columnHelper = createColumnHelper();
