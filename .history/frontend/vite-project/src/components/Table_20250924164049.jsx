@@ -75,7 +75,7 @@ const Table = ({ data, columns, totalRecords, onPaginationChange, onFilteredRows
 
   return (
     <div className='card p-4 table-responsive' style={{backgroundColor: darkMode ? "#3d3d3dff" : "#ffff",color: darkMode ? "#e6eef8" : "#212529"}}>
-      <table className={tableClass}>
+      <table className='table table-bordered'style={{backgroundColor: darkMode ? "#3d3d3dff" : "#ffff",color: darkMode ? "#e6eef8" : "#212529"}}>
         <thead className={darkMode ? "text-white" : ""}>
           {table.getHeaderGroups().map((headerGroup) => (
             <tr key={headerGroup.id}>
@@ -117,7 +117,7 @@ const Table = ({ data, columns, totalRecords, onPaginationChange, onFilteredRows
                           type="text"
                           value={header.column.getFilterValue() ?? ""}
                           onChange={header.column.setFilterValue}
-                          className={tableInputClass}
+                          className='{form-control form-control-sm border-secondary' style={{backgroundColor: darkMode ? "#3d3d3dff" : "#ffff",color: darkMode ? "#e6eef8" : "#212529"}}
                         />
                       </div>
                     )}
@@ -155,8 +155,9 @@ const Table = ({ data, columns, totalRecords, onPaginationChange, onFilteredRows
           <label className="form-label mb-0">Items per page</label>
           <input
             type="number"
-            className={tableInputClass}
+            className={tableInputClass} 
             style={{ width: "100px" }}
+            
             value={itemsPerPage}
             onChange={handleItemsPerPageChange}
             min="1"

@@ -75,7 +75,7 @@ const Table = ({ data, columns, totalRecords, onPaginationChange, onFilteredRows
 
   return (
     <div className='card p-4 table-responsive' style={{backgroundColor: darkMode ? "#3d3d3dff" : "#ffff",color: darkMode ? "#e6eef8" : "#212529"}}>
-      <table className={tableClass}>
+      <table className='table 'style={{backgroundColor: darkMode ? "#3d3d3dff" : "#ffff",color: darkMode ? "#e6eef8" : "#212529"}}>
         <thead className={darkMode ? "text-white" : ""}>
           {table.getHeaderGroups().map((headerGroup) => (
             <tr key={headerGroup.id}>

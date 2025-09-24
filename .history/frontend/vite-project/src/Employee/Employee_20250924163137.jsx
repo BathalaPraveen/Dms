@@ -128,8 +128,8 @@ const ApiTable = () => {
 
   return (
     <div className="container">
-      <div className='card mb-2 p-3' style={{backgroundColor: darkMode ? "#3d3d3dff" : "#ffff",color: darkMode ? "#e6eef8" : "#212529"}}>
-        <div className="d-flex flex-column flex-md-row justify-content-between align-items-start align-items-md-center" >
+      <div className={cardClass}>
+        <div className="d-flex flex-column flex-md-row justify-content-between align-items-start align-items-md-center">
           <h4 className="mb-2 mb-md-0">{t("table.employeeList")}</h4>
           <div className="d-flex flex-wrap gap-2">
             <button className="btn btn-success" onClick={exportExcel}><FaFileExcel /> {t("table.excel")}</button>
