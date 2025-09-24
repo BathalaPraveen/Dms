@@ -73,8 +73,7 @@
     "designation": "Designation",
     "empdetails":"Employee Details",
     "password":"Password",
-    "update":"Update",
-    "cancel":"Cancel"
+    "update":"Update"
   },
 
   "footer": {
@@ -105,7 +104,9 @@
     "emailrequired":"Email is required",
     "phonerequired":"Phone is required",
     "validemail":"Enter a valid email",
+    "phoneformat":"Phone must be 10 digits",
     "phoneformat":"Phone must be 10 digits"
+
   }
  
 }

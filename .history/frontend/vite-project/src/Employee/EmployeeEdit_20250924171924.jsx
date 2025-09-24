@@ -227,7 +227,7 @@ const EmployeeEdit = () => {
                     </div>
 
                     <div className="col-md-4">
-                        <label className="form-label">{t("employee.password")}</label>
+                        <label className="form-label">{t("employee.passw")}</label>
                         <input
                             type="text"
                             className="form-control"
@@ -238,7 +238,7 @@ const EmployeeEdit = () => {
                     </div>
 
                     <div className="col-md-4">
-                        <label className="form-label">{t("employee.designation")}</label>
+                        <label className="form-label">Designation</label>
                         <input
                             type="text"
                             className="form-control"
@@ -252,10 +252,10 @@ const EmployeeEdit = () => {
                 {/* Buttons */}
                 <div className="d-flex gap-2 mt-3">
                     <button className="btn btn-success" onClick={handleUpdate}>
-                        <FaSave className="me-1" /> {t("employee.update")}
+                        <FaSave className="me-1" /> Update
                     </button>
                     <button className="btn btn-secondary" onClick={handleCancel}>
-                        <FaTimes className="me-1" /> {t("employee.cancel")}
+                        <FaTimes className="me-1" /> Cancel
                     </button>
                 </div>
             </div>

@@ -74,7 +74,8 @@
     "empdetails":"Employee Details",
     "password":"Password",
     "update":"Update",
-    "cancel":"Cancel"
+    "phoncanceleformat":"Phone must be 10 digits"
+
   },
 
   "footer": {

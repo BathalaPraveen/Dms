@@ -24,72 +24,72 @@ const EmployeeAdd = () => {
   const [errors, setErrors] = useState({});
   const navigate = useNavigate();
 
-  const validate = () => {
-    const newErrors = {};
+const validate = () => {
+  const newErrors = {};
 
-    // User Type & Zone
-    if (!formData.userType) newErrors.userType = "User Type is required";
-    if (!formData.zone) newErrors.zone = "Zone is required";
+  // User Type & Zone
+  if (!formData.userType) newErrors.userType = "User Type is required";
+  if (!formData.zone) newErrors.zone = "Zone is required";
 
-    // Employee ID
-    if (!formData.employeeId) {
-      newErrors.employeeId = "Employee ID is required";
-    } else if (!/^[A-Za-z0-9]+$/.test(formData.employeeId)) {
-      newErrors.employeeId = "Employee ID must not contain spaces or special characters";
-    }
+  // Employee ID
+  if (!formData.employeeId) {
+    newErrors.employeeId = "Employee ID is required";
+  } else if (!/^[A-Za-z0-9]+$/.test(formData.employeeId)) {
+    newErrors.employeeId = "Employee ID must not contain spaces or special characters";
+  }
 
-    // First Name
-    if (!formData.firstName) {
-      newErrors.firstName = "First Name is required";
-    } else if (!/^[A-Za-z]+$/.test(formData.firstName)) {
-      newErrors.firstName = "First Name must contain only letters and no spaces";
-    }
+  // First Name
+  if (!formData.firstName) {
+    newErrors.firstName = "First Name is required";
+  } else if (!/^[A-Za-z]+$/.test(formData.firstName)) {
+    newErrors.firstName = "First Name must contain only letters and no spaces";
+  }
 
-    // Last Name
-    if (!formData.lastName) {
-      newErrors.lastName = "Last Name is required";
-    } else if (!/^[A-Za-z]+$/.test(formData.lastName)) {
-      newErrors.lastName = "Last Name must contain only letters and no spaces";
-    }
+  // Last Name
+  if (!formData.lastName) {
+    newErrors.lastName = "Last Name is required";
+  } else if (!/^[A-Za-z]+$/.test(formData.lastName)) {
+    newErrors.lastName = "Last Name must contain only letters and no spaces";
+  }
 
-    // Mobile
-    if (!formData.mobile) {
-      newErrors.mobile = "Mobile Number is required";
-    } else if (!/^\d{10}$/.test(formData.mobile)) {
-      newErrors.mobile = "Enter a valid 10-digit mobile number";
-    }
+  // Mobile
+  if (!formData.mobile) {
+    newErrors.mobile = "Mobile Number is required";
+  } else if (!/^\d{10}$/.test(formData.mobile)) {
+    newErrors.mobile = "Enter a valid 10-digit mobile number";
+  }
 
-    // Email
-    if (!formData.email) {
-      newErrors.email = "Email is required";
-    } else if (!/\S+@\S+\.\S+/.test(formData.email)) {
-      newErrors.email = "Enter a valid email";
-    }
+  // Email
+  if (!formData.email) {
+    newErrors.email = "Email is required";
+  } else if (!/\S+@\S+\.\S+/.test(formData.email)) {
+    newErrors.email = "Enter a valid email";
+  }
 
-    // Password
-    if (!formData.password) {
-      newErrors.password = "Password is required";
-    } else if (
-      !/(?=.*[a-z])/.test(formData.password) ||
-      !/(?=.*[A-Z])/.test(formData.password) ||
-      !/(?=.*\d)/.test(formData.password) || 
-      !/(?=.*[@$!%*?&])/ .test(formData.password) ||
-      formData.password.length < 6
-    ) {
-      newErrors.password = "Password must be at least 6 characters and include uppercase, lowercase, number, and special character";
-    }
+  // Password
+  if (!formData.password) {
+    newErrors.password = "Password is required";
+  } else if (
+    !/(?=.*[a-z])/.test(formData.password) || // at least one lowercase
+    !/(?=.*[A-Z])/.test(formData.password) || // at least one uppercase
+    !/(?=.*\d)/.test(formData.password) || 
+    !/(?=.*[@$!%*?&])/ .test(formData.password) ||
+    formData.password.length < 6
+  ) {
+    newErrors.password = "Password must be at least 6 characters and include uppercase, lowercase, number, and special character";
+  }
 
-    // Designation
-    if (!formData.designation) {
-      newErrors.designation = "Designation is required";
-    } else if (!/^[A-Za-z]+$/.test(formData.designation.trim())) {
-      newErrors.designation = "Designation must contain only letters";
-    } else if (/^\s|\s$/.test(formData.designation)) {
-      newErrors.designation = "Designation must not start or end with space";
-    }
+  // Designation
+  if (!formData.designation) {
+    newErrors.designation = "Designation is required";
+  } else if (!/^[A-Za-z]+$/.test(formData.designation.trim())) {
+    newErrors.designation = "Designation must contain only letters";
+  } else if (/^\s|\s$/.test(formData.designation)) {
+    newErrors.designation = "Designation must not start or end with space";
+  }
 
-    return newErrors;
-  };
+  return newErrors;
+};
 
   const userTypeOptions = [
     { value: "Manager", label: "Manager" },

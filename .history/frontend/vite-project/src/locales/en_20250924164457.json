@@ -71,10 +71,7 @@
     "zone": "Zone",
     "mobile": "Mobile",
     "designation": "Designation",
-    "empdetails":"Employee Details",
-    "password":"Password",
-    "update":"Update",
-    "cancel":"Cancel"
+    "empdetails":"Employee Details"
   },
 
   "footer": {

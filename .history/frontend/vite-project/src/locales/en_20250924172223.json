@@ -73,8 +73,7 @@
     "designation": "Designation",
     "empdetails":"Employee Details",
     "password":"Password",
-    "update":"Update",
-    "cancel":"Cancel"
+    "passwuord":"Password"
   },
 
   "footer": {

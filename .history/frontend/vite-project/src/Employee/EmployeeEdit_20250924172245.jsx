@@ -252,10 +252,10 @@ const EmployeeEdit = () => {
                 {/* Buttons */}
                 <div className="d-flex gap-2 mt-3">
                     <button className="btn btn-success" onClick={handleUpdate}>
-                        <FaSave className="me-1" /> {t("employee.update")}
+                        <FaSave className="me-1" /> {t("profile.Password")}
                     </button>
                     <button className="btn btn-secondary" onClick={handleCancel}>
-                        <FaTimes className="me-1" /> {t("employee.cancel")}
+                        <FaTimes className="me-1" /> Cancel
                     </button>
                 </div>
             </div>
