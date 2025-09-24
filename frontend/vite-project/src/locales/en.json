@@ -49,13 +49,6 @@
     "workOrderStatus": "Work Order Status"
   },
    "table": {
-    "id": "ID",
-    "employeeName": "Employee Name",
-    "userName": "User Name",
-    "email": "Email",
-    "city": "City",
-    "company": "Company",
-    "website": "Website",
     "actions": "Action",
     "employeeList": "Employee List",
     "excel": "Excel",
@@ -69,6 +62,16 @@
     "reportTitle": "Employee Report",
     "loading": "Loading...",
     "fetchError": "Failed to fetch data from the API."
+  },
+   "employee": {
+    "id": "Employee ID",
+    "employeeName": "Employee Name",
+    "usertype": "User Type",
+    "email": "Email",
+    "zone": "Zone",
+    "mobile": "Mobile",
+    "designation": "Designation",
+    "empdetails":"Employee Details"
   },
 
   "footer": {

@@ -49,13 +49,6 @@
     "workOrderStatus": "Status Pesanan Kerja"
   },
    "table": {
-    "id": "ID",
-    "employeeName": "Nama Pekerja",
-    "userName": "Nama Pengguna",
-    "email": "Emel",
-    "city": "Bandar",
-    "company": "Syarikat",
-    "website": "Laman Web",
     "actions": "Tindakan",
     "employeeList": "Senarai Pekerja",
     "excel": "Excel",
@@ -69,6 +62,16 @@
     "reportTitle": "Laporan Pekerja",
     "loading": "Sedang memuatkan...",
     "fetchError": "Gagal mendapatkan data daripada API."
+  },
+  "employee": {
+    "id": "ID Pekerja",
+    "employeeName": "Nama Pekerja",
+    "usertype": "Jenis Pengguna",
+    "email": "Emel",
+    "zone": "Zon",
+    "mobile": "Telefon Bimbit",
+    "designation": "Jawatan",
+    "empdetails": "Butiran Pekerja"
   },
 
   "footer": {
