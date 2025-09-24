@@ -72,9 +72,7 @@
     "mobile": "Mobile",
     "designation": "Designation",
     "empdetails":"Employee Details",
-    "password":"Password",
-    "update":"Update",
-    "cancel":"Cancel"
+    
   },
 
   "footer": {

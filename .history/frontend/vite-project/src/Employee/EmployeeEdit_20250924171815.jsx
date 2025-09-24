@@ -144,7 +144,7 @@ const EmployeeEdit = () => {
                 {/* Row 1 */}
                 <div className="row mb-3">
                     <div className="col-md-4">
-                        <label className="form-label">{t("employee.usertype")}</label>
+                        <label className="form-label">{t("user"}</label>
                         <Select
                             options={userTypeOptions}
                             value={userTypeOptions.find((opt) => opt.value === formData.userType) || null}
@@ -155,7 +155,7 @@ const EmployeeEdit = () => {
                     </div>
 
                     <div className="col-md-4">
-                        <label className="form-label">{t("employee.zone")}</label>
+                        <label className="form-label">Zone</label>
                         <Select
                             options={zoneOptions}
                             value={zoneOptions.find((opt) => opt.value === formData.zone) || null}
@@ -166,7 +166,7 @@ const EmployeeEdit = () => {
                     </div>
 
                     <div className="col-md-4">
-                        <label className="form-label">{t("employee.id")}</label>
+                        <label className="form-label">Employee ID</label>
                         <input
                             type="text"
                             className="form-control"
@@ -202,7 +202,7 @@ const EmployeeEdit = () => {
                     </div>
 
                     <div className="col-md-4">
-                        <label className="form-label">{t("employee.mobile")}</label>
+                        <label className="form-label">Mobile</label>
                         <input
                             type="text"
                             className="form-control"
@@ -216,7 +216,7 @@ const EmployeeEdit = () => {
                 {/* Row 3 */}
                 <div className="row mb-3">
                     <div className="col-md-4">
-                        <label className="form-label">{t("employee.email")}</label>
+                        <label className="form-label">Email</label>
                         <input
                             type="email"
                             className="form-control"
@@ -227,7 +227,7 @@ const EmployeeEdit = () => {
                     </div>
 
                     <div className="col-md-4">
-                        <label className="form-label">{t("employee.password")}</label>
+                        <label className="form-label">Password</label>
                         <input
                             type="text"
                             className="form-control"
@@ -238,7 +238,7 @@ const EmployeeEdit = () => {
                     </div>
 
                     <div className="col-md-4">
-                        <label className="form-label">{t("employee.designation")}</label>
+                        <label className="form-label">Designation</label>
                         <input
                             type="text"
                             className="form-control"
@@ -252,10 +252,10 @@ const EmployeeEdit = () => {
                 {/* Buttons */}
                 <div className="d-flex gap-2 mt-3">
                     <button className="btn btn-success" onClick={handleUpdate}>
-                        <FaSave className="me-1" /> {t("employee.update")}
+                        <FaSave className="me-1" /> Update
                     </button>
                     <button className="btn btn-secondary" onClick={handleCancel}>
-                        <FaTimes className="me-1" /> {t("employee.cancel")}
+                        <FaTimes className="me-1" /> Cancel
                     </button>
                 </div>
             </div>

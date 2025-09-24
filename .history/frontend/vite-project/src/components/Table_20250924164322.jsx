@@ -74,7 +74,7 @@ const Table = ({ data, columns, totalRecords, onPaginationChange, onFilteredRows
   const tableInputClass = `form-control form-control-sm ${darkMode ? "bg-secondary text-white border-secondary" : ""}`;
 
   return (
-    <div className='card p-4 table-responsive' style={{backgroundColor: darkMode ? "#3d3d3dff" : "#ffff",color: darkMode ? "#e6eef8" : "#212529"}}>
+    <div className='{tableWrapperClass}' style={{backgroundColor: darkMode ? "#3d3d3dff" : "#ffff",color: darkMode ? "#e6eef8" : "#212529"}}>
       <table className={tableClass}>
         <thead className={darkMode ? "text-white" : ""}>
           {table.getHeaderGroups().map((headerGroup) => (

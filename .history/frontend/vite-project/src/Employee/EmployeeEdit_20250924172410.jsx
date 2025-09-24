@@ -255,7 +255,7 @@ const EmployeeEdit = () => {
                         <FaSave className="me-1" /> {t("employee.update")}
                     </button>
                     <button className="btn btn-secondary" onClick={handleCancel}>
-                        <FaTimes className="me-1" /> {t("employee.cancel")}
+                        <FaTimes className="me-1" /> {t("employee.update")}
                     </button>
                 </div>
             </div>
