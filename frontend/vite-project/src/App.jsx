@@ -5,6 +5,7 @@ import Dashboard from "./pages/Dashboard";
 import Layout from "./components/Layout";
 import Employee from "./employee/Employee";
 import EmployeeView from "./employee/EmployeeView";
+import EmployeeEdit from "./employee/EmployeeEdit";
 import EmployeeAdd from "./employee/EmployeeAdd";
 import "./i18n";
 import PrivateRoute from "./components/PrivateRoute";
@@ -32,9 +33,15 @@ function App() {
             <Layout><Employee /></Layout>
           </PrivateRoute>
         } />
-        <Route path="/employee/employeeview/:id" element={
+          <Route path="/employee/employeeview/:index" element={
           <PrivateRoute>
             <Layout><EmployeeView /></Layout>
+          </PrivateRoute>
+        } />
+
+          <Route path="/employee/employeeedit/:index" element={
+          <PrivateRoute>
+            <Layout><EmployeeEdit /></Layout>
           </PrivateRoute>
         } />
         <Route

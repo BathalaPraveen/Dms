@@ -9,6 +9,7 @@ import { createColumnHelper } from "@tanstack/react-table";
 import "bootstrap/dist/css/bootstrap.min.css";
 import { FaPlus, FaRegEye, FaPencilAlt, FaTrashAlt, FaRegFilePdf, FaFileExcel } from "react-icons/fa";
 import Table from "../components/Table";
+import { toast } from "react-toastify";
 
 const ApiTable = () => {
   const navigate = useNavigate();
@@ -19,63 +20,95 @@ const ApiTable = () => {
   const [filteredRows, setFilteredRows] = useState([]); // New state to hold filtered rows
   const { darkMode } = useTheme();
 
-  useEffect(() => {
-    const fetchUsers = async () => {
-      try {
-        const response = await axios.get("https://jsonplaceholder.typicode.com/users");
-        setUsers(response.data);
-      } catch (err) {
-        setError(t("table.fetchError"));
-        console.error("API Fetch Error:", err);
-      } finally {
-        setLoading(false);
-      }
-    };
-    fetchUsers();
-  }, [t]);
-
   // useEffect(() => {
-  //   setLoading(true); // show loading while fetching
-  //   try {
-  //     // Get data from localStorage
-  //     const storedUsers = localStorage.getItem("employeeData"); // your key
-  //     if (storedUsers) {
-  //       setUsers(JSON.parse(storedUsers)); // parse JSON string to array
-  //     } else {
-  //       setUsers([]); // if nothing in localStorage
+  //   const fetchUsers = async () => {
+  //     try {
+  //       const response = await axios.get("https://jsonplaceholder.typicode.com/users");
+  //       setUsers(response.data);
+  //     } catch (err) {
+  //       setError(t("table.fetchError"));
+  //       console.error("API Fetch Error:", err);
+  //     } finally {
+  //       setLoading(false);
   //     }
-  //   } catch (err) {
-  //     setError("Failed to load data from localStorage");
-  //     console.error("LocalStorage Error:", err);
-  //   } finally {
-  //     setLoading(false);
-  //   }
-  // }, []);
+  //   };
+  //   fetchUsers();
+  // }, [t]);
 
-  const handleView = (id) => navigate(`/employee/employeeview/${id}`);
+  useEffect(() => {
+    setLoading(true); // show loading while fetching
+    try {
+      // Get data from localStorage
+      const storedUsers = localStorage.getItem("employeeData"); // your key
+      if (storedUsers) {
+        setUsers(JSON.parse(storedUsers)); // parse JSON string to array
+      } else {
+        setUsers([]); // if nothing in localStorage
+      }
+    } catch (err) {
+      setError("Failed to load data from localStorage");
+      console.error("LocalStorage Error:", err);
+    } finally {
+      setLoading(false);
+    }
+  }, []);
+
+  const handleView = (index) => navigate(`/employee/employeeview/${index}`);
+  const handleEdit = (index) => navigate(`/employee/employeeedit/${index}`);
+  const handleDelete = (index) => {
+    const DeleteToast = () => (
+      <div className="d-flex flex-column gap-2">
+        <div>Are you sure you want to delete this employee?</div>
+        <div className="d-flex justify-content-end gap-2">
+          <button
+            className="btn btn-danger btn-sm"
+            onClick={() => {
+              const storedUsers = JSON.parse(localStorage.getItem("employeeData")) || [];
+              storedUsers.splice(index, 1);
+              localStorage.setItem("employeeData", JSON.stringify(storedUsers));
+              setUsers(storedUsers); // update state
+              toast.dismiss(); // close confirm toast
+              toast.success("Employee deleted successfully!");
+            }}
+          >
+            Yes
+          </button>
+          <button
+            className="btn btn-secondary btn-sm"
+            onClick={() => toast.dismiss()}
+          >
+            No
+          </button>
+        </div>
+      </div>
+    );
+
+    toast.info(<DeleteToast />, { autoClose: false });
+  };
+
 
   const columnHelper = createColumnHelper();
   const columns = useMemo(
     () => [
-      columnHelper.accessor("id", { header: t("table.id"), cell: (info) => info.getValue(), enableColumnFilter: false }),
-      columnHelper.accessor("name", { header: t("table.employeeName"), cell: (info) => info.getValue() }),
-      columnHelper.accessor("username", { header: t("table.userName"), cell: (info) => info.getValue() }),
-      columnHelper.accessor("email", { header: t("table.email"), cell: (info) => info.getValue() }),
-      columnHelper.accessor("address.city", { header: t("table.city"), id: "city", cell: (info) => info.getValue() }),
-      columnHelper.accessor("company.name", { header: t("table.company"), id: "company", cell: (info) => info.getValue() }),
-      columnHelper.accessor("website", { header: t("table.website"), cell: (info) => info.getValue() }),
+      columnHelper.accessor("employeeId", { header: t("employee.id"), cell: (info) => info.getValue(), enableColumnFilter: false }),
+      columnHelper.accessor("firstName", { header: t("employee.employeeName"), cell: (info) => info.getValue() }),
+      columnHelper.accessor("designation", { header: t("employee.designation"), cell: (info) => info.getValue() }),
+      columnHelper.accessor("userType", { header: t("employee.usertype"), cell: (info) => info.getValue() }),
+      columnHelper.accessor("email", { header: t("employee.email"), cell: (info) => info.getValue() }),
+      columnHelper.accessor("zone", { header: t("employee.zone"), cell: (info) => info.getValue() }),
+      columnHelper.accessor("mobile", { header: t("employee.mobile"), cell: (info) => info.getValue() }),
       columnHelper.display({
         id: "actions",
         header: t("table.actions"),
         cell: (props) => (
           <div className="d-flex justify-content-start">
-            <button className="btn btn-link p-0 me-2 text-decoration-none" onClick={() => handleView(props.row.original.id)}>
+            <button className="btn btn-link p-0 me-2 text-decoration-none" onClick={() => handleView(props.row.index)}>
               <FaRegEye style={{ color: "#65a3d9" }} />
             </button>
-            <button className="btn btn-link p-0 me-2 text-decoration-none" onClick={() => console.log("Edit", props.row.original.id)}>
+            <button className="btn btn-link p-0 me-2 text-decoration-none" onClick={() => handleEdit( props.row.index)}>
               <FaPencilAlt style={{ color: "#4d88e0" }} />
             </button>
-            <button className="btn btn-link p-0 text-decoration-none" onClick={() => console.log("Delete", props.row.original.id)}>
+            <button className="btn btn-link p-0 text-decoration-none" onClick={() => handleDelete( props.row.id)}>
               <FaTrashAlt style={{ color: "#de6b62" }} />
             </button>
           </div>
