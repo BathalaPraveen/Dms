@@ -69,7 +69,36 @@
     "reportTitle": "Laporan Pekerja",
     "loading": "Sedang memuatkan...",
     "fetchError": "Gagal mendapatkan data daripada API."
-  }
- 
+  },
 
+  "footer": {
+    "rights": "Biztech DMS. Semua hak cipta terpelihara."
+  },
+  "welcome": {
+    "message": "Selamat kembali"
+  },
+  "profile": {
+    "myprofile": "Profil Saya",
+    "logout": "Log Keluar",
+    "profile": "Profil",
+    "changepassword": "Tukar Kata Laluan",
+    "name": "Nama",
+    "email": "E-mel",
+    "phone": "Telefon",
+    "close": "Tutup",
+    "save": "Simpan",
+    "currentpassword": "Kata Laluan Semasa",
+    "newpassword": "Kata Laluan Baharu",
+    "confirmpassword": "Sahkan Kata Laluan",
+    "change": "Tukar",
+    "currentpasswordrequired": "Kata laluan semasa diperlukan",
+    "newpasswordrequired": "Kata laluan baharu diperlukan",
+    "newpasswordminlength": "Kata laluan baharu mesti sekurang-kurangnya 6 aksara",
+    "passwordsmatch": "Kata laluan tidak sepadan",
+    "namerequired": "Nama diperlukan",
+    "emailrequired": "E-mel diperlukan",
+    "phonerequired": "Nombor telefon diperlukan",
+    "validemail": "Masukkan e-mel yang sah",
+    "phoneformat": "Nombor telefon mesti 10 digit"
+  }
 }

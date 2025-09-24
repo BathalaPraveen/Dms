@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { FaSave, FaTimes, FaLock } from "react-icons/fa";
 import { useTheme } from "../contexts/ThemeContext";
-
+import { useTranslation } from "react-i18next";
 export default function ProfileModal({ show, onClose }) {
   const [tab, setTab] = useState("profile");
   const [user, setUser] = useState({ id: "", name: "", email: "", phone: "" });
@@ -11,6 +11,7 @@ export default function ProfileModal({ show, onClose }) {
   const [msg, setMsg] = useState(null);
   const [loading, setLoading] = useState(false);
   const { darkMode, toggleTheme } = useTheme();
+  const { t } = useTranslation();
 
   useEffect(() => {
     if (show) {
@@ -28,21 +29,21 @@ export default function ProfileModal({ show, onClose }) {
 
   const validateProfile = () => {
     let newErrors = {};
-    if (!user.name) newErrors.name = "Name is required";
-    if (!user.email) newErrors.email = "Email is required";
-    else if (!/\S+@\S+\.\S+/.test(user.email)) newErrors.email = "Enter a valid email";
-    if (!user.phone) newErrors.phone = "Phone is required";
-    else if (!/^[0-9]{10}$/.test(user.phone)) newErrors.phone = "Phone must be 10 digits";
+    if (!user.name) newErrors.name = t("profile.namerequired");
+    if (!user.email) newErrors.email = t("profile.emailrequired");
+    else if (!/\S+@\S+\.\S+/.test(user.email)) newErrors.email = t("profile.validemail");
+    if (!user.phone) newErrors.phone = t("profile.phonerequired");
+    else if (!/^[0-9]{10}$/.test(user.phone)) newErrors.phone = t("profile.phoneformat");
     setErrors(newErrors);
     return Object.keys(newErrors).length === 0;
   };
 
   const validatePassword = () => {
     let newErrors = {};
-    if (!pwdForm.currentPassword) newErrors.currentPassword = "Current password is required";
-    if (!pwdForm.newPassword) newErrors.newPassword = "New password is required";
-    else if (pwdForm.newPassword.length < 6) newErrors.newPassword = "New password must be at least 6 characters";
-    if (pwdForm.newPassword !== pwdForm.confirmPassword) newErrors.confirmPassword = "Passwords do not match";
+    if (!pwdForm.currentPassword) newErrors.currentPassword = t("profile.currentpasswordrequired");
+    if (!pwdForm.newPassword) newErrors.newPassword = t("profile.newpasswordrequired");
+    else if (pwdForm.newPassword.length < 6) newErrors.newPassword = t("profile.newpasswordminlength");
+    if (pwdForm.newPassword !== pwdForm.confirmPassword) newErrors.confirmPassword = t("profile.passwordsmatch");
     setPwdErrors(newErrors);
     return Object.keys(newErrors).length === 0;
   };
@@ -112,7 +113,7 @@ export default function ProfileModal({ show, onClose }) {
     >
       {/* Header */}
       <div className="d-flex justify-content-between align-items-center mb-2">
-        <strong>My Profile</strong>
+        <strong>{t("profile.myprofile")}</strong>
         {/* Use conditional classes for the Close button */}
         <button className={`btn btn-sm ${darkMode ? "btn-dark text-white" : "btn-light"}`} onClick={onClose}><FaTimes /></button>
       </div>
@@ -130,52 +131,52 @@ export default function ProfileModal({ show, onClose }) {
       {/* Tabs */}
       <div className="d-flex mb-2">
         {/* Conditional classes for the tab buttons */}
-        <button className={`btn btn-sm me-2 ${tab === "profile" ? (darkMode ? "btn-info" : "btn-primary") : (darkMode ? "btn-secondary text-white" : "btn-light")}`} onClick={() => setTab("profile")}>Profile</button>
-        <button className={`btn btn-sm ${tab === "password" ? (darkMode ? "btn-warning" : "btn-warning") : (darkMode ? "btn-secondary text-white" : "btn-light")}`} onClick={() => setTab("password")}>Change Password</button>
+        <button className={`btn btn-sm me-2 ${tab === "profile" ? (darkMode ? "btn-info" : "btn-primary") : (darkMode ? "btn-secondary text-white" : "btn-light")}`} onClick={() => setTab("profile")}>{t("profile.profile")}</button>
+        <button className={`btn btn-sm ${tab === "password" ? (darkMode ? "btn-warning" : "btn-warning") : (darkMode ? "btn-secondary text-white" : "btn-light")}`} onClick={() => setTab("password")}>{t("profile.changepassword")}</button>
       </div>
 
       {tab === "profile" ? (
         <div>
           <div className="mb-2">
-            <label>Name</label>
+            <label>{t("profile.name")}</label>
             <input className={`form-control form-control-sm ${darkMode ? "bg-dark text-white border-secondary" : ""}`} value={user.name} name="name" onChange={handleChange} />
             {errors.name && <div style={{ color: "red", fontSize: "12px" }}>{errors.name}</div>}
           </div>
           <div className="mb-2">
-            <label>Email</label>
+            <label>{t("profile.email")}</label>
             <input className={`form-control form-control-sm ${darkMode ? "bg-dark text-white border-secondary" : ""}`} value={user.email} name="email" onChange={handleChange} />
             {errors.email && <div style={{ color: "red", fontSize: "12px" }}>{errors.email}</div>}
           </div>
           <div className="mb-2">
-            <label>Phone</label>
+            <label>{t("profile.phone")}</label>
             <input className={`form-control form-control-sm ${darkMode ? "bg-dark text-white border-secondary" : ""}`} value={user.phone} name="phone" onChange={handleChange} />
             {errors.phone && <div style={{ color: "red", fontSize: "12px" }}>{errors.phone}</div>}
           </div>
           <div className="d-flex justify-content-between mt-2">
-            <button className={`btn btn-sm ${darkMode ? "btn-dark text-white border-secondary" : "btn-secondary"}`} onClick={onClose}><FaTimes /> Close</button>
-            <button className={`btn btn-sm ${darkMode ? "btn-info" : "btn-primary"}`} onClick={handleSave}><FaSave /> Save</button>
+            <button className={`btn btn-sm ${darkMode ? "btn-dark text-white border-secondary" : "btn-secondary"}`} onClick={onClose}><FaTimes /> {t("profile.close")}</button>
+            <button className={`btn btn-sm ${darkMode ? "btn-info" : "btn-primary"}`} onClick={handleSave}><FaSave /> {t("profile.save")}</button>
           </div>
         </div>
       ) : (
         <div>
           <div className="mb-2">
-            <label>Current Password</label>
+            <label>{t("profile.currentpassword")}</label>
             <input type="password" className={`form-control form-control-sm ${darkMode ? "bg-dark text-white border-secondary" : ""}`} value={pwdForm.currentPassword} name="currentPassword" onChange={handlePwdChange} />
             {pwdErrors.currentPassword && <div style={{ color: "red", fontSize: "12px" }}>{pwdErrors.currentPassword}</div>}
           </div>
           <div className="mb-2">
-            <label>New Password</label>
+            <label>{t("profile.newpassword")}</label>
             <input type="password" className={`form-control form-control-sm ${darkMode ? "bg-dark text-white border-secondary" : ""}`} value={pwdForm.newPassword} name="newPassword" onChange={handlePwdChange} />
             {pwdErrors.newPassword && <div style={{ color: "red", fontSize: "12px" }}>{pwdErrors.newPassword}</div>}
           </div>
           <div className="mb-2">
-            <label>Confirm Password</label>
+            <label>{t("profile.confirmpassword")}</label>
             <input type="password" className={`form-control form-control-sm ${darkMode ? "bg-dark text-white border-secondary" : ""}`} value={pwdForm.confirmPassword} name="confirmPassword" onChange={handlePwdChange} />
             {pwdErrors.confirmPassword && <div style={{ color: "red", fontSize: "12px" }}>{pwdErrors.confirmPassword}</div>}
           </div>
           <div className="d-flex justify-content-between mt-2">
-            <button className={`btn btn-sm ${darkMode ? "btn-dark text-white border-secondary" : "btn-secondary"}`} onClick={onClose}><FaTimes /> Close</button>
-            <button className={`btn btn-sm ${darkMode ? "btn-warning" : "btn-warning"}`} onClick={handleChangePassword}><FaLock /> Change</button>
+            <button className={`btn btn-sm ${darkMode ? "btn-dark text-white border-secondary" : "btn-secondary"}`} onClick={onClose}><FaTimes /> {t("profile.close")}</button>
+            <button className={`btn btn-sm ${darkMode ? "btn-warning" : "btn-warning"}`} onClick={handleChangePassword}><FaLock /> {t("profile.change")}</button>
           </div>
         </div>
       )}

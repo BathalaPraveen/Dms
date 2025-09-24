@@ -69,5 +69,37 @@
     "reportTitle": "Employee Report",
     "loading": "Loading...",
     "fetchError": "Failed to fetch data from the API."
+  },
+
+  "footer": {
+    "rights": "Biztech DMS. All rights reserved."
+  },
+    "welcome": {
+    "message": "Welcome Back"
+  },
+  "profile": {
+    "myprofile":"My Profile",
+    "logout":"Logout",
+    "profile":"Profile",
+    "changepassword":"Change Password",
+    "name":"Name",
+    "email":"Email",
+    "phone":"Phone",
+    "close":"Close",
+    "save":"Save",
+    "currentpassword":"Current Password",
+    "newpassword":"New Password",
+    "confirmpassword":"Confirm Password",
+    "change":"Change",
+    "currentpasswordrequired":"Current password is required",
+    "newpasswordrequired":"New password is required",
+    "newpasswordminlength":"New password must be at least 6 characters",
+    "passwordsmatch":"Passwords do not match",
+    "namerequired":"Name is required",
+    "emailrequired":"Email is required",
+    "phonerequired":"Phone is required",
+    "validemail":"Enter a valid email",
+    "phoneformat":"Phone must be 10 digits"
   }
+ 
 }
