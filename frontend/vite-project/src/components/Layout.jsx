@@ -4,6 +4,7 @@ import { useNavigate } from "react-router-dom";
 import Sidebar from "./Sidebar";
 import Header from "./Header";
 import Footer from "./Footer";
+import Breadcrumb from "./Breadcrumb";
 import "./Layout.css";
 import { useTheme } from "../contexts/ThemeContext"; // Import the custom hook
 
@@ -33,7 +34,10 @@ export default function Layout({ children }) {
       />
       <div className="main-area">
         <Header toggleSidebar={toggleSidebar} user={user} />
-        <div className="content-area">{children}</div>
+        <div className="content-area p-3">
+          <Breadcrumb /> {/* <-- Added breadcrumb */}
+          {children}
+        </div>
         <Footer />
       </div>
     </div>

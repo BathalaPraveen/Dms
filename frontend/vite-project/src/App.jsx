@@ -5,6 +5,7 @@ import Dashboard from "./pages/Dashboard";
 import Layout from "./components/Layout";
 import Employee from "./employee/Employee";
 import EmployeeView from "./employee/EmployeeView";
+import EmployeeAdd from "./employee/EmployeeAdd";
 import "./i18n";
 import PrivateRoute from "./components/PrivateRoute";
 import { ThemeProvider } from "./contexts/ThemeContext";
@@ -36,6 +37,14 @@ function App() {
             <Layout><EmployeeView /></Layout>
           </PrivateRoute>
         } />
+        <Route
+          path="/employee/employeeadd"
+          element={
+            <PrivateRoute>
+              <Layout><EmployeeAdd /></Layout>
+            </PrivateRoute>
+          }
+        />
       </Routes>
       </Router>
       </ThemeProvider>

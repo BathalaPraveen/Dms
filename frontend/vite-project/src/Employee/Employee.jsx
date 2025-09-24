@@ -116,7 +116,7 @@ const ApiTable = () => {
           <div className="d-flex flex-wrap gap-2">
             <button className="btn btn-success" onClick={exportExcel}><FaFileExcel /> {t("table.excel")}</button>
             <button className="btn btn-danger" onClick={exportPdf}><FaRegFilePdf /> {t("table.pdf")}</button>
-            <button className="btn btn-primary"><FaPlus /></button>
+            <button className="btn btn-primary" onClick={() => navigate("/employee/employeeadd")}><FaPlus /></button>
           </div>
         </div>
       </div>
