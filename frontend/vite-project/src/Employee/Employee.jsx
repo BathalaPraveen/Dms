@@ -11,7 +11,8 @@ import { FaPlus, FaRegEye, FaPencilAlt, FaTrashAlt, FaRegFilePdf, FaFileExcel } 
 import Table from "../components/Table";
 import Delete from "../components/Delete";
 
-const ApiTable = () => {
+const ApiTable = ({ collapsed }) => {
+
   const navigate = useNavigate();
   const { t } = useTranslation();
   const [users, setUsers] = useState([]);
@@ -154,7 +155,8 @@ const ApiTable = () => {
         data={users} 
         columns={columns} 
         totalRecords={users.length} 
-        onFilteredRowsChange={setFilteredRows} // Pass the callback to update state
+        onFilteredRowsChange={setFilteredRows} 
+        collapsed = {collapsed}
       />
     </div>
   );
