@@ -150,12 +150,12 @@ export default function Sidebar({ activeItem, setActiveItem, collapsed }) {
       style={{
         cursor: "pointer",
         backgroundColor: activeParent === key
-        ? darkMode
-          ? "#333333"
-          : "#ffffff"
-        : darkMode
-          ? "#121212"
-          : "#002560",
+          ? darkMode
+            ? "#333333"
+            : "#ffffff"
+          : darkMode
+            ? "#121212"
+            : "#002560",
         borderRadius: activeParent === key ? "5px" : 0,
         padding: activeParent === key ? "1px" : 0,
       }}
@@ -164,14 +164,14 @@ export default function Sidebar({ activeItem, setActiveItem, collapsed }) {
         className="d-flex align-items-center justify-content-between nav-link rounded"
         style={{
           cursor: "pointer",
-         color: darkMode ? "#CCCCCC" : "#ffffff",
-         backgroundColor: darkMode ? "#121212" : "#002560",
+          color: darkMode ? "#CCCCCC" : "#ffffff",
+          backgroundColor: darkMode ? "#121212" : "#002560",
           fontSize: "14px",
         }}
         onClick={() => handleParentClick(key)}
       >
-        <span className="d-flex align-items-center" >
-          <Icon className="me-2"  />
+        <span className="d-flex align-items-center">
+          <Icon className="me-2" />
           {!collapsed && title}
         </span>
         {!collapsed &&
@@ -191,56 +191,65 @@ export default function Sidebar({ activeItem, setActiveItem, collapsed }) {
             fontSize: "14px",
           }}
         >
-          {items.map((item) => (
-            <li
-              key={item}
-              style={{
-                cursor: "pointer",
-                color: activeItem === item
-                ? darkMode
-                  ? "#CCCCCC"
-                  : "#ffffff"
-                : darkMode
-                  ? "#CCCCCC"
-                  : "#002560",
-                backgroundColor: activeItem === item
-                ? darkMode
-                  ? "#333333"
-                  : "#002560"
-                : "transparent",
-                borderRadius: activeItem === item ? "4px" : 0,
-                whiteSpace: "nowrap",
-                textAlign: "left",
-                width: "100%",
-                paddingLeft: "55px",
-                paddingTop: "5px",
-                paddingBottom: "4px",
-                boxSizing: "border-box",
-                position: "relative",
-              }}
-              onClick={() => handleItemClick(item, key)}
-            >
-              <span
+          {items.map((item, index) => {
+            const label = typeof item === "string" ? item : item.label;
+            const path = typeof item === "string" ? null : item.path;
+
+            return (
+              <li
+                key={index}
                 style={{
-                  position: "absolute",
-                  left: "30px",
-                  top: "50%",
-                  transform: "translateY(-50%)",
-                  width: "10px",
-                  height: "10px",
-                  borderRadius: "50%",
-                  backgroundColor: "#ee943fff",
+                  cursor: "pointer",
+                  color: activeItem === label
+                    ? darkMode
+                      ? "#CCCCCC"
+                      : "#ffffff"
+                    : darkMode
+                      ? "#CCCCCC"
+                      : "#002560",
+                  backgroundColor: activeItem === label
+                    ? darkMode
+                      ? "#333333"
+                      : "#002560"
+                    : "transparent",
+                  borderRadius: activeItem === label ? "4px" : 0,
+                  whiteSpace: "nowrap",
+                  textAlign: "left",
+                  width: "100%",
+                  paddingLeft: "55px",
+                  paddingTop: "5px",
+                  paddingBottom: "4px",
+                  boxSizing: "border-box",
+                  position: "relative",
                 }}
-              ></span>
-              {item}
-            </li>
-          ))}
+                onClick={() => {
+                  handleItemClick(label, key);
+                  if (path) navigate(path);
+                }}
+              >
+                <span
+                  style={{
+                    position: "absolute",
+                    left: "30px",
+                    top: "50%",
+                    transform: "translateY(-50%)",
+                    width: "10px",
+                    height: "10px",
+                    borderRadius: "50%",
+                    backgroundColor: "#ee943fff",
+                  }}
+                ></span>
+                {label}
+              </li>
+            );
+          })}
         </ul>
       )}
 
       {renderPopup(key, items, title)}
     </li>
   );
+
 
   const renderSingleMenu = (key, Icon, title, onClick) => (
     <li
@@ -347,12 +356,12 @@ export default function Sidebar({ activeItem, setActiveItem, collapsed }) {
 
         {renderSingleMenu("holiday", FaUmbrellaBeach, t("sidebar.holidayManagement"))}
 
-        {renderMenuSection("supplier", FaTruckLoading, t("sidebar.supplierManagement"), [
-          t("sidebar.supplierManagement"),
-          t("sidebar.allSuppliers"),
-          t("sidebar.importSuppliers"),
-          t("sidebar.addSuppliers"),
-        ])}
+          {renderMenuSection("supplier", FaTruckLoading, t("sidebar.supplierManagement"), [
+            { label: t("sidebar.allSuppliers"), path: "/supplier" },
+            { label: t("sidebar.importSuppliers") },
+            { label: t("sidebar.addSuppliers")},
+          ])}
+
 
         {renderSingleMenu("logCapture", FaClipboardList, t("sidebar.logCaptureManagement"))}
 

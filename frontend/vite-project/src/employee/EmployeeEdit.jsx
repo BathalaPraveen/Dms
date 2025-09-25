@@ -145,7 +145,7 @@ const EmployeeEdit = () => {
             <div className="card shadow-sm p-4"style={{backgroundColor: darkMode ? "#3d3d3dff" : "#ffff",color: darkMode ? "#e6eef8" : "#212529"}}>
                 {/* Row 1 */}
                 <div className="row mb-3">
-                    <div className="col-md-4">
+                    {/* <div className="col-md-4">
                         <label className="form-label">{t("employee.usertype")}</label>
                         <Select
                             options={userTypeOptions}
@@ -165,7 +165,89 @@ const EmployeeEdit = () => {
                                 setFormData({ ...formData, zone: selected ? selected.value : "" })
                             }
                         />
+                    </div> */}
+                    <div className="col-md-4">
+                        <label className="form-label">{t("employee.usertype")}</label>
+                        <Select
+                            options={userTypeOptions}
+                            value={userTypeOptions.find((opt) => opt.value === formData.userType) || null}
+                            onChange={(selected) =>
+                                setFormData({ ...formData, userType: selected ? selected.value : "" })
+                            }
+                            placeholder={t("employee.selectUserType")}
+                            classNamePrefix="react-select"
+                            styles={{
+                                control: (base) => ({
+                                    ...base,
+                                    backgroundColor: darkMode ? "#3d3d3dff" : "#fff",
+                                    color: darkMode ? "#fff" : "#212529",
+                                }),
+                                singleValue: (base) => ({
+                                    ...base,
+                                    color: darkMode ? "#fff" : "#212529",
+                                }),
+                                menu: (base) => ({
+                                    ...base,
+                                    backgroundColor: darkMode ? "#3d3d3dff" : "#fff",
+                                    color: darkMode ? "#fff" : "#212529",
+                                }),
+                                option: (base, state) => ({
+                                    ...base,
+                                    backgroundColor: state.isFocused
+                                        ? darkMode
+                                            ? "#555"
+                                            : "#eee"
+                                        : darkMode
+                                            ? "#3d3d3dff"
+                                            : "#fff",
+                                    color: darkMode ? "#fff" : "#212529",
+                                    cursor: "pointer",
+                                }),
+                            }}
+                        />
                     </div>
+
+                    <div className="col-md-4">
+                        <label className="form-label">{t("employee.zone")}</label>
+                        <Select
+                            options={zoneOptions}
+                            value={zoneOptions.find((opt) => opt.value === formData.zone) || null}
+                            onChange={(selected) =>
+                                setFormData({ ...formData, zone: selected ? selected.value : "" })
+                            }
+                            placeholder={t("employee.selectZone")}
+                            classNamePrefix="react-select"
+                            styles={{
+                                control: (base) => ({
+                                    ...base,
+                                    backgroundColor: darkMode ? "#3d3d3dff" : "#fff",
+                                    color: darkMode ? "#fff" : "#212529",
+                                }),
+                                singleValue: (base) => ({
+                                    ...base,
+                                    color: darkMode ? "#fff" : "#212529",
+                                }),
+                                menu: (base) => ({
+                                    ...base,
+                                    backgroundColor: darkMode ? "#3d3d3dff" : "#fff",
+                                    color: darkMode ? "#fff" : "#212529",
+                                }),
+                                option: (base, state) => ({
+                                    ...base,
+                                    backgroundColor: state.isFocused
+                                        ? darkMode
+                                            ? "#555"
+                                            : "#eee"
+                                        : darkMode
+                                            ? "#3d3d3dff"
+                                            : "#fff",
+                                    color: darkMode ? "#fff" : "#212529",
+                                    cursor: "pointer",
+                                }),
+                            }}
+                        />
+                    </div>
+
 
                     <div className="col-md-4">
                         <label className="form-label">{t("employee.id")}</label>

@@ -181,25 +181,43 @@ const EmployeeAdd = () => {
             </label>
             <Select
               options={userTypeOptions}
-              value={
-                userTypeOptions.find(
-                  (opt) => opt.value === formData.userType
-                ) || null
-              }
+              value={userTypeOptions.find(opt => opt.value === formData.userType) || null}
               onChange={(selected) =>
-                setFormData({
-                  ...formData,
-                  userType: selected ? selected.value : "",
-                })
+                setFormData({ ...formData, userType: selected ? selected.value : "" })
               }
               placeholder="Select User Type"
-              className={
-                errors.userType
-                  ? "react-select-container is-invalid"
-                  : "react-select-container"
-              }
               classNamePrefix="react-select"
+              styles={{
+                control: (base) => ({
+                  ...base,
+                  backgroundColor: darkMode ? "#3d3d3dff" : "#fff",
+                  color: darkMode ? "#fff" : "#212529",
+                  borderColor: errors.userType ? "#dc3545" : base.borderColor,
+                }),
+                singleValue: (base) => ({
+                  ...base,
+                  color: darkMode ? "#fff" : "#212529",
+                }),
+                menu: (base) => ({
+                  ...base,
+                  backgroundColor: darkMode ? "#3d3d3dff" : "#fff",
+                  color: darkMode ? "#fff" : "#212529",
+                }),
+                option: (base, state) => ({
+                  ...base,
+                  backgroundColor: state.isFocused
+                    ? darkMode
+                      ? "#555"
+                      : "#eee"
+                    : darkMode
+                      ? "#3d3d3dff"
+                      : "#fff",
+                  color: darkMode ? "#fff" : "#212529",
+                  cursor: "pointer",
+                }),
+              }}
             />
+
             {errors.userType && (
               <div style={{color: "#dc3545",fontSize: "0.750em",fontWeight: 600,marginTop: "4px",}}>
                 {errors.userType}
@@ -216,9 +234,7 @@ const EmployeeAdd = () => {
             </label>
             <Select
               options={zoneOptions}
-              value={
-                zoneOptions.find((opt) => opt.value === formData.zone) || null
-              }
+              value={zoneOptions.find((opt) => opt.value === formData.zone) || null}
               onChange={(selected) =>
                 setFormData({
                   ...formData,
@@ -226,13 +242,38 @@ const EmployeeAdd = () => {
                 })
               }
               placeholder="Select Zone"
-              className={
-                errors.zone
-                  ? "react-select-container is-invalid"
-                  : "react-select-container"
-              }
               classNamePrefix="react-select"
+              styles={{
+                control: (base) => ({
+                  ...base,
+                  backgroundColor: darkMode ? "#3d3d3dff" : "#fff",
+                  color: darkMode ? "#fff" : "#212529",
+                  borderColor: errors.zone ? "#dc3545" : base.borderColor,
+                }),
+                singleValue: (base) => ({
+                  ...base,
+                  color: darkMode ? "#fff" : "#212529",
+                }),
+                menu: (base) => ({
+                  ...base,
+                  backgroundColor: darkMode ? "#3d3d3dff" : "#fff",
+                  color: darkMode ? "#fff" : "#212529",
+                }),
+                option: (base, state) => ({
+                  ...base,
+                  backgroundColor: state.isFocused
+                    ? darkMode
+                      ? "#555"
+                      : "#eee"
+                    : darkMode
+                      ? "#3d3d3dff"
+                      : "#fff",
+                  color: darkMode ? "#fff" : "#212529",
+                  cursor: "pointer",
+                }),
+              }}
             />
+
             {errors.zone && (
               <div style={{color: "#dc3545",fontSize: "0.750em",fontWeight: 600,marginTop: "4px",}}>
                 {errors.zone}

@@ -129,6 +129,19 @@
     "common":{
     "back":"Kembali",
     "loading": "Memuatkan..."
+  },
+  "breadcrumb":{
+   "home": "Laman Utama",
+    "dashboard": "Papan Pemuka",
+    "employee": "Pengurusan Pekerja",
+    "employeeview": "Lihat Pekerja",
+    "employeeadd": "Tambah Pekerja",
+    "employeeedit": "Sunting Pekerja",
+    "settings": "Tetapan"
+  },
 
+  "supplier": {
+    "suplist": "Senarai Pembekal",
+    "supmang": "Pengurusan Pembekal"
   }
 }

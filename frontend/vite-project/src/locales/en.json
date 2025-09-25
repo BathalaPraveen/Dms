@@ -130,7 +130,19 @@
   "common":{
     "back":"Back",
     "loading": "Loading..."
-
+  },
+ "breadcrumb":{
+    "home": "Home",
+    "dashboard": "Dashboard",
+    "employee": "Employee Management",
+    "employeeview": "Employee View",
+    "employeeadd": "Add Employee",
+    "employeeedit": "Edit Employee",
+    "settings": "Settings"
+  },
+  "supplier":{
+    "suplist":"Supplier List",
+    "supmang":"Supplier Management"
   }
- 
+  
 }

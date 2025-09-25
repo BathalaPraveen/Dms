@@ -7,7 +7,7 @@ import { useTranslation } from "react-i18next";
 import { useTheme } from "../contexts/ThemeContext";
 import { createColumnHelper } from "@tanstack/react-table";
 import "bootstrap/dist/css/bootstrap.min.css";
-import { FaPlus, FaRegEye, FaPencilAlt, FaTrashAlt, FaRegFilePdf, FaFileExcel } from "react-icons/fa";
+import { FaPlus, FaRegEye, FaPencilAlt, FaTrashAlt, FaRegFilePdf, FaFileExcel, FaUserTie } from "react-icons/fa";
 import Table from "../components/Table";
 import Delete from "../components/Delete";
 
@@ -84,6 +84,9 @@ const ApiTable = ({ collapsed }) => {
         cell: (props) => (
           <div className="d-flex justify-content-start">
             <button className="btn btn-link p-0 me-2 text-decoration-none" onClick={() => handleView(props.row.index)}>
+              <FaUserTie style={{ color: "#65a3d9" }} />
+            </button>
+            <button className="btn btn-link p-0 me-2 text-decoration-none" onClick={() => handleView(props.row.index)}>
               <FaRegEye style={{ color: "#65a3d9" }} />
             </button>
             <button className="btn btn-link p-0 me-2 text-decoration-none" onClick={() => handleEdit( props.row.index)}>
@@ -142,7 +145,7 @@ const ApiTable = ({ collapsed }) => {
     <div className="container">
       <div className='card mb-2 p-3' style={{backgroundColor: darkMode ? "#3d3d3dff" : "#ffff",color: darkMode ? "#e6eef8" : "#212529"}}>
         <div className="d-flex flex-column flex-md-row justify-content-between align-items-start align-items-md-center" >
-          <h4 className="mb-2 mb-md-0">{t("table.employeeList")}</h4>
+          <h4 className="mb-2 mb-md-0">{t("supplier.suplist")}</h4>
           <div className="d-flex flex-wrap gap-2">
             <button className="btn btn-success" onClick={exportExcel}><FaFileExcel /> {t("table.excel")}</button>
             <button className="btn btn-danger" onClick={exportPdf}><FaRegFilePdf /> {t("table.pdf")}</button>

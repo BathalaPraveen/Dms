@@ -1,21 +1,23 @@
 import { Link, useLocation } from "react-router-dom";
 import "bootstrap/dist/css/bootstrap.min.css";
 import { useTheme } from "../contexts/ThemeContext";
-
+import { useTranslation } from "react-i18next";
 export default function Breadcrumb({ collapsed }) {
   const location = useLocation();
   const pathnames = location.pathname.split("/").filter((x) => x);
   const { darkMode } = useTheme();
-
+  const { t } = useTranslation();
   const nameMap = {
-    dashboard: "Dashboard",
-    employee: "Employee Management",
-    employeeview: "Employee View",
-    employeeadd: "Add Employee",
-    employeeedit: "Edit Employee",
-    settings: "Settings",
-  };
+    dashboard: t("breadcrumb.dashboard"),
+    employee: t("breadcrumb.employee"),
+    employeeview: t("breadcrumb.employeeview"),
+    employeeadd: t("breadcrumb.employeeadd"),
+    employeeedit: t("breadcrumb.employeeedit"),
+    settings: t("breadcrumb.settings"),
+    SuplierList: t("supplier.suplist"),
+    supplier: t("supplier.supmang"),
 
+  };
   return (
     <nav
   aria-label="breadcrumb"
@@ -47,7 +49,7 @@ export default function Breadcrumb({ collapsed }) {
           overflow: "hidden",
         }}
       >
-        Home
+            {t("breadcrumb.home")}
       </Link>
     </li>
     {pathnames

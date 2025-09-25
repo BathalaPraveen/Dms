@@ -1,4 +1,4 @@
-import React, { useState, useRef } from "react";
+import React, { useState, useRef, useEffect } from "react";
 import { FaUser, FaSignOutAlt, FaMoon, FaSun, FaBars, FaCog } from "react-icons/fa";
 import profileImg from "../assets/profile.png";
 import ProfileModal from "./ProfileModal";
@@ -17,18 +17,29 @@ export default function Header({ toggleSidebar, setCollapsed }) {
   const dropdownRef = useRef(null);
 
   const handleLanguageChange = (e) => i18n.changeLanguage(e.target.value);
-
   const handleLogout = () => {
     localStorage.clear();
     window.location.href = "/login";
   };
 
+  // Close dropdown when clicking outside
+  useEffect(() => {
+    const handleClickOutside = (event) => {
+      if (dropdownRef.current && !dropdownRef.current.contains(event.target)) {
+        setOpenDropdown(false);
+      }
+    };
+    document.addEventListener("mousedown", handleClickOutside);
+    return () => {
+      document.removeEventListener("mousedown", handleClickOutside);
+    };
+  }, []);
+
   return (
     <>
       <nav
-        className={`navbar shadow-sm sticky-top ${
-          darkMode ? "navbar-dark bg-dark" : "navbar-light bg-white"
-        }`}
+        className={`navbar shadow-sm sticky-top ${darkMode ? "navbar-dark bg-dark" : "navbar-light bg-white"
+          }`}
       >
         <div className="container-fluid d-flex align-items-center justify-content-between">
           {/* Sidebar / Hamburger toggle */}
@@ -37,7 +48,7 @@ export default function Header({ toggleSidebar, setCollapsed }) {
               className={`btn ${darkMode ? "text-white" : "text-dark"}`}
               onClick={toggleSidebar}
             >
-                <FaBars />
+              <FaBars />
             </button>
 
             {/* Mobile Hamburger for offcanvas menu */}
@@ -61,9 +72,8 @@ export default function Header({ toggleSidebar, setCollapsed }) {
             </button>
 
             <select
-              className={`form-select form-select-sm ${
-                darkMode ? "bg-dark text-white border-light" : ""
-              }`}
+              className={`form-select form-select-sm ${darkMode ? "bg-dark text-white border-light" : ""
+                }`}
               style={{ width: "140px" }}
               value={i18n.language}
               onChange={handleLanguageChange}
@@ -77,9 +87,8 @@ export default function Header({ toggleSidebar, setCollapsed }) {
             {/* Profile dropdown */}
             <div className="dropdown" ref={dropdownRef}>
               <button
-                className={`btn d-flex align-items-center ${
-                  darkMode ? "btn-dark text-white" : "btn-light"
-                }`}
+                className={`btn d-flex align-items-center ${darkMode ? "btn-dark text-white" : "btn-light"
+                  }`}
                 onClick={() => setOpenDropdown(!openDropdown)}
               >
                 <img
@@ -93,14 +102,14 @@ export default function Header({ toggleSidebar, setCollapsed }) {
               </button>
               {openDropdown && (
                 <ul
-                  className={`dropdown-menu dropdown-menu-end show mt-2 shadow ${
-                    darkMode ? "bg-dark text-white" : ""
-                  }`}
+                  className={`dropdown-menu dropdown-menu-end show mt-2 shadow ${darkMode ? "bg-dark text-white" : ""
+                    }`}
                   style={{ minWidth: "160px" }}
                 >
                   <li>
                     <button
-                      className={`dropdown-item d-flex align-items-center mb-2`}
+                      className={`dropdown-item d-flex align-items-center mb-2 ${darkMode ? "bg-dark text-white" : ""
+                        }`}
                       onClick={() => {
                         setShowProfile(true);
                         setOpenDropdown(false);
@@ -127,22 +136,20 @@ export default function Header({ toggleSidebar, setCollapsed }) {
       {/* Mobile Offcanvas Menu */}
       {showOffcanvas && (
         <div
-          className={`offcanvas offcanvas-start show ${darkMode ? "bg-dark text-white" : ""}`}
+          className={`offcanvas offcanvas-start show ${darkMode ? "bg-dark text-white" : ""
+            }`}
           style={{ width: "250px", zIndex: 1050 }}
         >
           <div className="offcanvas-header">
             <h5 className="offcanvas-title">Menu</h5>
             <button
               type="button"
-              className="btn-close text-reset"
+              className={`btn-close text-reset ${darkMode ? "bg-white text-white":""}`}
               onClick={() => setShowOffcanvas(false)}
             ></button>
           </div>
           <div className="offcanvas-body d-flex flex-column gap-3">
-            <button
-              className="btn btn-outline-secondary"
-              onClick={toggleTheme}
-            >
+            <button className="btn btn-outline-secondary" onClick={toggleTheme}>
               {darkMode ? <FaSun /> : <FaMoon />} Theme
             </button>
 
@@ -160,9 +167,8 @@ export default function Header({ toggleSidebar, setCollapsed }) {
             {/* Mobile Profile */}
             <div className="dropdown" ref={dropdownRef}>
               <button
-                className={`btn d-flex align-items-center ${
-                  darkMode ? "btn-dark text-white" : "btn-light"
-                }`}
+                className={`btn d-flex align-items-center ${darkMode ? "btn-dark text-white" : "btn-light"
+                  }`}
                 onClick={() => setOpenDropdown(!openDropdown)}
               >
                 <img
@@ -176,14 +182,14 @@ export default function Header({ toggleSidebar, setCollapsed }) {
               </button>
               {openDropdown && (
                 <ul
-                  className={`dropdown-menu show mt-2 shadow ${
-                    darkMode ? "bg-dark text-white" : ""
-                  }`}
+                  className={`dropdown-menu show mt-2 shadow ${darkMode ? "bg-dark text-white" : ""
+                    }`}
                   style={{ minWidth: "160px" }}
                 >
                   <li>
                     <button
-                      className="dropdown-item d-flex align-items-center mb-2"
+                      className={`dropdown-item d-flex align-items-center mb-2 ${darkMode ? "bg-dark text-white" : ""
+                        }`}
                       onClick={() => {
                         setShowProfile(true);
                         setOpenDropdown(false);
