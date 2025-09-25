@@ -146,6 +146,8 @@
     "addsupplier": "Add Supplier",
     "supname": "Supplier Name",
     "supid": "Supplier ID",
+    "emailid":"Email ID",
+    "reportTitle": "Supplier Report",
     "contactperson": "Contact Person",
     "address": "Address",
     "state": "State",

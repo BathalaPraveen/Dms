@@ -56,13 +56,12 @@ const ApiTable = ({ collapsed }) => {
   const columnHelper = createColumnHelper();
   const columns = useMemo(
     () => [
-      columnHelper.accessor("employeeId", { header: t("employee.id"), cell: (info) => info.getValue() }),
-      columnHelper.accessor("firstName", { header: t("employee.employeeName"), cell: (info) => info.getValue() }),
-      columnHelper.accessor("designation", { header: t("employee.designation"), cell: (info) => info.getValue() }),
-      columnHelper.accessor("userType", { header: t("employee.usertype"), cell: (info) => info.getValue() }),
-      columnHelper.accessor("email", { header: t("employee.email"), cell: (info) => info.getValue() }),
-      columnHelper.accessor("zone", { header: t("employee.zone"), cell: (info) => info.getValue() }),
-      columnHelper.accessor("mobile", { header: t("employee.mobile"), cell: (info) => info.getValue() }),
+      columnHelper.accessor("employeeId", { header: t("supplier.supid"), cell: (info) => info.getValue() }),
+      columnHelper.accessor("firstName", { header: t("supplier.supname"), cell: (info) => info.getValue() }),
+      columnHelper.accessor("designation", { header: t("supplier.contperson"), cell: (info) => info.getValue() }),
+      columnHelper.accessor("email", { header: t("supplier.emailid"), cell: (info) => info.getValue() }),
+    
+
       columnHelper.display({
         id: "actions",
         header: t("table.actions"),
@@ -105,7 +104,7 @@ const ApiTable = ({ collapsed }) => {
         return cell.row.original[accessor] ?? '';
       })
     );
-    generatePdf(t("table.reportTitle"), headers, data);
+    generatePdf(t("supplier.reportTitle"), headers, data);
   };
 
   const exportExcel = () => {

@@ -147,6 +147,8 @@
     "supname": "Nama Pembekal",
     "supid": "ID Pembekal",
     "contactperson": "Orang Dihubungi",
+    "emailid": "ID E-mel",
+    "reportTitle": "Laporan Pembekal",
     "address": "Alamat",
     "state": "Negeri",
     "district": "Daerah",
