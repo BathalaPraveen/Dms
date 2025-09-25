@@ -149,14 +149,13 @@ const ApiTable = ({ collapsed }) => {
           </div>
         </div>
       </div>
+      
       <Table 
         data={users} 
         columns={columns} 
         totalRecords={users.length} 
-
         onFilteredRowsChange={setFilteredRows} // Pass the callback to update state
         collapsed = {collapsed} // Pass the callback to update state
-
       />
     </div>
   );

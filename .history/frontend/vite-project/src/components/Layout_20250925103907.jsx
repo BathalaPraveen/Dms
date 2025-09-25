@@ -8,8 +8,6 @@ import "./Layout.css";
 import { useTheme } from "../contexts/ThemeContext";
 import { ToastContainer } from "react-toastify"; // import ToastContainer
 import "react-toastify/dist/ReactToastify.css";   // import styles
-import React from "react"; 
-
 
 export default function Layout({ children }) {
   const navigate = useNavigate();
