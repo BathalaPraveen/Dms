@@ -214,7 +214,6 @@ const Table = ({ data, columns, totalRecords, onPaginationChange, onFilteredRows
         className={`d-flex flex-column flex-md-row justify-content-between align-items-start align-items-md-center mt-3 gap-2 ${
           darkMode ? "text-white" : ""
         }`}
-      >
                 <div className="d-flex align-items-center gap-2 justify-content-start">
           <label className="form-label mb-0">Items per page</label>
           <input
