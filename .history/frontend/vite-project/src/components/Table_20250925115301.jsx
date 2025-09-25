@@ -219,7 +219,7 @@ const Table = ({ data, columns, totalRecords, onPaginationChange, onFilteredRows
             min="1"
           />
         </div>
-        )}
+        
         <span>
           {pageIndex + 1} of {pageCount} pages ({totalRecords} items)
         </span>

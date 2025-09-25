@@ -208,7 +208,8 @@ const Table = ({ data, columns, totalRecords, onPaginationChange, onFilteredRows
           darkMode ? "text-white" : ""
         }`}
       >{!collapsed && (
-                <div className="d-flex align-items-center gap-2 justify-content-start">
+                <div className="mt-2 d-flex justify-content-start">
+        <div className="d-flex align-items-center gap-2">
           <label className="form-label mb-0">Items per page</label>
           <input
             type="number"
@@ -219,7 +220,6 @@ const Table = ({ data, columns, totalRecords, onPaginationChange, onFilteredRows
             min="1"
           />
         </div>
-        )}
         <span>
           {pageIndex + 1} of {pageCount} pages ({totalRecords} items)
         </span>

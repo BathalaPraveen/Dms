@@ -208,18 +208,19 @@ const Table = ({ data, columns, totalRecords, onPaginationChange, onFilteredRows
           darkMode ? "text-white" : ""
         }`}
       >{!collapsed && (
-                <div className="d-flex align-items-center gap-2 justify-content-start">
-          <label className="form-label mb-0">Items per page</label>
-          <input
-            type="number"
-            className={tableInputClass}
-            style={{ width: "100px" }}
-            value={itemsPerPage}
-            onChange={handleItemsPerPageChange}
-            min="1"
-          />
-        </div>
-        )}
+  <div className="d-flex flex-wrap align-items-center gap-2 justify-content-start w-100">
+    <label className="form-label mb-0">Items per page</label>
+    <input
+      type="number"
+      className={tableInputClass}
+      style={{ minWidth: "60px", maxWidth: "100px" }}
+      value={itemsPerPage}
+      onChange={handleItemsPerPageChange}
+      min="1"
+    />
+  </div>
+)}
+
         <span>
           {pageIndex + 1} of {pageCount} pages ({totalRecords} items)
         </span>
