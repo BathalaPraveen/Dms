@@ -9,7 +9,7 @@ import {
 } from "@tanstack/react-table";
 import { FaSort, FaSortUp, FaSortDown, FaFilter } from "react-icons/fa";
 import { useTheme } from "../contexts/ThemeContext";
- 
+
 // Debounced input for filtering
 const DebouncedInput = ({
   value: initialValue,
@@ -31,7 +31,7 @@ const DebouncedInput = ({
     />
   );
 };
- 
+
 const Table = ({
   data,
   columns,
@@ -47,7 +47,7 @@ const Table = ({
   const [activeFilter, setActiveFilter] = useState(null);
   const [itemsPerPage, setItemsPerPage] = useState(10);
   const [expandedCells, setExpandedCells] = useState({}); // per-cell toggle
- 
+
   const table = useReactTable({
     data,
     columns,
@@ -63,11 +63,11 @@ const Table = ({
     getSortedRowModel: getSortedRowModel(),
     getFilteredRowModel: getFilteredRowModel(),
   });
- 
+
   useEffect(() => {
     if (onFilteredRowsChange) onFilteredRowsChange(table.getRowModel().rows);
   }, [table.getRowModel().rows, onFilteredRowsChange]);
- 
+
   const handleItemsPerPageChange = (e) => {
     const value = Number(e.target.value);
     if (!isNaN(value) && value > 0) {
@@ -75,10 +75,10 @@ const Table = ({
       table.setPageSize(value);
     } else setItemsPerPage(e.target.value);
   };
- 
+
   const pageIndex = table.getState().pagination.pageIndex;
   const pageCount = table.getPageCount();
- 
+
   const tableClass = `table ${
     darkMode ? "table-dark" : "table-striped table-hover"
   } table-bordered`;
@@ -91,7 +91,7 @@ const Table = ({
   const tableInputClass = `form-control form-control-sm ${
     darkMode ? "bg-secondary text-white border-secondary" : ""
   }`;
- 
+
   return (
     <div
       className="card p-2 p-md-4"
@@ -187,8 +187,8 @@ const Table = ({
           </tbody>
         </table>
       </div>
- 
-  
+
+      {/* Mobile Table (per-column toggle) */}
       {/* Mobile Table (per-column toggle) */}
       <div className="d-md-none">
         {table.getRowModel().rows.map((row) => (
@@ -201,7 +201,7 @@ const Table = ({
             {row.getVisibleCells().map((cell) => {
               const key = row.id + cell.column.id;
               const isExpanded = expandedCells[key];
- 
+
               return (
                 <div key={cell.id} className="border-bottom w-100">
                   <div className="d-flex flex-column p-2 w-100">
@@ -212,7 +212,7 @@ const Table = ({
                         cell.getContext()
                       )}
                     </strong>
- 
+
                     {/* Content - show only if expanded */}
                     {isExpanded && (
                       <div className="mt-2">
@@ -222,7 +222,7 @@ const Table = ({
                         )}
                       </div>
                     )}
- 
+
                     {/* Toggle button at bottom if collapsed is false */}
                     <div
                       className={`mt-0 d-flex ${
@@ -252,7 +252,7 @@ const Table = ({
           </div>
         ))}
       </div>
- 
+
       {/* Pagination */}
       <div
         className={`d-flex flex-column flex-md-row justify-content-between align-items-start align-items-md-center mt-3 gap-2 ${
@@ -273,7 +273,7 @@ const Table = ({
             min="1"
           />
         </div>
- 
+
         <span>
           {pageIndex + 1} of {pageCount} pages ({totalRecords} items)
         </span>
@@ -344,6 +344,8 @@ const Table = ({
     </div>
   );
 };
- 
+
+
+
+
 export default Table;
- 
