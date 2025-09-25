@@ -139,9 +139,13 @@
     "employeeedit": "Sunting Pekerja",
     "settings": "Tetapan"
   },
-
-  "supplier": {
-    "suplist": "Senarai Pembekal",
-    "supmang": "Pengurusan Pembekal"
-  }
+ "supplier": {
+  "suplist": "Senarai Pembekal",
+  "supmang": "Pengurusan Pembekal",
+  "supid": "ID Pembekal",
+  "supname": "Nama Pembekal",
+  "contperson": "Orang Dihubungi",
+  "emailid": "ID E-mel",
+  "reportTitle": "Laporan Pembekal"
+}
 }

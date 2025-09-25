@@ -142,7 +142,12 @@
   },
   "supplier":{
     "suplist":"Supplier List",
-    "supmang":"Supplier Management"
+    "supmang":"Supplier Management",
+    "supid":"Supplier ID",
+    "supname":"Supplier Name",
+    "contperson":"Contact Person",
+    "emailid":"Email ID",
+    "reportTitle": "Supplier Report"
   }
   
 }
