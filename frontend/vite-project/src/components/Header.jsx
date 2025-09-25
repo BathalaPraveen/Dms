@@ -1,5 +1,5 @@
 import React, { useState, useRef } from "react";
-import { FaUser, FaSignOutAlt, FaMoon, FaSun, FaBars,FaTh  } from "react-icons/fa";
+import { FaUser, FaSignOutAlt, FaMoon, FaSun, FaBars, FaCog } from "react-icons/fa";
 import profileImg from "../assets/profile.png";
 import ProfileModal from "./ProfileModal";
 import { useTranslation } from "react-i18next";
@@ -42,10 +42,11 @@ export default function Header({ toggleSidebar, setCollapsed }) {
 
             {/* Mobile Hamburger for offcanvas menu */}
             <button
-              className="btn d-lg-none"
+              className={`btn ${darkMode ? "text-white" : "text-dark"} d-lg-none`}
               onClick={() => setShowOffcanvas(true)}
+              title="Settings"
             >
-               <FaTh  size={20} /> 
+              <FaCog size={20} />
             </button>
           </div>
 

@@ -9,7 +9,7 @@ import { createColumnHelper } from "@tanstack/react-table";
 import "bootstrap/dist/css/bootstrap.min.css";
 import { FaPlus, FaRegEye, FaPencilAlt, FaTrashAlt, FaRegFilePdf, FaFileExcel } from "react-icons/fa";
 import Table from "../components/Table";
-import { toast } from "react-toastify";
+import Delete from "../components/Delete";
 
 const ApiTable = () => {
   const navigate = useNavigate();
@@ -56,37 +56,17 @@ const ApiTable = () => {
   const handleView = (index) => navigate(`/employee/employeeview/${index}`);
   const handleEdit = (index) => navigate(`/employee/employeeedit/${index}`);
   const handleDelete = (index) => {
-    const DeleteToast = () => (
-      <div className="d-flex flex-column gap-2">
-        <div>Are you sure you want to delete this employee?</div>
-        <div className="d-flex justify-content-end gap-2">
-          <button
-            className="btn btn-danger btn-sm"
-            onClick={() => {
-              const storedUsers = JSON.parse(localStorage.getItem("employeeData")) || [];
-              storedUsers.splice(index, 1);
-              localStorage.setItem("employeeData", JSON.stringify(storedUsers));
-              setUsers(storedUsers); // update state
-              toast.dismiss(); // close confirm toast
-              toast.success("Employee deleted successfully!");
-            }}
-          >
-            Yes
-          </button>
-          <button
-            className="btn btn-secondary btn-sm"
-            onClick={() => toast.dismiss()}
-          >
-            No
-          </button>
-        </div>
-      </div>
-    );
-
-    toast.info(<DeleteToast />, { autoClose: false });
+    Delete({
+      title: "Delete Employee",
+      message: "Are you sure you want to delete this employee?",
+      onConfirm: () => {
+        const updatedUsers = [...users];
+        updatedUsers.splice(index, 1);
+        setUsers(updatedUsers);
+        localStorage.setItem("employeeData", JSON.stringify(updatedUsers));
+      },
+    });
   };
-
-
   const columnHelper = createColumnHelper();
   const columns = useMemo(
     () => [
@@ -124,7 +104,6 @@ const ApiTable = () => {
   if (error) return <div className="text-center mt-5 text-danger">{error}</div>;
 
   const exportPdf = () => {
-    // PDF export logic now uses the filteredRows state
     const headers = columns.filter(col => col.id !== "actions").map(col => col.header);
     const data = filteredRows.map(row =>
       row.getVisibleCells().filter(cell => cell.column.id !== "actions").map(cell => {
@@ -141,7 +120,6 @@ const ApiTable = () => {
   };
 
   const exportExcel = () => {
-    // Excel export logic now uses the filteredRows state
     const headers = columns.filter(col => col.id !== "actions").map(col => col.header);
     const data = filteredRows.map(row =>
       row.getVisibleCells().filter(cell => cell.column.id !== "actions").map(cell => {
