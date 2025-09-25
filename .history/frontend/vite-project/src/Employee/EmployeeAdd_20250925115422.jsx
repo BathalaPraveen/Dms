@@ -156,7 +156,7 @@ const EmployeeAdd = () => {
   };
 
   return (
-    <div className="container mt-3 p-0 ml-0 mr-0">
+    <div className="container mt-3 p-0 ml-0 m">
         
       <div className="card mb-4">
         <div className="card-body d-flex justify-content-between align-items-center">
