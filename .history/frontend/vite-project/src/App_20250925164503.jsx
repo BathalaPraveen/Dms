@@ -12,7 +12,6 @@ import SupplierList from "./supplier/SupplierList";
 import "./i18n";
 import PrivateRoute from "./components/PrivateRoute";
 import { ThemeProvider } from "./contexts/ThemeContext";
-
 function App() {
   return (
     <ThemeProvider>
@@ -59,7 +58,7 @@ function App() {
           {/* Supplier routes */}
           <Route path="/supplier" element={
             <PrivateRoute>
-              <Layout><SupplierList /></Layout>
+              <Layout><SuplierList /></Layout>
             </PrivateRoute>
           } />
           <Route

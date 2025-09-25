@@ -12,7 +12,6 @@ import SupplierList from "./supplier/SupplierList";
 import "./i18n";
 import PrivateRoute from "./components/PrivateRoute";
 import { ThemeProvider } from "./contexts/ThemeContext";
-
 function App() {
   return (
     <ThemeProvider>
