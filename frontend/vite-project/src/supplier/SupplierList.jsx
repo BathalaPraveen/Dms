@@ -25,7 +25,7 @@ const ApiTable = ({ collapsed }) => {
     setLoading(true); // show loading while fetching
     try {
       // Get data from localStorage
-      const storedUsers = localStorage.getItem("employeeData"); // your key
+      const storedUsers = localStorage.getItem("supplierData"); // your key
       if (storedUsers) {
         setUsers(JSON.parse(storedUsers)); // parse JSON string to array
       } else {
@@ -39,29 +39,28 @@ const ApiTable = ({ collapsed }) => {
     }
   }, []);
 
-  const handleView = (index) => navigate(`/employee/employeeview/${index}`);
+  const handleView = (index) => navigate(`/supplier/supplierview/${index}`);
   const handleEdit = (index) => navigate(`/employee/employeeedit/${index}`);
   const handleDelete = (index) => {
     Delete({
-      title: "Delete Employee",
-      message: "Are you sure you want to delete this employee?",
+      title: "Delete Supplier",
+      message: "Are you sure you want to delete this Supplier?",
       onConfirm: () => {
         const updatedUsers = [...users];
         updatedUsers.splice(index, 1);
         setUsers(updatedUsers);
-        localStorage.setItem("employeeData", JSON.stringify(updatedUsers));
+        localStorage.setItem("supplierData", JSON.stringify(updatedUsers));
       },
     });
   };
   const columnHelper = createColumnHelper();
   const columns = useMemo(
     () => [
-      columnHelper.accessor("employeeId", { header: t("supplier.supid"), cell: (info) => info.getValue() }),
-      columnHelper.accessor("firstName", { header: t("supplier.supname"), cell: (info) => info.getValue() }),
-      columnHelper.accessor("designation", { header: t("supplier.contperson"), cell: (info) => info.getValue() }),
+      columnHelper.accessor("supplierId", { header: t("supplier.supid"), cell: (info) => info.getValue() }),
+      columnHelper.accessor("supplierName", { header: t("supplier.supname"), cell: (info) => info.getValue() }),
+      columnHelper.accessor("contactPerson", { header: t("supplier.contperson"), cell: (info) => info.getValue() }),
       columnHelper.accessor("email", { header: t("supplier.emailid"), cell: (info) => info.getValue() }),
     
-
       columnHelper.display({
         id: "actions",
         header: t("table.actions"),
@@ -87,10 +86,8 @@ const ApiTable = ({ collapsed }) => {
     ],
     [columnHelper, t]
   );
-
   if (loading) return <div className="text-center mt-5">{t("table.loading")}</div>;
   if (error) return <div className="text-center mt-5 text-danger">{error}</div>;
-
   const exportPdf = () => {
     const headers = columns.filter(col => col.id !== "actions").map(col => col.header);
     const data = filteredRows.map(row =>
@@ -120,7 +117,7 @@ const ApiTable = ({ collapsed }) => {
         return cell.row.original[accessor] ?? '';
       })
     );
-    exportToExcel(t("table.reportTitle"), headers, data);
+    exportToExcel(t("supplier.reportTitle"), headers, data);
   };
 
   const cardClass = `card mb-2 p-3 ${darkMode ? "bg-dark text-white" : "bg-light text-dark"}`;

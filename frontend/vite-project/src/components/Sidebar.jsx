@@ -359,7 +359,7 @@ export default function Sidebar({ activeItem, setActiveItem, collapsed }) {
           {renderMenuSection("supplier", FaTruckLoading, t("sidebar.supplierManagement"), [
             { label: t("sidebar.allSuppliers"), path: "/supplier" },
             { label: t("sidebar.importSuppliers") },
-            { label: t("sidebar.addSuppliers")},
+            { label: t("sidebar.addSuppliers"), path:"/supplier/supplieradd"},
           ])}
 
 

@@ -16,6 +16,7 @@ export default function Breadcrumb({ collapsed }) {
     settings: t("breadcrumb.settings"),
     SuplierList: t("supplier.suplist"),
     supplier: t("supplier.supmang"),
+    supplierview: t("supplier.supview"),
 
   };
   return (

@@ -157,13 +157,15 @@
     "mobile": "Mobile",
     "email": "Email",
     "password": "Password",
-
+    "supdetails":"Supplier Details",
     "required": "{{field}} is required",
     "invalid": "Invalid {{field}}",
     "invalidTel": "Invalid Telephone number",
     "invalidMob": "Invalid Mobile number",
     "invalidEmail": "Invalid Email",
-    "invalidPassword": "Password must contain at least 6 characters, including uppercase, lowercase, number, and special character"
+    "invalidPassword": "Password must contain at least 6 characters, including uppercase, lowercase, number, and special character",
+
+    "supview":"Supplier View"
   }
   
 }

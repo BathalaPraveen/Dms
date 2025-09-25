@@ -157,12 +157,13 @@
     "mobile": "Telefon Bimbit",
     "email": "Emel",
     "password": "Kata Laluan",
-
+    "supdetails": "Butiran Pembekal",
     "required": "{{field}} diperlukan",
     "invalid": "{{field}} tidak sah",
     "invalidTel": "Nombor Telefon tidak sah",
     "invalidMob": "Nombor Telefon Bimbit tidak sah",
     "invalidEmail": "Emel tidak sah",
-    "invalidPassword": "Kata laluan mesti mengandungi sekurang-kurangnya 6 aksara, termasuk huruf besar, huruf kecil, nombor dan aksara khas"
+    "invalidPassword": "Kata laluan mesti mengandungi sekurang-kurangnya 6 aksara, termasuk huruf besar, huruf kecil, nombor dan aksara khas",
+    "supview": "Pandangan Pembekal"
   }
 }
