@@ -224,27 +224,25 @@ const Table = ({
                     )}
 
                     {/* Toggle button at bottom if collapsed is false */}
-                    <div
-                      className={`mt-0 d-flex ${
-                        collapsed ? "justify-content-end" : ""
-                      }`}
-                    >
-                      <button
-                        className={`btn btn-sm ${
-                          darkMode
-                            ? "btn-light text-dark"
-                            : "btn-dark text-white"
-                        }`}
-                        onClick={() =>
-                          setExpandedCells((prev) => ({
-                            ...prev,
-                            [key]: !prev[key],
-                          }))
-                        }
-                      >
-                        {isExpanded ? "-" : "+"}
-                      </button>
-                    </div>
+              
+                      <div className="mt-2 d-flex justify-content-start">
+                        <button
+                          className={`btn btn-sm ${
+                            darkMode
+                              ? "btn-light text-dark"
+                              : "btn-dark text-white"
+                          }`}
+                          onClick={() =>
+                            setExpandedCells((prev) => ({
+                              ...prev,
+                              [key]: !prev[key],
+                            }))
+                          }
+                        >
+                          {isExpanded ? "-" : "+"}
+                        </button>
+                      </div>
+           
                   </div>
                 </div>
               );
@@ -259,27 +257,26 @@ const Table = ({
           darkMode ? "text-white" : ""
         }`}
       >
-        <div
-          className="d-flex flex-wrap align-items-center gap-2 justify-content-start w-100"
-          style={{ display: collapsed ? "none" : "flex" }} // hide only if you really want when collapsed
-        >
-          <label className="form-label mb-0">Items per page</label>
-          <input
-            type="number"
-            className={tableInputClass}
-            style={{ minWidth: "60px", maxWidth: "100px" }}
-            value={itemsPerPage}
-            onChange={handleItemsPerPageChange}
-            min="1"
-          />
-        </div>
+        {!collapsed && (
+          <div className="d-flex flex-wrap align-items-center gap-2 justify-content-start w-100">
+            <label className="form-label mb-0">Items per page</label>
+            <input
+              type="number"
+              className={tableInputClass}
+              style={{ minWidth: "60px", maxWidth: "100px" }}
+              value={itemsPerPage}
+              onChange={handleItemsPerPageChange}
+              min="1"
+            />
+          </div>
+        )}
 
         <span>
           {pageIndex + 1} of {pageCount} pages ({totalRecords} items)
         </span>
         <nav aria-label="Table Pagination">
           <ul
-            className={`pagination mb-0 flex-wrap ${
+            className={`pagination mb-0 d-flex flex-wrap gap-1 ${
               darkMode ? "pagination-dark" : ""
             }`}
           >
@@ -297,6 +294,7 @@ const Table = ({
                 &lt;
               </button>
             </li>
+
             {[...Array(pageCount)].map((_, i) =>
               Math.abs(pageIndex - i) <= 1 || i === 0 || i === pageCount - 1 ? (
                 <li
@@ -324,6 +322,7 @@ const Table = ({
                 </li>
               ) : null
             )}
+
             <li
               className={`page-item ${
                 !table.getCanNextPage() ? "disabled" : ""
