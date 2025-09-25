@@ -182,7 +182,7 @@ const Table = ({ data, columns, totalRecords, onPaginationChange, onFilteredRows
 
               {/* Toggle button at bottom if collapsed is false */}
               {!collapsed && (
-                <div className="mt-2 d-flex justify-content-start">
+                <div className="mt-2 d-flex justify-content-end">
                   <button
                     className={`btn btn-sm ${darkMode ? "btn-light text-dark" : "btn-dark text-white"}`}
                     onClick={() =>
@@ -207,8 +207,8 @@ const Table = ({ data, columns, totalRecords, onPaginationChange, onFilteredRows
         className={`d-flex flex-column flex-md-row justify-content-between align-items-start align-items-md-center mt-3 gap-2 ${
           darkMode ? "text-white" : ""
         }`}
-      >{!collapsed && (
-                <div className="d-flex align-items-center gap-2 justify-content-start">
+      >
+        <div className="d-flex align-items-center gap-2">
           <label className="form-label mb-0">Items per page</label>
           <input
             type="number"
@@ -219,7 +219,6 @@ const Table = ({ data, columns, totalRecords, onPaginationChange, onFilteredRows
             min="1"
           />
         </div>
-        )}
         <span>
           {pageIndex + 1} of {pageCount} pages ({totalRecords} items)
         </span>
