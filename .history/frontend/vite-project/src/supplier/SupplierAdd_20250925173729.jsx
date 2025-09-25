@@ -270,7 +270,7 @@ const validate = () => {
         </div>
 
         <div className="col-md-4">
-          <label className="form-label">{t("supplier.district")}<span className="text-danger">*</span></label>
+          <label className="form-label">{t("supplier.district")} *</label>
           <Select
             options={districtOptions[formData.state] || []}
             value={
@@ -293,7 +293,7 @@ const validate = () => {
 
         {/* Row 4: Telephone */}
         <div className="col-md-4">
-          <label className="form-label">{t("supplier.telephone")}<span className="text-danger">*</span></label>
+          <label className="form-label">{t("supplier.telephone")} *</label>
           <input
             type="text"
             className={`form-control ${errors.telephone ? "is-invalid" : ""}`}
@@ -322,7 +322,7 @@ const validate = () => {
         </div>
 
         <div className="col-md-4">
-          <label className="form-label">{t("supplier.mobile")}<span className="text-danger">*</span></label>
+          <label className="form-label">{t("supplier.mobile")} *</label>
           <input
             type="text"
             className={`form-control ${errors.mobile ? "is-invalid" : ""}`}
@@ -337,7 +337,7 @@ const validate = () => {
         </div>
 
         <div className="col-md-4">
-          <label className="form-label">{t("supplier.email")}<span className="text-danger">*</span></label>
+          <label className="form-label">{t("supplier.email")} *</label>
           <input
             type="email"
             className={`form-control ${errors.email ? "is-invalid" : ""}`}
@@ -355,7 +355,7 @@ const validate = () => {
       {/* Row 5: Password */}
       <div className="row mb-3">
         <div className="col-md-4">
-          <label className="form-label">{t("supplier.password")}<span className="text-danger">*</span></label>
+          <label className="form-label">{t("supplier.password")} *</label>
           <input
             type="text"
             className={`form-control ${errors.password ? "is-invalid" : ""}`}

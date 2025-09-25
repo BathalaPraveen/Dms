@@ -185,7 +185,7 @@ const validate = () => {
       {/* Row 1: Supplier Name, Supplier ID, Contact Person */}
       <div className="row mb-3">
         <div className="col-md-4">
-          <label className="form-label">{t("supplier.supname")}<span className="text-danger">*</span></label>
+          <label className="form-label">{t("supplier.supname")} *</label>
           <input
             type="text"
             className={`form-control ${errors.supplierName ? "is-invalid" : ""}`}
@@ -200,7 +200,7 @@ const validate = () => {
         </div>
 
         <div className="col-md-4">
-          <label className="form-label">{t("supplier.supid")}<span className="text-danger">*</span></label>
+          <label className="form-label">{t("supplier.supid")} *</label>
           <input
             type="text"
             className={`form-control ${errors.supplierId ? "is-invalid" : ""}`}
@@ -215,7 +215,7 @@ const validate = () => {
         </div>
 
         <div className="col-md-4">
-          <label className="form-label">{t("supplier.contperson")}<span className="text-danger">*</span></label>
+          <label className="form-label">{t("supplier.contperson")} *</label>
           <input
             type="text"
             className={`form-control ${errors.contactPerson ? "is-invalid" : ""}`}
@@ -233,7 +233,7 @@ const validate = () => {
       {/* Row 2: Address */}
       <div className="row mb-3">
         <div className="col-md-12">
-          <label className="form-label">{t("supplier.address")}<span className="text-danger">*</span></label>
+          <label className="form-label">{t("supplier.address")} *</label>
           <textarea
             className={`form-control ${errors.address ? "is-invalid" : ""}`}
             value={formData.address}
@@ -250,7 +250,7 @@ const validate = () => {
       {/* Row 3: State & District */}
       <div className="row mb-3">
         <div className="col-md-4">
-          <label className="form-label">{t("supplier.state")}<span className="text-danger">*</span></label>
+          <label className="form-label">{t("supplier.state")} *</label>
           <Select
             options={stateOptions}
             value={
@@ -270,7 +270,7 @@ const validate = () => {
         </div>
 
         <div className="col-md-4">
-          <label className="form-label">{t("supplier.district")}<span className="text-danger">*</span></label>
+          <label className="form-label">{t("supplier.district")} *</label>
           <Select
             options={districtOptions[formData.state] || []}
             value={
@@ -293,7 +293,7 @@ const validate = () => {
 
         {/* Row 4: Telephone */}
         <div className="col-md-4">
-          <label className="form-label">{t("supplier.telephone")}<span className="text-danger">*</span></label>
+          <label className="form-label">{t("supplier.telephone")} *</label>
           <input
             type="text"
             className={`form-control ${errors.telephone ? "is-invalid" : ""}`}
@@ -322,7 +322,7 @@ const validate = () => {
         </div>
 
         <div className="col-md-4">
-          <label className="form-label">{t("supplier.mobile")}<span className="text-danger">*</span></label>
+          <label className="form-label">{t("supplier.mobile")} *</label>
           <input
             type="text"
             className={`form-control ${errors.mobile ? "is-invalid" : ""}`}
@@ -337,7 +337,7 @@ const validate = () => {
         </div>
 
         <div className="col-md-4">
-          <label className="form-label">{t("supplier.email")}<span className="text-danger">*</span></label>
+          <label className="form-label">{t("supplier.email")} *</label>
           <input
             type="email"
             className={`form-control ${errors.email ? "is-invalid" : ""}`}
@@ -355,7 +355,7 @@ const validate = () => {
       {/* Row 5: Password */}
       <div className="row mb-3">
         <div className="col-md-4">
-          <label className="form-label">{t("supplier.password")}<span className="text-danger">*</span></label>
+          <label className="form-label">{t("supplier.password")} *</label>
           <input
             type="text"
             className={`form-control ${errors.password ? "is-invalid" : ""}`}

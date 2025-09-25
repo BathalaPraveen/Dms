@@ -148,7 +148,7 @@
     "supid": "Supplier ID",
     "emailid":"Email ID",
     "reportTitle": "Supplier Report",
-    "contperson":"Contact Person",
+    "contactperson": "Contact Person",
     "address": "Address",
     "state": "State",
     "district": "District",
