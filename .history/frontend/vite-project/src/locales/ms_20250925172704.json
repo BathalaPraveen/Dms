@@ -142,25 +142,6 @@
 
   "supplier": {
     "suplist": "Senarai Pembekal",
-    "supmang": "Pengurusan Pembekal",
-    "addsupplier": "Tambah Pembekal",
-    "supname": "Nama Pembekal",
-    "supid": "ID Pembekal",
-    "contactperson": "Orang Dihubungi",
-    "address": "Alamat",
-    "state": "Negeri",
-    "district": "Daerah",
-    "telephone": "Telefon",
-    "facsimile": "Faksimili",
-    "mobile": "Telefon Bimbit",
-    "email": "Emel",
-    "password": "Kata Laluan",
-
-    "required": "{{field}} diperlukan",
-    "invalid": "{{field}} tidak sah",
-    "invalidTel": "Nombor Telefon tidak sah",
-    "invalidMob": "Nombor Telefon Bimbit tidak sah",
-    "invalidEmail": "Emel tidak sah",
-    "invalidPassword": "Kata laluan mesti mengandungi sekurang-kurangnya 6 aksara, termasuk huruf besar, huruf kecil, nombor dan aksara khas"
+    "supmang": "Pengurusan Pembekal"
   }
 }

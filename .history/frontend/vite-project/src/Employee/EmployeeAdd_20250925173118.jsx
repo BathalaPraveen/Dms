@@ -1,137 +1,135 @@
 import React, { useState } from "react";
 import "bootstrap/dist/css/bootstrap.min.css";
 import Select from "react-select";
-import { FaSave, FaTimes, FaBackward } from "react-icons/fa";
-import { Link, useNavigate } from "react-router-dom";
-import { toast } from "react-toastify";
+import { FaSave, FaTimes ,FaBackward} from "react-icons/fa"; // icons
+import axios from "axios";
+import { useParams, Link } from 'react-router-dom';
+import { toast, ToastContainer } from "react-toastify";
 import { useTranslation } from "react-i18next";
 import { useTheme } from "../contexts/ThemeContext";
-
-const SupplierAdd = () => {
+import { useNavigate } from "react-router-dom";
+const EmployeeAdd = () => {
   const initialFormData = {
-    supplierName: "",
-    supplierId: "",
-    address: "",
-    state: "",
-    district: "",
-    contactPerson: "",
-    telephone: "",
-    facsimile: "",
+    userType: "",
+    zone: "",
+    employeeId: "",
+    firstName: "",
+    lastName: "",
     mobile: "",
     email: "",
     password: "",
+    designation: "",
   };
-
   const { t } = useTranslation();
   const [formData, setFormData] = useState(initialFormData);
   const [errors, setErrors] = useState({});
   const navigate = useNavigate();
   const { darkMode } = useTheme();
+  const validate = () => {
+    const newErrors = {};
+    // User Type & Zone
+    if (!formData.userType) newErrors.userType = t("employee.userTypeRequired");
+    if (!formData.zone) newErrors.zone = t("employee.zoneRequired");
 
-  // --- Dropdown options ---
-  const stateOptions = [
-    { value: "Tamil Nadu", label: "Tamil Nadu" },
-    { value: "Kerala", label: "Kerala" },
-    { value: "Karnataka", label: "Karnataka" },
-  ];
+    // Employee ID
+    if (!formData.employeeId) {
+      newErrors.employeeId = t("employee.employeeIdRequired");
+    } else if (!/^[A-Za-z0-9]+$/.test(formData.employeeId)) {
+      newErrors.employeeId = t("employee.employeeIdInvalid");
+    }
 
-  const districtOptions = {
-    "Tamil Nadu": [
-      { value: "Chennai", label: "Chennai" },
-      { value: "Coimbatore", label: "Coimbatore" },
-      { value: "Madurai", label: "Madurai" },
-    ],
-    Kerala: [
-      { value: "Kochi", label: "Kochi" },
-      { value: "Trivandrum", label: "Trivandrum" },
-    ],
-    Karnataka: [
-      { value: "Bangalore", label: "Bangalore" },
-      { value: "Mysore", label: "Mysore" },
-    ],
+    // First Name
+    if (!formData.firstName) {
+      newErrors.firstName = t("employee.firstNameRequired");
+    } else if (!/^[A-Za-z][A-Za-z\s]*$/.test(formData.firstName.trim())) {
+      newErrors.firstName = t("employee.firstNameInvalid");
+    }
+
+    // Last Name
+    if (!formData.lastName) {
+      newErrors.lastName = t("employee.lastNameRequired");
+    } else if (!/^[A-Za-z][A-Za-z\s]*$/.test(formData.lastName.trim())) {
+      newErrors.lastName = t("employee.lastNameInvalid");
+    }
+
+    // Mobile
+    if (!formData.mobile) {
+      newErrors.mobile = t("employee.mobileRequired");
+    } else {
+      const digitsOnly = formData.mobile.replace(/\D/g, "");
+      if (digitsOnly.length < 6 || digitsOnly.length > 15) { 
+        newErrors.mobile = t("employee.mobileInvalid");
+      }
+    }
+
+    // Email
+    if (!formData.email) {
+      newErrors.email = t("employee.emailRequired");
+    } else if (!/\S+@\S+\.\S+/.test(formData.email)) {
+      newErrors.email = t("employee.emailInvalid");
+    }
+
+    // Password
+    if (!formData.password) {
+      newErrors.password = t("employee.passwordRequired");
+    } else if (
+      !/(?=.*[a-z])/.test(formData.password) ||
+      !/(?=.*[A-Z])/.test(formData.password) ||
+      !/(?=.*\d)/.test(formData.password) || 
+      !/(?=.*[@$!%*?&])/ .test(formData.password) ||
+      formData.password.length < 6
+    ) {
+      newErrors.password = t("employee.passwordInvalid");
+    }
+
+    // Designation
+    if (!formData.designation) {
+      newErrors.designation = t("employee.designationRequired");
+    } else if (!/^[A-Za-z][A-Za-z\s]*$/.test(formData.designation.trim())) {
+      newErrors.designation = t("employee.designationInvalid");
+    }
+
+
+    return newErrors;
   };
 
-  // --- Validation ---
-  // --- Validation ---
-const validate = () => {
-  const newErrors = {};
-  const textRegex = /^[A-Za-z0-9][A-Za-z0-9 ]*$/;
+  const userTypeOptions = [
+    { value: "Manager", label: "Manager" },
+    { value: "HR", label: "HR" },
+    { value: "Employee", label: "Employee" },
+  ];
 
-  if (!formData.supplierName) {
-    newErrors.supplierName = t("supplier.required", { field: t("supplier.supname") });
-  } else if (!textRegex.test(formData.supplierName)) {
-    newErrors.supplierName = t("supplier.invalid", { field: t("supplier.supname") });
-  }
-
-  if (!formData.supplierId) {
-    newErrors.supplierId = t("supplier.required", { field: t("supplier.supid") });
-  } else if (!textRegex.test(formData.supplierId)) {
-    newErrors.supplierId = t("supplier.invalid", { field: t("supplier.supid") });
-  }
-
-  if (!formData.contactPerson) {
-    newErrors.contactPerson = t("supplier.required", { field: t("supplier.contactperson") });
-  } else if (!textRegex.test(formData.contactPerson)) {
-    newErrors.contactPerson = t("supplier.invalid", { field: t("supplier.contactperson") });
-  }
-
-  if (!formData.address) {
-    newErrors.address = t("supplier.required", { field: t("supplier.address") });
-  }
-
-  if (!formData.state) newErrors.state = t("supplier.required", { field: t("supplier.state") });
-  if (!formData.district) newErrors.district = t("supplier.required", { field: t("supplier.district") });
-
-  // Telephone validation
-  if (!formData.telephone) {
-    newErrors.telephone = t("supplier.required", { field: t("supplier.telephone") });
-  } else {
-    const digitsOnly = formData.telephone.replace(/\D/g, "");
-    if (digitsOnly.length < 6 || digitsOnly.length > 15) {
-      newErrors.telephone = t("supplier.invalidTel");
-    } else if (!/^[0-9-]+$/.test(formData.telephone)) {
-      newErrors.telephone = t("supplier.invalid", { field: t("supplier.telephone") });
-    }
-  }
-
-  // Mobile validation
-  if (!formData.mobile) {
-    newErrors.mobile = t("supplier.required", { field: t("supplier.mobile") });
-  } else {
-    const digitsOnly = formData.mobile.replace(/\D/g, "");
-    if (digitsOnly.length < 6 || digitsOnly.length > 15) {
-      newErrors.mobile = t("supplier.invalidMob");
-    } else if (!/^[0-9-]+$/.test(formData.mobile)) {
-      newErrors.mobile = t("supplier.invalid", { field: t("supplier.mobile") });
-    }
-  }
-
-  // Email validation
-  if (!formData.email) {
-    newErrors.email = t("supplier.required", { field: t("supplier.email") });
-  } else if (!/\S+@\S+\.\S+/.test(formData.email)) {
-    newErrors.email = t("supplier.invalidEmail");
-  }
-
-  // Password validation
-  if (!formData.password) {
-    newErrors.password = t("supplier.required", { field: t("supplier.password") });
-  } else if (
-    !/(?=.*[a-z])/.test(formData.password) ||
-    !/(?=.*[A-Z])/.test(formData.password) ||
-    !/(?=.*\d)/.test(formData.password) ||
-    !/(?=.*[@$!%*?&])/.test(formData.password) ||
-    formData.password.length < 6
-  ) {
-    newErrors.password = t("supplier.invalidPassword");
-  }
-
-  return newErrors;
-};
-
-
-
-  // --- Save handler ---
+  const zoneOptions = [
+    { value: "Central", label: "Central" },
+    { value: "East", label: "East" },
+    { value: "West", label: "West" },
+    { value: "North", label: "North" },
+    { value: "South", label: "South" },
+  ];
+  // const handleSave = async () => {
+  //   const validationErrors = validate();
+  //   if (Object.keys(validationErrors).length > 0) {
+  //     setErrors(validationErrors);
+  //     return;
+  //   }
+  //   setErrors({});
+  //   try {
+  //     const response = await axios.post(
+  //       "http://localhost:5000/api/employee/employeestore",
+  //       formData
+  //     );
+  //     if (response.data.success) {
+  //       toast.success("Employee added successfully!"); 
+  //       setFormData(initialFormData);
+  //       setTimeout(() => {
+  //         navigate("/employee");
+  //       }, 1000);
+  //     }
+  //   } catch (error) {
+  //     console.error(error);
+  //     toast.error("Something went wrong!");
+  //   }
+  // };
   const handleSave = () => {
     const validationErrors = validate();
     if (Object.keys(validationErrors).length > 0) {
@@ -140,25 +138,24 @@ const validate = () => {
     }
     setErrors({});
 
-    const existingSuppliers =
-      JSON.parse(localStorage.getItem("supplierData")) || [];
-    const updatedSuppliers = [...existingSuppliers, formData];
-    localStorage.setItem("supplierData", JSON.stringify(updatedSuppliers));
+    // Read existing employees or empty array
+    const existingEmployees = JSON.parse(localStorage.getItem("employeeData")) || [];
+    const updatedEmployees = [...existingEmployees, formData];
+    localStorage.setItem("employeeData", JSON.stringify(updatedEmployees));
 
-    toast.success("Supplier added successfully!");
+    toast.success("Employee added successfully!");
     setFormData(initialFormData);
 
     setTimeout(() => {
-      navigate("/supplier"); // navigate to supplier list page
+      navigate("/employee"); // go to employee list
     }, 1000);
   };
-
   const handleCancel = () => {
     setFormData(initialFormData);
     setErrors({});
   };
 
- return (
+  return (
   <div className="container mt-3 p-0 ml-0 mr-0">
     <div
       className="card mb-4"
@@ -373,10 +370,10 @@ const validate = () => {
       {/* Buttons */}
       <div className="d-flex gap-2 mt-3">
         <button className="btn btn-success" onClick={handleSave}>
-          <FaSave className="me-1" /> {t("profile.save")}
+          <FaSave className="me-1" /> {t("common.save")}
         </button>
         <button className="btn btn-secondary" onClick={handleCancel}>
-          <FaTimes className="me-1" /> {t("employee.cancel")}
+          <FaTimes className="me-1" /> {t("common.cancel")}
         </button>
       </div>
     </div>
@@ -385,4 +382,4 @@ const validate = () => {
 
 };
 
-export default SupplierAdd;
+export default EmployeeAdd;

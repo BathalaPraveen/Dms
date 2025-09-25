@@ -376,7 +376,7 @@ const validate = () => {
           <FaSave className="me-1" /> {t("profile.save")}
         </button>
         <button className="btn btn-secondary" onClick={handleCancel}>
-          <FaTimes className="me-1" /> {t("employee.cancel")}
+          <FaTimes className="me-1" /> {t("common.cancel")}
         </button>
       </div>
     </div>

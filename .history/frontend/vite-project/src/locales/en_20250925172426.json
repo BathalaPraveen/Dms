@@ -140,28 +140,12 @@
     "employeeedit": "Edit Employee",
     "settings": "Settings"
   },
-  "supplier": {
-    "suplist": "Supplier List",
-    "supmang": "Supplier Management",
+  "supplier":{
+    "suplist":"Supplier List",
+    "supmang":"Supplier Management",
+    "supname":"Supplier Name",
     "addsupplier": "Add Supplier",
-    "supname": "Supplier Name",
-    "supid": "Supplier ID",
-    "contactperson": "Contact Person",
-    "address": "Address",
-    "state": "State",
-    "district": "District",
-    "telephone": "Telephone",
-    "facsimile": "Facsimile",
-    "mobile": "Mobile",
-    "email": "Email",
-    "password": "Password",
-
-    "required": "{{field}} is required",
-    "invalid": "Invalid {{field}}",
-    "invalidTel": "Invalid Telephone number",
-    "invalidMob": "Invalid Mobile number",
-    "invalidEmail": "Invalid Email",
-    "invalidPassword": "Password must contain at least 6 characters, including uppercase, lowercase, number, and special character"
+    "supid": "Supplier ID"
   }
   
 }
