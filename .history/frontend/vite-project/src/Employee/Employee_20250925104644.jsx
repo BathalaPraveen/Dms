@@ -138,7 +138,7 @@ const ApiTable = ({ collapsed }) => {
   const cardClass = `card mb-2 p-3 ${darkMode ? "bg-dark text-white" : "bg-light text-dark"}`;
 
   return (
-    <div className="container p-0 m-0">
+    <div className="container p-0 m">
       <div className='card mb-2 p-3' style={{backgroundColor: darkMode ? "#3d3d3dff" : "#ffff",color: darkMode ? "#e6eef8" : "#212529"}}>
         <div className="d-flex flex-column flex-md-row justify-content-between align-items-start align-items-md-center" >
           <h4 className="mb-2 mb-md-0">{t("table.employeeList")}</h4>

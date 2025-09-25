@@ -8,8 +8,6 @@ import "./Layout.css";
 import { useTheme } from "../contexts/ThemeContext";
 import { ToastContainer } from "react-toastify"; // import ToastContainer
 import "react-toastify/dist/ReactToastify.css";   // import styles
-import React from "react"; 
-
 
 export default function Layout({ children }) {
   const navigate = useNavigate();
@@ -39,7 +37,7 @@ export default function Layout({ children }) {
         <Header toggleSidebar={toggleSidebar} user={user} />
         <div className={'content-area p-3 ${darkMode ? "dark-mode" : "light-mode"}'}>
           <Breadcrumb collapsed={isSidebarCollapsed}/>
-          {children && React.cloneElement(children, { collapsed: isSidebarCollapsed })}
+          {children}
         </div>
         <Footer />
       </div>
