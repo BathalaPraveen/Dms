@@ -181,8 +181,8 @@ const Table = ({ data, columns, totalRecords, onPaginationChange, onFilteredRows
               )}
 
               {/* Toggle button at bottom if collapsed is false */}
-              {!collapsed && (
-                <div className="mt-2 d-flex justify-content-start">
+
+                <div className="mt-2 d-flex justify-content-star">
                   <button
                     className={`btn btn-sm ${darkMode ? "btn-light text-dark" : "btn-dark text-white"}`}
                     onClick={() =>
@@ -192,7 +192,6 @@ const Table = ({ data, columns, totalRecords, onPaginationChange, onFilteredRows
                     {isExpanded ? "-" : "+"}
                   </button>
                 </div>
-              )}
             </div>
           </div>
         );
