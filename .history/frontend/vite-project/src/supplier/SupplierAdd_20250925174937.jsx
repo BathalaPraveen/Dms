@@ -57,21 +57,22 @@ const validate = () => {
   const newErrors = {};
   const textRegex = /^[A-Za-z0-9][A-Za-z0-9 ]*$/;
 
-  if (!formData.supplierName) {
-    newErrors.supplierName = t("supplier.required", { field: t("supplier.supname") });
-  } else if (!/^(?![\s\W]).+$/.test(formData.supplierName)) {
-    newErrors.supplierName = t("supplier.invalid", { field: t("supplier.supname") });
-  }
+if (!formData.supplierName) {
+  newErrors.supplierName = t("supplier.required", { field: t("supplier.supname") });
+} else if (!/^(?![\s\W]).+$/.test(formData.supplierName)) {
+  newErrors.supplierName = t("supplier.invalid", { field: t("supplier.supname") });
+}
+
 
   if (!formData.supplierId) {
     newErrors.supplierId = t("supplier.required", { field: t("supplier.supid") });
-  } else if (!/^(?![\s-])[A-Za-z0-9\s-]+$/.test(formData.supplierId)) {
+  } else if (!textRegex.test(formData.supplierId)) {
     newErrors.supplierId = t("supplier.invalid", { field: t("supplier.supid") });
   }
 
   if (!formData.contactPerson) {
     newErrors.contactPerson = t("supplier.required", { field: t("supplier.contperson") });
-  } else if (!/^(?![\s.])[A-Za-z\s.]+$/.test(formData.contactPerson)) {
+  } else if (!textRegex.test(formData.contactPerson)) {
     newErrors.contactPerson = t("supplier.invalid", { field: t("supplier.contperson") });
   }
 
@@ -130,6 +131,8 @@ const validate = () => {
 
   return newErrors;
 };
+
+
 
   // --- Save handler ---
   const handleSave = () => {

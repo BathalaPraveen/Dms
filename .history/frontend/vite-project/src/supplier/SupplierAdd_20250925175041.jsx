@@ -69,9 +69,10 @@ const validate = () => {
     newErrors.supplierId = t("supplier.invalid", { field: t("supplier.supid") });
   }
 
+
   if (!formData.contactPerson) {
     newErrors.contactPerson = t("supplier.required", { field: t("supplier.contperson") });
-  } else if (!/^(?![\s.])[A-Za-z\s.]+$/.test(formData.contactPerson)) {
+  } else if (!textRegex.test(formData.contactPerson)) {
     newErrors.contactPerson = t("supplier.invalid", { field: t("supplier.contperson") });
   }
 
@@ -130,6 +131,8 @@ const validate = () => {
 
   return newErrors;
 };
+
+
 
   // --- Save handler ---
   const handleSave = () => {

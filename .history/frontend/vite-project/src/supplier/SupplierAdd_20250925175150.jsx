@@ -75,6 +75,7 @@ const validate = () => {
     newErrors.contactPerson = t("supplier.invalid", { field: t("supplier.contperson") });
   }
 
+
   if (!formData.address) {
     newErrors.address = t("supplier.required", { field: t("supplier.address") });
   } else if (!textRegex.test(formData.address)) {
@@ -130,6 +131,8 @@ const validate = () => {
 
   return newErrors;
 };
+
+
 
   // --- Save handler ---
   const handleSave = () => {
