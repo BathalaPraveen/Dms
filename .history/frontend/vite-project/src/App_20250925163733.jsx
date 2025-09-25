@@ -51,14 +51,17 @@ function App() {
               <Layout><EmployeeAdd /></Layout>
             </PrivateRoute>
           }
-          />
+        />
 
-          {/* Supplier routes */}
-          <Route path="/supplier" element={
+        {/* Supplier routes */}
+        <Route
+          path="/employee/employeeadd"
+          element={
             <PrivateRoute>
-              <Layout><SuplierList /></Layout>
+              <Layout><EmployeeAdd /></Layout>
             </PrivateRoute>
-          } />
+          }
+          />
       </Routes>
       </Router>
       </ThemeProvider>

@@ -10,6 +10,7 @@ import EmployeeAdd from "./employee/EmployeeAdd";
 import "./i18n";
 import PrivateRoute from "./components/PrivateRoute";
 import { ThemeProvider } from "./contexts/ThemeContext";
+import SuplierList from "./supplier/SupplierList";
 function App() {
   return (
     <ThemeProvider>

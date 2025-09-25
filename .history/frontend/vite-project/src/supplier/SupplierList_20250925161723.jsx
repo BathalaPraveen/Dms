@@ -21,6 +21,21 @@ const ApiTable = ({ collapsed }) => {
   const [filteredRows, setFilteredRows] = useState([]); // New state to hold filtered rows
   const { darkMode } = useTheme();
 
+  // useEffect(() => {
+  //   const fetchUsers = async () => {
+  //     try {
+  //       const response = await axios.get("https://jsonplaceholder.typicode.com/users");
+  //       setUsers(response.data);
+  //     } catch (err) {
+  //       setError(t("table.fetchError"));
+  //       console.error("API Fetch Error:", err);
+  //     } finally {
+  //       setLoading(false);
+  //     }
+  //   };
+  //   fetchUsers();
+  // }, [t]);
+
   useEffect(() => {
     setLoading(true); // show loading while fetching
     try {
@@ -134,7 +149,7 @@ const ApiTable = ({ collapsed }) => {
           <div className="d-flex flex-wrap gap-2">
             <button className="btn btn-success" onClick={exportExcel}><FaFileExcel /> {t("table.excel")}</button>
             <button className="btn btn-danger" onClick={exportPdf}><FaRegFilePdf /> {t("table.pdf")}</button>
-            <button className="btn btn-primary" onClick={() => navigate("/supplier/supplieradd")}><FaPlus /></button>
+            <button className="btn btn-primary" onClick={() => navigate("/employee/employeeadd")}><FaPlus /></button>
           </div>
         </div>
       </div>
