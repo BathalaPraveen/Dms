@@ -6,7 +6,7 @@ import axios from "axios";
 import { useParams, Link } from 'react-router-dom';
 import { toast, ToastContainer } from "react-toastify";
 import { useTranslation } from "react-i18next";
-
+import { useTheme } from "../contexts/ThemeContext";
 import { useNavigate } from "react-router-dom";
 const EmployeeAdd = () => {
   const initialFormData = {
@@ -24,7 +24,7 @@ const EmployeeAdd = () => {
   const [formData, setFormData] = useState(initialFormData);
   const [errors, setErrors] = useState({});
   const navigate = useNavigate();
-
+  const { darkMode } = useTheme();
   const validate = () => {
     const newErrors = {};
     // User Type & Zone
@@ -158,18 +158,18 @@ const EmployeeAdd = () => {
   return (
     <div className="container mt-3">
         
-      <div className="card mb-4">
-        <div className="card-body d-flex justify-content-between align-items-center">
-          <h4 className="card-title mb-0" style={{ color: "#2d4059" }}>
-            {t("employee.addemployeetitle")}
-          </h4>
-          <Link to="/employee" className="btn btn-primary">
-            <FaBackward className="me-1" /> Back
-          </Link>
-        </div>
+     <div className="card mb-4" style={{backgroundColor: darkMode ? "#3d3d3dff" : "#ffff",color: darkMode ? "#e6eef8" : "#212529"}}>
+      <div className="card-body d-flex justify-content-between align-items-center">
+        <h4 className="card-title mb-0">
+          {t("employee.addemployeetitle")}
+        </h4>
+        <Link to="/employee" className="btn btn-primary">
+          <FaBackward className="me-1" /> {t("common.back")}
+        </Link>
       </div>
+    </div>
 
-      <div className="card shadow-sm p-4">
+      <div className="card shadow-sm p-4"style={{backgroundColor: darkMode ? "#3d3d3dff" : "#ffff",color: darkMode ? "#e6eef8" : "#212529"}}>
         {/* Row 1: User Type, Zone, Employee ID */}
         <div className="row mb-3">
           <div className="col-md-4">

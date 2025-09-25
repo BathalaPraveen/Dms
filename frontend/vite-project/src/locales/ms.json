@@ -125,5 +125,10 @@
     "phonerequired": "Nombor telefon diperlukan",
     "validemail": "Masukkan e-mel yang sah",
     "phoneformat": "Nombor telefon mesti 10 digit"
+  },
+    "common":{
+    "back":"Kembali",
+    "loading": "Memuatkan..."
+
   }
 }

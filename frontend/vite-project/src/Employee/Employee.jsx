@@ -149,12 +149,11 @@ const ApiTable = () => {
           </div>
         </div>
       </div>
-      
       <Table 
         data={users} 
         columns={columns} 
         totalRecords={users.length} 
-        onFilteredRowsChange={setFilteredRows} // Pass the callback to update state
+        onFilteredRowsChange={setFilteredRows} 
       />
     </div>
   );

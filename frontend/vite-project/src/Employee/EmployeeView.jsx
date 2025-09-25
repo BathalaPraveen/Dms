@@ -1,9 +1,10 @@
-// src/Employee/EmployeeView.jsx
 import React, { useState, useEffect } from 'react';
 import { useParams, Link } from 'react-router-dom';
 import axios from 'axios';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import { useTranslation } from "react-i18next";
+import{useTheme} from "../contexts/ThemeContext";
+
 import {
   FaBackward,
 } from "react-icons/fa";
@@ -13,7 +14,7 @@ const EmployeeView = () => {
     const [loading, setLoading] = useState(true);
     const [error, setError] = useState(null);
     const { t } = useTranslation();
-
+    const{darkMode}=useTheme();
     // useEffect(() => {
     //     const fetchEmployee = async () => {
     //         try {
@@ -62,16 +63,16 @@ const EmployeeView = () => {
 
     return (
         <div className="container mt-5">
-            <div className="card shadow-sm p-4">
+            <div className="card shadow-sm p-4 "style={{backgroundColor: darkMode ? "#3d3d3dff" : "#ffff",color: darkMode ? "#e6eef8" : "#212529"}}>
                 <div className="d-flex justify-content-between align-items-center mb-4">
-                    <h4 className="card-title text-center " style={{ color: "#2d4059" }}>{t("employee.empdetails")}</h4>
+                    <h4 className="card-title text-center " >{t("employee.empdetails")}</h4>
                     <div className="text-center">
-                    <Link to="/employee" className="btn btn-primary"><FaBackward /> Back</Link>
+                    <Link to="/employee" className="btn btn-primary"><FaBackward /> {t("common.back")}</Link>
                     </div>
                 </div>
                 <div className="table-responsive">
-                    <table className="table table-bordered table-striped">
-                        <tbody>
+                        <table className={`table table-bordered table-striped ${ darkMode ? "table-dark" : "" }`}>
+                        <tbody >
                         <tr>
                             <th style={{ width: "200px" }}>{t("employee.employeeName")}</th>
                             <td>{employee.firstName}</td>

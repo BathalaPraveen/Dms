@@ -5,6 +5,7 @@ import { FaSave, FaTimes, FaBackward } from "react-icons/fa";
 import { useNavigate, useParams, Link } from "react-router-dom";
 import { toast } from "react-toastify";
 import { useTranslation } from "react-i18next";
+import { useTheme } from "../contexts/ThemeContext";
 
 const EmployeeEdit = () => {
     const { index } = useParams(); // get index from URL
@@ -12,7 +13,8 @@ const EmployeeEdit = () => {
 
     const [formData, setFormData] = useState(null);
     const [errors, setErrors] = useState({});
-  const { t } = useTranslation();
+    const { t } = useTranslation();
+    const { darkMode } = useTheme();
     // Load employee by index
     useEffect(() => {
         const employees = JSON.parse(localStorage.getItem("employeeData")) || [];
@@ -125,22 +127,22 @@ const EmployeeEdit = () => {
 
     const handleCancel = () => navigate("/employee");
 
-    if (!formData) return <div className="text-center mt-5">Loading...</div>;
+    if (!formData) return <div className="text-center mt-5">{t("common.loading")}</div>;
 
     return (
         <div className="container mt-3">
-            <div className="card mb-4">
+            <div className="card mb-4"style={{backgroundColor: darkMode ? "#3d3d3dff" : "#ffff",color: darkMode ? "#e6eef8" : "#212529"}}>
                 <div className="card-body d-flex justify-content-between align-items-center">
-                    <h4 className="card-title mb-0" style={{ color: "#2d4059" }}>
+                    <h4 className="card-title mb-0" >
                         {t("employee.editemployeetitle")}
                     </h4>
                     <Link to="/employee" className="btn btn-primary">
-                        <FaBackward className="me-1" /> Back
+                        <FaBackward className="me-1" /> {t("common.back")}
                     </Link>
                 </div>
             </div>
 
-            <div className="card shadow-sm p-4">
+            <div className="card shadow-sm p-4"style={{backgroundColor: darkMode ? "#3d3d3dff" : "#ffff",color: darkMode ? "#e6eef8" : "#212529"}}>
                 {/* Row 1 */}
                 <div className="row mb-3">
                     <div className="col-md-4">

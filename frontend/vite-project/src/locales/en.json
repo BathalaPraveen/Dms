@@ -126,6 +126,11 @@
     "phonerequired":"Phone is required",
     "validemail":"Enter a valid email",
     "phoneformat":"Phone must be 10 digits"
+  },
+  "common":{
+    "back":"Back",
+    "loading": "Loading..."
+
   }
  
 }
