@@ -58,7 +58,7 @@ function App() {
           {/* Supplier routes */}
           <Route path="/supplier" element={
             <PrivateRoute>
-              <Layout><SupplierList /></Layout>
+              <Layout><SuplierList /></Layout>
             </PrivateRoute>
           } />
           <Route
