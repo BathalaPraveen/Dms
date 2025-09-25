@@ -181,18 +181,25 @@ const Table = ({ data, columns, totalRecords, onPaginationChange, onFilteredRows
               )}
 
               {/* Toggle button at bottom if collapsed is false */}
-              {!collapsed && (
-                <div className="mt-2 d-flex justify-content-start">
-                  <button
-                    className={`btn btn-sm ${darkMode ? "btn-light text-dark" : "btn-dark text-white"}`}
-                    onClick={() =>
-                      setExpandedCells((prev) => ({ ...prev, [key]: !prev[key] }))
-                    }
-                  >
-                    {isExpanded ? "-" : "+"}
-                  </button>
-                </div>
-              )}
+                                    <div
+  className={`mt-0 d-flex ${
+    collapsed ? "justify-content-end" : ""
+  }`}
+>
+  <button
+    className={`btn btn-sm ${
+      darkMode ? "btn-light text-dark" : "btn-dark text-white"
+    }`}
+    onClick={() =>
+      setExpandedCells((prev) => ({
+        ...prev,
+        [key]: !prev[key],
+      }))
+    }
+  >
+    {isExpanded ? "-" : "+"}
+  </button>
+</div>
             </div>
           </div>
         );

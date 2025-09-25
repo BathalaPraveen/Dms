@@ -181,18 +181,25 @@ const Table = ({ data, columns, totalRecords, onPaginationChange, onFilteredRows
               )}
 
               {/* Toggle button at bottom if collapsed is false */}
-              {!collapsed && (
-                <div className="mt-2 d-flex justify-content-start">
-                  <button
-                    className={`btn btn-sm ${darkMode ? "btn-light text-dark" : "btn-dark text-white"}`}
-                    onClick={() =>
-                      setExpandedCells((prev) => ({ ...prev, [key]: !prev[key] }))
-                    }
-                  >
-                    {isExpanded ? "-" : "+"}
-                  </button>
-                </div>
-              )}
+                                    <div
+  className={`mt-0 d-flex ${
+    collapsed ? "justify-content-end" : ""
+  }`}
+>
+  <button
+    className={`btn btn-sm ${
+      darkMode ? "btn-light text-dark" : "btn-dark text-white"
+    }`}
+    onClick={() =>
+      setExpandedCells((prev) => ({
+        ...prev,
+        [key]: !prev[key],
+      }))
+    }
+  >
+    {isExpanded ? "-" : "+"}
+  </button>
+</div>
             </div>
           </div>
         );
@@ -207,19 +214,21 @@ const Table = ({ data, columns, totalRecords, onPaginationChange, onFilteredRows
         className={`d-flex flex-column flex-md-row justify-content-between align-items-start align-items-md-center mt-3 gap-2 ${
           darkMode ? "text-white" : ""
         }`}
-      >{!collapsed && (
-                <div className="d-flex align-items-center gap-2 justify-content-start">
-          <label className="form-label mb-0">Items per page</label>
-          <input
-            type="number"
-            className={tableInputClass}
-            style={{ width: "100px" }}
-            value={itemsPerPage}
-            onChange={handleItemsPerPageChange}
-            min="1"
-          />
-        </div>
-        )}
+      ><div
+  className="d-flex flex-wrap align-items-center gap-2 justify-content-start w-100"
+  style={{ display: collapsed ? "none" : "flex" }} // hide only if you really want when collapsed
+>
+  <label className="form-label mb-0">Items per page</label>
+  <input
+    type="number"
+    className={tableInputClass}
+    style={{ minWidth: "60px", maxWidth: "100px" }}
+    value={itemsPerPage}
+    onChange={handleItemsPerPageChange}
+    min="1"
+  />
+</div>
+
         <span>
           {pageIndex + 1} of {pageCount} pages ({totalRecords} items)
         </span>

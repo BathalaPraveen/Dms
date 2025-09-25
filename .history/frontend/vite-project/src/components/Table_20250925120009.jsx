@@ -208,61 +208,63 @@ const Table = ({ data, columns, totalRecords, onPaginationChange, onFilteredRows
           darkMode ? "text-white" : ""
         }`}
       >{!collapsed && (
-                <div className="d-flex align-items-center gap-2 justify-content-start">
-          <label className="form-label mb-0">Items per page</label>
-          <input
-            type="number"
-            className={tableInputClass}
-            style={{ width: "100px" }}
-            value={itemsPerPage}
-            onChange={handleItemsPerPageChange}
-            min="1"
-          />
-        </div>
-        )}
+  <div className="d-flex flex-wrap align-items-center gap-2 justify-content-start w-100">
+    <label className="form-label mb-0">Items per page</label>
+    <input
+      type="number"
+      className={tableInputClass}
+      style={{ minWidth: "60px", maxWidth: "100px" }}
+      value={itemsPerPage}
+      onChange={handleItemsPerPageChange}
+      min="1"
+    />
+  </div>
+)}
+
         <span>
           {pageIndex + 1} of {pageCount} pages ({totalRecords} items)
         </span>
         <nav aria-label="Table Pagination">
-          <ul className={`pagination mb-0 flex-wrap ${darkMode ? "pagination-dark" : ""}`}>
-            <li className={`page-item ${!table.getCanPreviousPage() ? "disabled" : ""}`}>
-              <button
-                className={`page-link ${darkMode ? "bg-dark text-white border-secondary" : ""}`}
-                onClick={() => table.previousPage()}
-              >
-                &lt;
-              </button>
-            </li>
-            {[...Array(pageCount)].map((_, i) =>
-              Math.abs(pageIndex - i) <= 1 || i === 0 || i === pageCount - 1 ? (
-                <li key={i} className={`page-item ${i === pageIndex ? "active" : ""}`}>
-                  <button
-                    className={`page-link ${darkMode ? "bg-dark text-white border-secondary" : ""}`}
-                    onClick={() => table.setPageIndex(i)}
-                  >
-                    {i + 1}
-                  </button>
-                </li>
-              ) : Math.abs(pageIndex - i) === 2 ? (
-                <li key={i} className="page-item disabled">
-                  <span
-                    className={`page-link ${darkMode ? "bg-dark text-white border-secondary" : ""}`}
-                  >
-                    ...
-                  </span>
-                </li>
-              ) : null
-            )}
-            <li className={`page-item ${!table.getCanNextPage() ? "disabled" : ""}`}>
-              <button
-                className={`page-link ${darkMode ? "bg-dark text-white border-secondary" : ""}`}
-                onClick={() => table.nextPage()}
-              >
-                &gt;
-              </button>
-            </li>
-          </ul>
-        </nav>
+  <ul className={`pagination mb-0 d-flex flex-wrap gap-1 ${darkMode ? "pagination-dark" : ""}`}>
+    <li className={`page-item ${!table.getCanPreviousPage() ? "disabled" : ""}`}>
+      <button
+        className={`page-link ${darkMode ? "bg-dark text-white border-secondary" : ""}`}
+        onClick={() => table.previousPage()}
+      >
+        &lt;
+      </button>
+    </li>
+
+    {[...Array(pageCount)].map((_, i) =>
+      Math.abs(pageIndex - i) <= 1 || i === 0 || i === pageCount - 1 ? (
+        <li key={i} className={`page-item ${i === pageIndex ? "active" : ""}`}>
+          <button
+            className={`page-link ${darkMode ? "bg-dark text-white border-secondary" : ""}`}
+            onClick={() => table.setPageIndex(i)}
+          >
+            {i + 1}
+          </button>
+        </li>
+      ) : Math.abs(pageIndex - i) === 2 ? (
+        <li key={i} className="page-item disabled">
+          <span className={`page-link ${darkMode ? "bg-dark text-white border-secondary" : ""}`}>
+            ...
+          </span>
+        </li>
+      ) : null
+    )}
+
+    <li className={`page-item ${!table.getCanNextPage() ? "disabled" : ""}`}>
+      <button
+        className={`page-link ${darkMode ? "bg-dark text-white border-secondary" : ""}`}
+        onClick={() => table.nextPage()}
+      >
+        &gt;
+      </button>
+    </li>
+  </ul>
+</nav>
+
       </div>
     </div>
   );
