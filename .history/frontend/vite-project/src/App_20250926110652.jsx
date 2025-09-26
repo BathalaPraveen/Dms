@@ -79,7 +79,7 @@ function App() {
           } />
           <Route path="/supplier/supplieredit/:index" element={
             <PrivateRoute>
-              <Layout><SupplierEdit /></Layout>
+              <Layout><SupplierView /></Layout>
             </PrivateRoute>
           } />
       </Routes>
