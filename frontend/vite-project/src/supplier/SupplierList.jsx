@@ -40,7 +40,7 @@ const ApiTable = ({ collapsed }) => {
   }, []);
 
   const handleView = (index) => navigate(`/supplier/supplierview/${index}`);
-  const handleEdit = (index) => navigate(`/employee/employeeedit/${index}`);
+  const handleEdit = (index) => navigate(`/supplier/supplieredit/${index}`);
   const handleDelete = (index) => {
     Delete({
       title: "Delete Supplier",
