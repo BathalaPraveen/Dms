@@ -59,11 +59,7 @@ const SupplierEmpList = () => {
   const columnHelper = createColumnHelper();
   const columns = useMemo(
     () => [
-      columnHelper.display({
-        id: "sno",
-        header: "S.No",
-        cell: (info) => info.row.index + 1
-      }),
+    
       columnHelper.accessor("employeeName", { header: "Staff Name", cell: (info) => info.getValue() }),
       columnHelper.accessor("employeeId", { header: "Staff Id", cell: (info) => info.getValue() }),
       columnHelper.accessor("employeeType", { header: "Designation", cell: (info) => info.getValue() }),
@@ -94,23 +90,43 @@ const SupplierEmpList = () => {
   );
 
   const exportPdf = () => {
-    const headers = ["S.No", "Staff Name", "Staff Id", "Designation"];
-    const data = empList.map((emp, index) => [index + 1, emp.staffName, emp.staffId, emp.designation]);
-    generatePdf("Supplier Employee List", headers, data);
+    const headers = columns.filter(col => col.id !== "actions").map(col => col.header);
+    const data = filteredRows.map(row =>
+      row.getVisibleCells().filter(cell => cell.column.id !== "actions").map(cell => {
+        let value = cell.row.original;
+        const accessor = cell.column.accessorKey || cell.column.id;
+        if (typeof accessor === 'string' && accessor.includes('.')) {
+          accessor.split('.').forEach(key => { if (value) value = value[key]; });
+          return value ?? '';
+        }
+        return cell.row.original[accessor] ?? '';
+      })
+    );
+    generatePdf(t("supplier.supemprep"), headers, data);
   };
 
-  const exportExcel = () => {
-    const headers = ["S.No", "Staff Name", "Staff Id", "Designation"];
-    const data = empList.map((emp, index) => [index + 1, emp.staffName, emp.staffId, emp.designation]);
-    exportToExcel("Supplier Employee List", headers, data);
+
+   const exportExcel = () => {
+    const headers = columns.filter(col => col.id !== "actions").map(col => col.header);
+    const data = filteredRows.map(row =>
+      row.getVisibleCells().filter(cell => cell.column.id !== "actions").map(cell => {
+        let value = cell.row.original;
+        const accessor = cell.column.accessorKey || cell.column.id;
+        if (typeof accessor === 'string' && accessor.includes('.')) {
+          accessor.split('.').forEach(key => { if (value) value = value[key]; });
+          return value ?? '';
+        }
+        return cell.row.original[accessor] ?? '';
+      })
+    );
+    exportToExcel(t("supplier.supemprep"), headers, data);
   };
+
+
   const handleEmployeeAdd = () => navigate(`/supplier/supplieremp/add/${supplierIndex}`);
-
-
 
   if (loading) return <div className="text-center mt-5">{t("table.loading")}</div>;
   if (error) return <div className="text-center mt-5 text-danger">{error}</div>;
-
   return (
     <div className="container mt-3">
       <div
@@ -132,8 +148,6 @@ const SupplierEmpList = () => {
            <button className="btn btn-primary" onClick={handleEmployeeAdd}>
             <FaPlus />
             </button>
-
-
           </div>
         </div>
       </div>
