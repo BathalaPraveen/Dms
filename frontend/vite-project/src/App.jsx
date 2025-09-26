@@ -10,6 +10,7 @@ import EmployeeAdd from "./employee/EmployeeAdd";
 import SupplierAdd from "./supplier/SupplierAdd";
 import SupplierList from "./supplier/SupplierList";
 import SupplierView from "./supplier/SupplierView";
+import SupplierImport from "./supplier/SupplierImport";
 import "./i18n";
 import PrivateRoute from "./components/PrivateRoute";
 import { ThemeProvider } from "./contexts/ThemeContext";
@@ -74,6 +75,11 @@ function App() {
           <Route path="/supplier/supplierview/:index" element={
             <PrivateRoute>
               <Layout><SupplierView /></Layout>
+            </PrivateRoute>
+          } />
+          <Route path="/supplier/import" element={
+            <PrivateRoute>
+              <Layout><SupplierImport /></Layout>
             </PrivateRoute>
           } />
       </Routes>

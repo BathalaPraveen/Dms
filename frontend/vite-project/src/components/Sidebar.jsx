@@ -67,11 +67,9 @@ export default function Sidebar({ activeItem, setActiveItem, collapsed }) {
 
   const renderPopup = (menu, items, title) => {
     if (!collapsed || hoverMenu !== menu) return null;
-
     const viewportHeight = window.innerHeight;
     const padding = 16;
     const maxHeight = viewportHeight - hoverPos.top - padding;
-
     return (
       <ul
         className="list-unstyled shadow rounded"

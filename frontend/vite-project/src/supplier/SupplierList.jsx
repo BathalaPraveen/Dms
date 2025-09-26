@@ -7,10 +7,10 @@ import { useTranslation } from "react-i18next";
 import { useTheme } from "../contexts/ThemeContext";
 import { createColumnHelper } from "@tanstack/react-table";
 import "bootstrap/dist/css/bootstrap.min.css";
-import { FaPlus, FaRegEye, FaPencilAlt, FaTrashAlt, FaRegFilePdf, FaFileExcel, FaUserTie } from "react-icons/fa";
+import { FaPlus, FaRegEye, FaPencilAlt, FaTrashAlt, FaRegFilePdf, FaFileExcel, FaUserTie, FaFileImport } from "react-icons/fa";
 import Table from "../components/Table";
 import Delete from "../components/Delete";
-
+import * as XLSX from "xlsx";
 const ApiTable = ({ collapsed }) => {
 
   const navigate = useNavigate();
@@ -120,6 +120,11 @@ const ApiTable = ({ collapsed }) => {
     exportToExcel(t("supplier.reportTitle"), headers, data);
   };
 
+
+
+
+
+
   const cardClass = `card mb-2 p-3 ${darkMode ? "bg-dark text-white" : "bg-light text-dark"}`;
 
   return (
@@ -128,6 +133,13 @@ const ApiTable = ({ collapsed }) => {
         <div className="d-flex flex-column flex-md-row justify-content-between align-items-start align-items-md-center" >
           <h4 className="mb-2 mb-md-0">{t("supplier.suplist")}</h4>
           <div className="d-flex flex-wrap gap-2">
+            <button
+              className="btn"
+              style={{ backgroundColor: "rgb(0, 37, 96)", color: "white" }}
+              onClick={() => navigate("/supplier/import")}
+            >
+              <FaFileImport /> {t("table.import")}
+            </button>
             <button className="btn btn-success" onClick={exportExcel}><FaFileExcel /> {t("table.excel")}</button>
             <button className="btn btn-danger" onClick={exportPdf}><FaRegFilePdf /> {t("table.pdf")}</button>
             <button className="btn btn-primary" onClick={() => navigate("/supplier/supplieradd")}><FaPlus /></button>
