@@ -95,7 +95,7 @@ function App() {
               <Layout><SupplierEmp /></Layout>
             </PrivateRoute>
           } />
-          <Route path="/supplier/supplieremp/add/:supplierIndex" element={
+          <Route path="/supplier/supplieremp/add" element={
             <PrivateRoute>
               <Layout><SupplierEmpAdd /></Layout>
             </PrivateRoute>

@@ -90,12 +90,12 @@ function App() {
               <Layout><SupplierEdit /></Layout>
             </PrivateRoute>
           } />
-          <Route path="/supplier/supplieremp/:index" element={
+          <Route path="/supplier/supplieremp/:supplierIndex" element={
             <PrivateRoute>
               <Layout><SupplierEmp /></Layout>
             </PrivateRoute>
           } />
-          <Route path="/supplier/supplieremp/add/:supplierIndex" element={
+          <Route path="/supplier/supplieremp/add/:index" element={
             <PrivateRoute>
               <Layout><SupplierEmpAdd /></Layout>
             </PrivateRoute>

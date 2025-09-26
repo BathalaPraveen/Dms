@@ -8,7 +8,7 @@ export default function Breadcrumb({ collapsed }) {
   const pathnames = location.pathname.split("/").filter((x) => x);
   const { darkMode } = useTheme();
   const { t } = useTranslation();
-  const { supplierIndex } = useParams();
+  const { supplierIndex } = useParams(); // <-- get supplierIndex
 
   const nameMap = {
     dashboard: t("breadcrumb.dashboard"),

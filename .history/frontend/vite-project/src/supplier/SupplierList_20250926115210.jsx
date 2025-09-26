@@ -40,7 +40,7 @@ const ApiTable = ({ collapsed }) => {
   }, []);
 
   const handleView = (index) => navigate(`/supplier/supplierview/${index}`);
-  const handleEmployee = (index) => navigate(`/supplier/supplieremp/${index}`);
+  const handleView = (index) => navigate(`/supplier/supplierview/${index}`);
   const handleEdit = (index) => navigate(`/supplier/supplieredit/${index}`);
   const handleDelete = (index) => {
     Delete({
@@ -67,7 +67,7 @@ const ApiTable = ({ collapsed }) => {
         header: t("table.actions"),
         cell: (props) => (
           <div className="d-flex justify-content-start">
-            <button className="btn btn-link p-0 me-2 text-decoration-none" onClick={() => handleEmployee(props.row.index)}>
+            <button className="btn btn-link p-0 me-2 text-decoration-none" onClick={() => handleView(props.row.index)}>
               <FaUserTie style={{ color: "#65a3d9" }} />
             </button>
             <button className="btn btn-link p-0 me-2 text-decoration-none" onClick={() => handleView(props.row.index)}>
