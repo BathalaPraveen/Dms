@@ -133,7 +133,8 @@
     "loading": "Loading...",
     "downsampfile":"Download Sample File",
     "submit":"Submit",
-    "cancel":"Cancel"
+    "cancel":"Cancel",
+    "date": "Date"
   },
  "breadcrumb":{
     "home": "Home",
@@ -175,6 +176,19 @@
     "supemp":"Supplier Employee",
     "supemprep":"Supplier Employee Report"
 
+  },
+  "holiday":{
+    "holidaymang":"Holiday Management",
+    "holidaylist":"Holiday List",
+    "state":"State",
+    "info":"Informations",
+    "holidayrep":"Holiday Report",
+    "addhol":"Add Holiday",
+    "stateRequired":"State Required",
+    "dateRequired":"Date Required",
+    "infoRequired":"Information is Required"
+
   }
+
   
 }

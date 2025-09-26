@@ -352,7 +352,8 @@ export default function Sidebar({ activeItem, setActiveItem, collapsed }) {
           navigate("/employee")
         )}
 
-        {renderSingleMenu("holiday", FaUmbrellaBeach, t("sidebar.holidayManagement"))}
+          {renderSingleMenu("holiday", FaUmbrellaBeach, t("sidebar.holidayManagement"), () =>
+            navigate("/holiday"))}
 
           {renderMenuSection("supplier", FaTruckLoading, t("sidebar.supplierManagement"), [
             { label: t("sidebar.allSuppliers"), path: "/supplier" },

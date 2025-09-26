@@ -20,7 +20,9 @@ export default function Breadcrumb({ collapsed }) {
     SuplierList: t("supplier.suplist"),
     supplier: t("supplier.supmang"),
     supplierview: t("supplier.supview"),
-    supplieremp: t("supplier.supemp"), // add label
+    supplieremp: t("supplier.supemp"), 
+    holiday: t("holiday.holidaymang"),
+    holidayadd:t("holiday.addhol")
   };
 
   return (

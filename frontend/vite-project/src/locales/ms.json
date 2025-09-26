@@ -132,7 +132,8 @@
     "loading": "Memuatkan...",
     "downsampfile": "Muat Turun Fail Contoh",
     "submit": "Hantar",
-    "cancel": "Batal"
+    "cancel": "Batal",
+    "date": "Tarikh"
   },
   "breadcrumb":{
    "home": "Laman Utama",
@@ -172,5 +173,16 @@
     "invalidPassword": "Kata laluan mesti mengandungi sekurang-kurangnya 6 aksara, termasuk huruf besar, huruf kecil, nombor dan aksara khas",
     "supview": "Pandangan Pembekal",
     "supemprep": "Laporan Pekerja Pembekal"
+  },
+  "holiday": {
+    "holidaymang": "Pengurusan Cuti",
+    "holidaylist": "Senarai Cuti",
+    "state": "Negeri",
+    "info": "Maklumat",
+    "holidayrep": "Laporan Cuti",
+    "addhol": "Tambah Cuti",
+    "stateRequired": "Negeri diperlukan",
+    "dateRequired": "Tarikh diperlukan",
+    "infoRequired": "Maklumat diperlukan"
   }
 }
