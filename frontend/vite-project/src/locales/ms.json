@@ -129,7 +129,10 @@
   },
     "common":{
     "back":"Kembali",
-    "loading": "Memuatkan..."
+    "loading": "Memuatkan...",
+    "downsampfile": "Muat Turun Fail Contoh",
+    "submit": "Hantar",
+    "cancel": "Batal"
   },
   "breadcrumb":{
    "home": "Laman Utama",
@@ -147,6 +150,7 @@
     "addsupplier": "Tambah Pembekal",
     "editsupplier": "Sunting Pembekal",
     "supname": "Nama Pembekal",
+    "supimport": "Import Pembekal",
     "supid": "ID Pembekal",
     "contperson": "Orang Dihubungi",
     "emailid": "ID E-mel",

@@ -150,6 +150,7 @@ const SupplierEdit = () => {
       >
         <div className="card-body d-flex justify-content-between align-items-center">
           <h4 className="card-title mb-0">{t("supplier.editsupplier")}</h4>
+       
           <Link to="/supplier" className="btn btn-primary">
             <FaBackward className="me-1" /> {t("common.back")}
           </Link>

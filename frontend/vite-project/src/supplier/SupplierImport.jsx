@@ -1,20 +1,29 @@
 import React, { useState } from "react";
 import * as XLSX from "xlsx";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, Link } from "react-router-dom";
+import { FaBackward } from "react-icons/fa";
+import { useTranslation } from "react-i18next";
+import { useTheme } from "../contexts/ThemeContext";
+import { toast, ToastContainer } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 const SupplierImport = () => {
-    const [error, setError] = useState(null);
     const [file, setFile] = useState(null); // store selected file
     const navigate = useNavigate();
+    const { darkMode } = useTheme();
+    const { t } = useTranslation();
+
+    // Required and optional columns
+    const requiredColumns = ["supplierId", "supplierName", "contactPerson", "email", "address", "district", "state", "mobile", "telephone", "password"];
+    const optionalColumns = ["facsimile"];
 
     // Handle file selection
     const handleFileChange = (event) => {
-        setError(null); // clear previous errors
         const selectedFile = event.target.files[0];
         if (!selectedFile) return;
 
         if (!selectedFile.name.match(/\.(xlsx|xls|csv)$/i)) {
-            setError("Only Excel or CSV files are allowed");
+            toast.error("Only Excel or CSV files are allowed");
             return;
         }
 
@@ -24,7 +33,7 @@ const SupplierImport = () => {
     // Handle submit
     const handleSubmit = () => {
         if (!file) {
-            setError("Please select a file first");
+            toast.error("Please select a file first");
             return;
         }
 
@@ -38,55 +47,125 @@ const SupplierImport = () => {
                 const parsedData = XLSX.utils.sheet_to_json(sheet);
 
                 if (parsedData.length === 0) {
-                    setError("No data found in the file");
+                    toast.error("No data found in the file");
                     return;
                 }
 
-                const requiredColumns = ["supplierId", "supplierName", "contactPerson", "email"];
                 const missingColumns = requiredColumns.filter(col => !(col in parsedData[0]));
-
                 if (missingColumns.length > 0) {
-                    setError(`Missing columns: ${missingColumns.join(", ")}`);
+                    toast.error(`Missing columns: ${missingColumns.join(", ")}`);
                     return;
                 }
 
-                // Merge with existing
                 const stored = JSON.parse(localStorage.getItem("supplierData")) || [];
                 const existingIds = new Set(stored.map(u => u.supplierId));
-                const merged = [
-                    ...stored,
-                    ...parsedData.filter(u => !existingIds.has(u.supplierId)),
-                ];
 
+                const newRows = parsedData
+                    .filter(u => !existingIds.has(u.supplierId))
+                    .map(u => {
+                        optionalColumns.forEach(col => {
+                            if (!(col in u)) u[col] = "";
+                        });
+                        return u;
+                    });
+
+                if (newRows.length === 0) {
+                    toast.info("No new suppliers to import. All data already exists.");
+                    return;
+                }
+
+                const merged = [...stored, ...newRows];
                 localStorage.setItem("supplierData", JSON.stringify(merged));
-                alert("Suppliers imported successfully!");
-                navigate("/supplier");
+                toast.success(`${newRows.length} supplier(s) imported successfully!`);
+                setTimeout(() => {
+                    navigate("/supplier");
+                }, 1500); // wait 1.5 seconds before redirect
+
+
             } catch (err) {
                 console.error("Import error:", err);
-                setError("Failed to import file. Please check the format.");
+                toast.error("Failed to import file. Please check the format.");
             }
         };
 
         reader.readAsArrayBuffer(file);
     };
 
+    // Generate sample Excel file
+    const handleDownloadSample = () => {
+        const sampleData = [
+            {
+                supplierId: "S001",
+                supplierName: "Sample Supplier",
+                contactPerson: "John Doe",
+                email: "sample@example.com",
+                address: "123 Sample Street",
+                district: "Trivandrum",
+                state: "Kerala",
+                mobile: "9876543210",
+                telephone: "0471-1234567",
+                password: "Pass@123",
+                facsimile: ""
+            }
+        ];
+
+        const ws = XLSX.utils.json_to_sheet(sampleData);
+        const wb = XLSX.utils.book_new();
+        XLSX.utils.book_append_sheet(wb, ws, "Suppliers");
+        XLSX.writeFile(wb, "SupplierSample.xlsx");
+    };
+
     return (
         <div className="container mt-5">
-            <div className="card p-4 shadow">
-                <h4 className="mb-3">Import Suppliers</h4>
-                {error && <div className="alert alert-danger">{error}</div>}
+            <ToastContainer
+                position="top-right"
+                autoClose={3000}
+                hideProgressBar={false}
+                newestOnTop
+                closeOnClick
+                pauseOnFocusLoss
+                draggable
+                pauseOnHover
+            />
+
+            {/* Header: Title + Buttons */}
+            <div
+                className="card mb-4"
+                style={{
+                    backgroundColor: darkMode ? "#3d3d3dff" : "#ffffff",
+                    color: darkMode ? "#e6eef8" : "#212529",
+                }}
+            >
+                <div className="card-body d-flex justify-content-between align-items-center">
+                    <h4 className="card-title mb-0">{t("supplier.supimport")}</h4>
+                    <div className="d-flex gap-2">
+                        <button className="btn btn-info" onClick={handleDownloadSample}>
+                            {t("common.downsampfile")}
+                        </button>
+                        <Link to="/supplier" className="btn btn-primary">
+                            <FaBackward className="me-1" /> {t("common.back")}
+                        </Link>
+                    </div>
+                </div>
+            </div>
+
+            {/* File Upload Card */}
+            <div className="card p-4 shadow" style={{
+                backgroundColor: darkMode ? "#3d3d3dff" : "#ffffff",
+                color: darkMode ? "#e6eef8" : "#212529",
+            }}>
                 <input
                     type="file"
                     accept=".xlsx, .xls, .csv"
                     onChange={handleFileChange}
-                    className="form-control mb-3"
+                    className={`form-control mb-3 ${darkMode ? "bg-dark text-white" : "bg-light text-dark"}`}
                 />
                 <div className="d-flex gap-2">
                     <button className="btn btn-primary" onClick={handleSubmit}>
-                        Submit
+                        {t("common.submit")}
                     </button>
                     <button className="btn btn-secondary" onClick={() => navigate("/supplier")}>
-                        Cancel
+                        {t("common.cancel")}
                     </button>
                 </div>
             </div>
