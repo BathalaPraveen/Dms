@@ -130,7 +130,10 @@
   },
   "common":{
     "back":"Back",
-    "loading": "Loading..."
+    "loading": "Loading...",
+    "downsampfile":"Download Sample File",
+    "submit":"Submit",
+    "cancel":"Cancel"
   },
  "breadcrumb":{
     "home": "Home",
@@ -147,6 +150,7 @@
     "addsupplier": "Add Supplier",
     "editsupplier": "Edit Supplier",
     "supname": "Supplier Name",
+    "supimport":"Supplier Import",
     "supid": "Supplier ID",
     "emailid":"Email ID",
     "reportTitle": "Supplier Report",

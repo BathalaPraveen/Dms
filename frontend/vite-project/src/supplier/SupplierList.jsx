@@ -122,10 +122,6 @@ const ApiTable = ({ collapsed }) => {
   };
 
 
-
-
-
-
   const cardClass = `card mb-2 p-3 ${darkMode ? "bg-dark text-white" : "bg-light text-dark"}`;
 
   return (
