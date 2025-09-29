@@ -148,7 +148,8 @@
     "loading": "Memuatkan...",
     "downsampfile": "Muat Turun Fail Contoh",
     "submit": "Hantar",
-    "cancel": "Batal"
+    "cancel": "Batal",
+    "date": "Tarikh"
   },
   "breadcrumb":{
    "home": "Laman Utama",
@@ -193,5 +194,16 @@
     "staffId": "ID Staf",
     "staffType": "Jawatan",
     "supemptitle": "Senarai Pekerja Pembekal"
+  },
+  "holiday": {
+    "holidaymang": "Pengurusan Cuti",
+    "holidaylist": "Senarai Cuti",
+    "state": "Negeri",
+    "info": "Maklumat",
+    "holidayrep": "Laporan Cuti",
+    "addhol": "Tambah Cuti",
+    "stateRequired": "Negeri diperlukan",
+    "dateRequired": "Tarikh diperlukan",
+    "infoRequired": "Maklumat diperlukan"
   }
 }

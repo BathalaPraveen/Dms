@@ -114,7 +114,6 @@ const handleSave = () => {
     toast.error(t("employee.supplierNotExist")); // translated
     return;
   }
-
   const supplier = suppliers[supplierIndexNum];
 
   if (!supplier.empList) supplier.empList = [];
@@ -126,11 +125,6 @@ const handleSave = () => {
   setFormData(initialFormData);
   setTimeout(() => navigate(`/supplier/supplieremp/${supplierIndex}`), 1000);
 };
-
-
-
-
-
   const handleCancel = () => {
     setFormData(initialFormData);
     setErrors({});

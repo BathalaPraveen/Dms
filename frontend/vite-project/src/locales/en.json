@@ -149,7 +149,8 @@
     "loading": "Loading...",
     "downsampfile":"Download Sample File",
     "submit":"Submit",
-    "cancel":"Cancel"
+    "cancel":"Cancel",
+    "date": "Date"
   },
  "breadcrumb":{
     "home": "Home",
@@ -192,7 +193,21 @@
     "staffName": "Staff Name",
     "staffId": "Staff Id",
     "staffType": "Designation",
-    "supemptitle": "Supplier Employee List"
+    "supemptitle": "Supplier Employee List",
+
+  },
+  "holiday":{
+    "holidaymang":"Holiday Management",
+    "holidaylist":"Holiday List",
+    "state":"State",
+    "info":"Informations",
+    "holidayrep":"Holiday Report",
+    "addhol":"Add Holiday",
+    "stateRequired":"State Required",
+    "dateRequired":"Date Required",
+    "infoRequired":"Information is Required"
+
   }
+
   
 }

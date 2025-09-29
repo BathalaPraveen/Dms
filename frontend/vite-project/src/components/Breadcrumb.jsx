@@ -24,6 +24,9 @@ export default function Breadcrumb({ collapsed }) {
     supempadd: t("breadcrumb.employeeadd"),
     supempview: t("breadcrumb.employeeview"),
     supempedit: t("breadcrumb.employeeedit"),
+    supplieremp: t("supplier.supemp"), 
+    holiday: t("holiday.holidaymang"),
+    holidayadd:t("holiday.addhol")
   };
 
   return (

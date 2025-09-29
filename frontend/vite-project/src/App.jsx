@@ -16,6 +16,8 @@ import SupplierEmp from "./supplier/SupplierEmp";
 import SupplierEmpAdd from "./supplier/SupplierEmpAdd";
 import SupplierEmpEdit from "./supplier/SupplierEmpEdit";
 import SupplierEmpView from "./supplier/SupplierEmpView";
+import HolidayList from "./holiday/HolidayList";
+import HolidayAdd from "./holiday/HolidayAdd";
 import "./i18n";
 import PrivateRoute from "./components/PrivateRoute";
 import { ThemeProvider } from "./contexts/ThemeContext";
@@ -112,6 +114,20 @@ function App() {
               <Layout><SupplierEmpView /></Layout>
             </PrivateRoute>
           } />
+
+          <Route path="/holiday" element={
+            <PrivateRoute>
+              <Layout><HolidayList /></Layout>
+            </PrivateRoute>
+          } />
+
+
+          <Route path="/holiday/holidayadd" element={
+            <PrivateRoute>
+              <Layout><HolidayAdd/></Layout>
+            </PrivateRoute>
+          }/>
+          
       </Routes>
       </Router>
       </ThemeProvider>
