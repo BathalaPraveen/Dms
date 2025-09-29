@@ -195,8 +195,7 @@
     "staffName": "Staff Name",
     "staffId": "Staff Id",
     "staffType": "Designation",
-    "supemptitle": "Supplier Employee List",
-
+    "supemptitle": "Supplier Employee List"
   },
   "holiday":{
     "holidaymang":"Holiday Management",
@@ -211,7 +210,6 @@
     "holidaydetails":"Holiday Details",
     "editholiday":"Edit Holiday",
     "selectstate":"Select State"
-
   }
 
   
