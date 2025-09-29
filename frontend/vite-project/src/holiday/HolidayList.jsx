@@ -39,13 +39,13 @@ const ApiTable = ({ collapsed }) => {
       setLoading(false);
     }
   }, []);
-
-  const handleView = (index) => navigate(`/employee/employeeview/${index}`);
-  const handleEdit = (index) => navigate(`/employee/employeeedit/${index}`);
+ 
+  const handleView = (index) => navigate(`/holiday/holidayview/${index}`);
+  const handleEdit = (index) => navigate(`/holiday/holidayedit/${index}`);
   const handleDelete = (index) => {
     Delete({
       title: "Delete Holiday",
-        message: "Are you sure you want to delete this Holiday?",
+      message: "Are you sure you want to delete this Holiday?",
       onConfirm: () => {
         const updatedUsers = [...users];
         updatedUsers.splice(index, 1);
@@ -54,6 +54,7 @@ const ApiTable = ({ collapsed }) => {
       },
     });
   };
+
   const columnHelper = createColumnHelper();
   const columns = useMemo(
     () => [

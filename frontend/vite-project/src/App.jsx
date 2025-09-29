@@ -16,6 +16,8 @@ import SupplierEmp from "./supplier/SupplierEmp";
 import SupplierEmpAdd from "./supplier/SupplierEmpAdd";
 import HolidayList from "./holiday/HolidayList";
 import HolidayAdd from "./holiday/HolidayAdd";
+import HolidayView from "./holiday/HolidayView";
+import HolidayEdit from "./holiday/HolidayEdit";
 import "./i18n";
 import PrivateRoute from "./components/PrivateRoute";
 import { ThemeProvider } from "./contexts/ThemeContext";
@@ -108,13 +110,23 @@ function App() {
               <Layout><HolidayList /></Layout>
             </PrivateRoute>
           } />
-
-
           <Route path="/holiday/holidayadd" element={
             <PrivateRoute>
               <Layout><HolidayAdd/></Layout>
             </PrivateRoute>
-          }/>
+          } />
+          <Route path="/holiday/holidayview/:index" element={
+            <PrivateRoute>
+              <Layout><HolidayView /></Layout>
+            </PrivateRoute>
+          } />
+          <Route path="/holiday/holidayedit/:index" element={
+            <PrivateRoute>
+              <Layout><HolidayEdit /></Layout>
+            </PrivateRoute>
+          } />
+
+        
           
       </Routes>
       </Router>

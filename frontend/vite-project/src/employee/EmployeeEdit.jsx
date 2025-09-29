@@ -145,27 +145,6 @@ const EmployeeEdit = () => {
             <div className="card shadow-sm p-4"style={{backgroundColor: darkMode ? "#3d3d3dff" : "#ffff",color: darkMode ? "#e6eef8" : "#212529"}}>
                 {/* Row 1 */}
                 <div className="row mb-3">
-                    {/* <div className="col-md-4">
-                        <label className="form-label">{t("employee.usertype")}</label>
-                        <Select
-                            options={userTypeOptions}
-                            value={userTypeOptions.find((opt) => opt.value === formData.userType) || null}
-                            onChange={(selected) =>
-                                setFormData({ ...formData, userType: selected ? selected.value : "" })
-                            }
-                        />
-                    </div>
-
-                    <div className="col-md-4">
-                        <label className="form-label">{t("employee.zone")}</label>
-                        <Select
-                            options={zoneOptions}
-                            value={zoneOptions.find((opt) => opt.value === formData.zone) || null}
-                            onChange={(selected) =>
-                                setFormData({ ...formData, zone: selected ? selected.value : "" })
-                            }
-                        />
-                    </div> */}
                     <div className="col-md-4">
                         <label className="form-label">{t("employee.usertype")}</label>
                         <Select

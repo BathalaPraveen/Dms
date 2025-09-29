@@ -134,7 +134,9 @@
     "downsampfile":"Download Sample File",
     "submit":"Submit",
     "cancel":"Cancel",
-    "date": "Date"
+    "date": "Date",
+    "update": "Update"
+  
   },
  "breadcrumb":{
     "home": "Home",
@@ -186,7 +188,10 @@
     "addhol":"Add Holiday",
     "stateRequired":"State Required",
     "dateRequired":"Date Required",
-    "infoRequired":"Information is Required"
+    "infoRequired":"Information is Required",
+    "holidaydetails":"Holiday Details",
+    "editholiday":"Edit Holiday",
+    "selectstate":"Select State"
 
   }
 
