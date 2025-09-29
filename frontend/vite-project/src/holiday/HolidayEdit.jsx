@@ -1,28 +1,38 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import "bootstrap/dist/css/bootstrap.min.css";
 import Select from "react-select";
+import DatePicker from "react-datepicker";
+import "react-datepicker/dist/react-datepicker.css";
 import { FaSave, FaTimes, FaBackward } from "react-icons/fa";
+import { useNavigate, useParams, Link } from "react-router-dom";
 import { toast } from "react-toastify";
 import { useTranslation } from "react-i18next";
 import { useTheme } from "../contexts/ThemeContext";
-import { useNavigate, Link } from "react-router-dom";
-import DatePicker from "react-datepicker";
-import "react-datepicker/dist/react-datepicker.css";
 
-const HolidayAdd = () => {
-    const initialFormData = {
-        state: "",
-        holidayDate: null, // will store Date object
-        holidayInfo: "",
-    };
-
-    const { t } = useTranslation();
-    const [formData, setFormData] = useState(initialFormData);
-    const [errors, setErrors] = useState({});
-    const { darkMode } = useTheme();
+const HolidayEdit = () => {
+    const { index } = useParams(); // get index from URL
     const navigate = useNavigate();
 
-    // Malaysia states
+    const [formData, setFormData] = useState(null);
+    const [errors, setErrors] = useState({});
+    const { t } = useTranslation();
+    const { darkMode } = useTheme();
+
+    // Load holiday by index
+    useEffect(() => {
+        const holidays = JSON.parse(localStorage.getItem("holidayData")) || [];
+        const holiday = holidays[index];
+        if (holiday) {
+            setFormData({
+                ...holiday,
+                holidayDate: holiday.holidayDate ? new Date(holiday.holidayDate) : null,
+            });
+        } else {
+            toast.error("Holiday not found!");
+            navigate("/holiday");
+        }
+    }, [index, navigate]);
+
     const stateOptions = [
         { value: "Johor", label: "Johor" },
         { value: "Kedah", label: "Kedah" },
@@ -48,43 +58,36 @@ const HolidayAdd = () => {
         if (!formData.holidayDate) newErrors.holidayDate = t("holiday.dateRequired");
         if (!formData.holidayInfo || formData.holidayInfo.trim().length < 3) {
             newErrors.holidayInfo = t("holiday.infoRequired");
-
+        
         }
         return newErrors;
     };
 
-    const handleSave = () => {
+    const handleUpdate = () => {
         const validationErrors = validate();
         if (Object.keys(validationErrors).length > 0) {
             setErrors(validationErrors);
             return;
         }
+
         setErrors({});
+        const holidays = JSON.parse(localStorage.getItem("holidayData")) || [];
+        holidays[index] = {
+            ...formData,
+            holidayDate: formData.holidayDate.toISOString(),
+        };
+        localStorage.setItem("holidayData", JSON.stringify(holidays));
 
-        // Save to localStorage
-        const existingHolidays =
-            JSON.parse(localStorage.getItem("holidayData")) || [];
-        const updatedHolidays = [
-            ...existingHolidays,
-            { ...formData, holidayDate: formData.holidayDate.toISOString() },
-        ];
-        localStorage.setItem("holidayData", JSON.stringify(updatedHolidays));
-
-        toast.success("Holiday added successfully!");
-        setFormData(initialFormData);
-
-        setTimeout(() => {
-            navigate("/holiday");
-        }, 1000);
+        toast.success("Holiday updated successfully!");
+        navigate("/holiday");
     };
 
-    const handleCancel = () => {
-        setFormData(initialFormData);
-        setErrors({});
-    };
+    const handleCancel = () => navigate("/holiday");
+
+    if (!formData) return <div className="text-center mt-5">{t("common.loading")}</div>;
 
     return (
-        <div className="container mt-3 p-0 ml-0 mr-0">
+        <div className="container mt-3">
             <div
                 className="card mb-4"
                 style={{
@@ -93,7 +96,7 @@ const HolidayAdd = () => {
                 }}
             >
                 <div className="card-body d-flex justify-content-between align-items-center">
-                    <h4 className="card-title mb-0">{t("holiday.addhol")}</h4>
+                    <h4 className="card-title mb-0">{t("holiday.editholiday")}</h4>
                     <Link to="/holiday" className="btn btn-primary">
                         <FaBackward className="me-1" /> {t("common.back")}
                     </Link>
@@ -120,7 +123,7 @@ const HolidayAdd = () => {
                             onChange={(selected) =>
                                 setFormData({ ...formData, state: selected ? selected.value : "" })
                             }
-                            placeholder="Select State"
+                            placeholder={t("holiday.selectstate")}
                             classNamePrefix="react-select"
                         />
                         {errors.state && (
@@ -137,7 +140,7 @@ const HolidayAdd = () => {
                             selected={formData.holidayDate}
                             onChange={(date) => setFormData({ ...formData, holidayDate: date })}
                             dateFormat="dd-MM-yyyy"
-                            placeholderText="Select Holiday Date"
+                            placeholderText={t("holiday.selectdate")}
                             wrapperClassName="w-100"
                             className={`form-control w-100 ${errors.holidayDate ? "is-invalid" : ""}`}
                         />
@@ -165,11 +168,11 @@ const HolidayAdd = () => {
 
                 {/* Buttons */}
                 <div className="d-flex gap-2 mt-3">
-                    <button className="btn btn-success" onClick={handleSave}>
-                        <FaSave className="me-1" /> {t("profile.save")}
+                    <button className="btn btn-success" onClick={handleUpdate}>
+                        <FaSave className="me-1" /> {t("common.update")}
                     </button>
                     <button className="btn btn-secondary" onClick={handleCancel}>
-                        <FaTimes className="me-1" /> {t("employee.cancel")}
+                        <FaTimes className="me-1" /> {t("common.cancel")}
                     </button>
                 </div>
             </div>
@@ -177,4 +180,4 @@ const HolidayAdd = () => {
     );
 };
 
-export default HolidayAdd;
+export default HolidayEdit;

@@ -149,7 +149,8 @@
     "downsampfile": "Muat Turun Fail Contoh",
     "submit": "Hantar",
     "cancel": "Batal",
-    "date": "Tarikh"
+    "date": "Tarikh",
+    "update": "Kemaskini"
   },
   "breadcrumb":{
    "home": "Laman Utama",
@@ -204,6 +205,9 @@
     "addhol": "Tambah Cuti",
     "stateRequired": "Negeri diperlukan",
     "dateRequired": "Tarikh diperlukan",
-    "infoRequired": "Maklumat diperlukan"
+    "infoRequired": "Maklumat diperlukan",
+    "holidaydetails": "Butiran Cuti",
+    "editholiday": "Sunting Cuti",
+    "selectstate": "Pilih Negeri"
   }
 }
