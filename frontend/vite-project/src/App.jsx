@@ -14,6 +14,8 @@ import SupplierImport from "./supplier/SupplierImport";
 import SupplierEdit from "./supplier/SupplierEdit";
 import SupplierEmp from "./supplier/SupplierEmp";
 import SupplierEmpAdd from "./supplier/SupplierEmpAdd";
+import SupplierEmpEdit from "./supplier/SupplierEmpEdit";
+import SupplierEmpView from "./supplier/SupplierEmpView";
 import HolidayList from "./holiday/HolidayList";
 import HolidayAdd from "./holiday/HolidayAdd";
 import HolidayView from "./holiday/HolidayView";
@@ -99,9 +101,19 @@ function App() {
               <Layout><SupplierEmp /></Layout>
             </PrivateRoute>
           } />
-          <Route path="/supplier/supplieremp/add/:supplierIndex" element={
+          <Route path="/supplier/supplieremp/supempadd/:supplierIndex" element={
             <PrivateRoute>
               <Layout><SupplierEmpAdd /></Layout>
+            </PrivateRoute>
+          } />
+          <Route path="/supplier/supplieremp/supempedit/:supplierIndex/:employeeIndex" element={
+            <PrivateRoute>
+              <Layout><SupplierEmpEdit /></Layout>
+            </PrivateRoute>
+          } />
+          <Route path="/supplier/supplieremp/supempview/:supplierIndex/:employeeIndex" element={
+            <PrivateRoute>
+              <Layout><SupplierEmpView /></Layout>
             </PrivateRoute>
           } />
 
