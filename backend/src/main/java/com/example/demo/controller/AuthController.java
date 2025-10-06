@@ -1,50 +1,40 @@
 package com.example.demo.controller;
 
-import com.example.demo.dto.*;
-import com.example.demo.entity.User;
-import com.example.demo.repository.UserRepository;
-import com.example.demo.security.JwtUtil;
+import com.example.demo.model.User;
+import com.example.demo.service.AuthService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.web.bind.annotation.*;
-import org.springframework.web.server.ResponseStatusException;
+
+import java.util.HashMap;
+import java.util.Map;
 
 @RestController
 @RequestMapping("/api/auth")
+@CrossOrigin(origins = "http://localhost:3000")
 public class AuthController {
 
     @Autowired
-    private UserRepository userRepository;
-
-    // ✅ Inject PasswordEncoder instead of BCryptPasswordEncoder
-    @Autowired
-    private PasswordEncoder passwordEncoder;
+    private AuthService authService;
 
     @PostMapping("/login")
-    public ResponseEntity<LoginResponse> login(@RequestBody LoginRequest request) {
-        // Trim email and password to avoid extra spaces
-        String email = request.getEmail().trim();
-        String rawPassword = request.getPassword().trim();
+    public ResponseEntity<Map<String, Object>> login(@RequestBody Map<String, String> loginData) {
+        System.out.println("Received login data: " + loginData);
+        User user = authService.login(loginData);
 
-        // Find user by email
-        User user = userRepository.findByEmail(email)
-                .orElseThrow(() -> new ResponseStatusException(
-                        org.springframework.http.HttpStatus.UNAUTHORIZED, "Invalid email or password"));
-
-        // Check password using PasswordEncoder
-        if (!passwordEncoder.matches(rawPassword, user.getPassword())) {
-            throw new ResponseStatusException(
-                    org.springframework.http.HttpStatus.UNAUTHORIZED, "Invalid email or password");
+        if (user == null) {
+            // Login failed
+            Map<String, Object> errorResponse = new HashMap<>();
+            errorResponse.put("message", "Invalid email or password");
+            return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body(errorResponse);
         }
 
-        // Generate JWT token
-        String token = JwtUtil.generateToken(user.getEmail());
+        // Login successful
+        Map<String, Object> response = new HashMap<>();
+        response.put("user", user);  // user object never null
+        response.put("token", "dummy-token"); // replace with JWT later
 
-        // Create User DTO
-        UserDto userDto = new UserDto(user.getId(), user.getEmail());
-
-        // Return response
-        return ResponseEntity.ok(new LoginResponse(token, userDto));
+        return ResponseEntity.ok(response);
     }
 }
