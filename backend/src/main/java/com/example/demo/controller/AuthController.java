@@ -32,7 +32,7 @@ public class AuthController {
         // Login successful
         Map<String, Object> response = new HashMap<>();
         response.put("user", user);
-        response.put("token", "dummy-token"); // replace with JWT later
+        response.put("token", "6257e822b23bcfab2442e63a3f7a722f681f6b27ca8fbbf4e5724ef039866b5"); // replace with JWT later
 
         return ResponseEntity.ok(response);
     }

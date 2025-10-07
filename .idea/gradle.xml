@@ -4,13 +4,18 @@
   <component name="GradleSettings">
     <option name="linkedExternalProjectsSettings">
       <GradleProjectSettings>
-        <option name="externalProjectPath" value="$PROJECT_DIR$/../../Gradle" />
-      </GradleProjectSettings>
-      <GradleProjectSettings>
         <option name="externalProjectPath" value="$PROJECT_DIR$/backend" />
         <option name="modules">
           <set>
             <option value="$PROJECT_DIR$/backend" />
+          </set>
+        </option>
+      </GradleProjectSettings>
+      <GradleProjectSettings>
+        <option name="externalProjectPath" value="$USER_HOME$/Gradle" />
+        <option name="modules">
+          <set>
+            <option value="$USER_HOME$/Gradle" />
           </set>
         </option>
       </GradleProjectSettings>
