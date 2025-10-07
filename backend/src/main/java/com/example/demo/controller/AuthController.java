@@ -29,7 +29,6 @@ public class AuthController {
             errorResponse.put("message", "Invalid email or password");
             return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body(errorResponse);
         }
-
         // Login successful
         Map<String, Object> response = new HashMap<>();
         response.put("user", user);
