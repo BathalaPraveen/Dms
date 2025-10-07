@@ -1,6 +1,5 @@
 package com.example.demo.controller;
 
-import com.example.demo.model.User;
 import com.example.demo.service.AuthService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -12,7 +11,7 @@ import java.util.Map;
 
 @RestController
 @RequestMapping("/api/auth")
-@CrossOrigin(origins = "http://localhost:3000")
+@CrossOrigin(origins = "http://localhost:5173") // match your frontend port
 public class AuthController {
 
     @Autowired
@@ -21,20 +20,19 @@ public class AuthController {
     @PostMapping("/login")
     public ResponseEntity<Map<String, Object>> login(@RequestBody Map<String, String> loginData) {
         System.out.println("Received login data: " + loginData);
-        User user = authService.login(loginData);
 
-        if (user == null) {
+        try {
+            String jwt = authService.login(loginData); // ✅ now returns token
+
+            Map<String, Object> response = new HashMap<>();
+            response.put("token", jwt);
+            return ResponseEntity.ok(response);
+
+        } catch (RuntimeException e) {
             // Login failed
             Map<String, Object> errorResponse = new HashMap<>();
-            errorResponse.put("message", "Invalid email or password");
+            errorResponse.put("message", e.getMessage());
             return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body(errorResponse);
         }
-
-        // Login successful
-        Map<String, Object> response = new HashMap<>();
-        response.put("user", user);
-        response.put("token", "dummy-token"); // replace with JWT later
-
-        return ResponseEntity.ok(response);
     }
 }

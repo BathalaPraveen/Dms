@@ -13,7 +13,8 @@ export default function Header({ toggleSidebar, setCollapsed }) {
   const [showOffcanvas, setShowOffcanvas] = useState(false);
 
   const { t, i18n } = useTranslation();
-  const user = JSON.parse(localStorage.getItem("user")) || { name: "John Doe" };
+
+    const user = JSON.parse(localStorage.getItem("user") || "null");
   const dropdownRef = useRef(null);
 
   const handleLanguageChange = (e) => i18n.changeLanguage(e.target.value);
