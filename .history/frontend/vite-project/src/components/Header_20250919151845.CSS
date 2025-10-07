@@ -1,0 +1,27 @@
+
+
+
+/* Header fixed inside main area */
+.header {
+  height: 60px;
+   background: #ffffff;
+  color: white;
+  display: flex;
+  align-items: center;
+  padding: 0 20px;
+  flex-shrink: 0;
+  position: sticky;
+  top: 0;
+  z-index: 10;
+}
+.navbar {
+  background: #ffffff;
+  padding: 12px 40px;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.08);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  position: sticky;
+  top: 0;
+  z-index: 100;
+}

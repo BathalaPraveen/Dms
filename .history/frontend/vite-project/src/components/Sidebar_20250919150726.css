@@ -1,0 +1,43 @@
+.sidebar {
+  width: 220px;
+  height: 100%;
+  background-color: #1e293b;
+  color: white;
+  display: flex;
+  flex-direction: column;
+  padding: 20px;
+}
+.logo{
+    background-color: #fff;
+    marg
+}
+.menu {
+  flex: 1;
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  overflow-y: auto;
+}
+
+.menu li, .menu .menu-item {
+  padding: 10px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+}
+
+.menu li.active {
+  background-color: #334155;
+  border-radius: 5px;
+}
+
+.submenu {
+  list-style: none;
+  padding-left: 20px;
+  margin-top: 5px;
+}
+
+.logout {
+  margin-top: 20px;
+  color: #f87171;
+}

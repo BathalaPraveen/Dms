@@ -1,0 +1,18 @@
+.footer {
+  width: 100%;
+  padding: 10px;
+  background: #1e1e2f;
+  color: white;
+  text-align: center;
+  position: fixed;
+  bottom: 0;
+  left: 0;
+}
+/* Footer */
+.dashboard-footer {
+  width: 100%;
+  padding: 10px;
+  /* background: #0e0d0d; */
+  color: white;
+  text-align: center;
+}

@@ -1,0 +1,92 @@
+.sidebar {
+  width: 220px;
+  height: 100vh;
+  background-color: #1e293b;
+  color: white;
+  flex-shrink: 0;
+  display: flex;
+  flex-direction: column;
+  padding: 20px;
+  transition: width 0.3s ease;
+}
+
+.sidebar.collapsed {
+  width: 60px;
+  /* collapsed width */
+  padding: 20px 10px;
+}
+
+
+.slogo {
+  max-width: 40px;
+  height: auto;
+}
+
+.menu {
+  list-style: none;
+  padding: 0px;
+  margin: 0;
+}
+
+/* top level items */
+.menu > li {
+  padding: 10px;
+  padding-left: 0px;
+  cursor: pointer;
+  display: block;   /* flex vachu irundha submenu confuse aagum, so block podu */
+  transition: background 0.3s;
+  font-size: 14px;
+}
+
+.menu > li:hover {
+  background: #334155;
+  border-radius: 4px;
+}
+
+/* parent menu item row (icon + text + arrow) */
+.menu .menu-item {
+  display: flex;
+  align-items: center;
+  justify-content: flex-start; /* icon + text left */
+  gap: 8px; /* icon and text gap */
+  width: 100%; /* full row occupy */
+}
+
+/* arrow ku special rule */
+.menu .menu-item svg:last-child {
+  margin-left: auto; /* arrow right end ku pogum */
+}
+
+/* submenu proper indent */
+.submenu {
+  list-style: none;
+  border-left: 2px solid #3f82e0; /* optional vertical line */
+    margin: 10px 0 0 0;  /* top gap only */
+  padding-left: 30px; /* more space to push inside (end la varanum nu) */
+}
+
+.submenu li {
+  padding: 8px 10px;
+  cursor: pointer;
+  font-size: 11px;
+  color: #e2e8f0;
+  transition: background 0.3s;
+}
+
+.submenu li:hover {
+  background: #475569;
+  border-radius: 4px;
+}
+
+.submenu li.active {
+  background: #3f82e0;
+  color: #fff;
+  border-radius: 4px;
+}
+
+
+
+.logout {
+  margin-top: 20px;
+  color: #f87171;
+}

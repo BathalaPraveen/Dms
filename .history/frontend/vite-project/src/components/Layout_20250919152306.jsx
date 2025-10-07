@@ -1,0 +1,38 @@
+import { useState } from "react";
+import { useNavigate } from "react-router-dom";
+import Sidebar from "./Sidebar";
+import Header from "./Header";
+import Footer from "./Footer";
+import "./Layout.css";
+
+export default function Layout({ children }) {
+  const navigate = useNavigate();
+  const user = JSON.parse(localStorage.getItem("user"));
+
+  const [activeItem, setActiveItem] = useState("");
+  const [isSidebarCollapsed, setIsSidebarCollapsed] = useState(false); // <-- new state
+
+  const handleLogout = () => {
+    localStorage.removeItem("token");
+    localStorage.removeItem("user");
+    navigate("/login");
+  };
+
+  const toggleSidebar = () => setIsSidebarCollapsed(!isSidebarCollapsed); // toggle
+
+  return (
+    <div className="layout">
+      <Sidebar
+        activeItem={activeItem}
+        setActiveItem={setActiveItem}
+        handleLogout={handleLogout}
+        collapsed={isSidebarCollapsed} // pass prop
+      />
+      <div className="main-area">
+        <Header toggleSidebar={toggleSidebar} user={user} />
+        <div className="content-area">{children}</div>
+        <Footer />
+      </div>
+    </div>
+  );
+}

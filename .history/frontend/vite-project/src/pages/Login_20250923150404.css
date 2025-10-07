@@ -1,0 +1,111 @@
+
+/* Center card */
+
+.login-container {
+    display: flex;
+    background-color: #f9f9f9;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    width: 100vw;
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    box-sizing: border-box;
+    padding: 0;
+    margin: 0;
+}
+
+.login-form{
+  background-color: rgba(255, 255, 255, 0.95);
+  padding: 25px 30px;
+  border-radius: 12px;
+  max-width: 400px;
+  height: 350px;
+  width: 100%;
+  box-shadow: 0 0 20px rgba(0, 0, 0, 0.3);
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  gap: 0px;
+  }
+.login-form h2 {
+    margin-bottom: 40px;
+    color: #333;
+}
+
+.login-form input {
+    padding: 12px;
+    border: 1px solid #ddd;
+    border-radius: 6px;
+    font-size: 15px;
+    outline: none;
+    transition: border 0.3s;
+    margin-top: 10px;
+}
+
+.login-form input:focus {
+    border-color: #ff6b6b;
+}
+
+.login-form button {
+    width: 100%;
+    padding: 12px;
+    margin-top: 12px;
+    background: #ff6b6b;
+    color: #fff;
+    border: none;
+    border-radius: 6px;
+    font-size: 16px;
+    cursor: pointer;
+    transition: background 0.3s;
+}
+
+.login-form button:hover {
+    background: #007bff;
+}
+
+.login-form .success {
+    margin-top: 15px;
+    font-weight: bold;
+    color: #333;
+}
+
+.error{
+    color:red;
+}.password-container {
+    position: relative;
+    display: flex;
+    align-items: center;
+}
+
+.password-container input {
+    width: 100%;
+    padding-right: 40px;
+    /* space for eye icon */
+}
+
+.eye-icon {
+    position: absolute;
+    right: 10px;
+    cursor: pointer;
+    font-size: 18px;
+    color: #555;
+}
+
+.login-form label {
+    display: block;
+    text-align: left;
+    margin-bottom: 0px;
+    font-weight: 500;
+    color: #333;
+    margin-top: 10px;
+}
+
+.error {
+    color: red;
+    font-size: 14px;
+    margin: 0px 0 0px;
+    text-align: left;
+}

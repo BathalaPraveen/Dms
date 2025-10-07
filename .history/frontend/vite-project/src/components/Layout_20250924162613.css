@@ -1,0 +1,27 @@
+/* Layout container */
+.layout {
+  display: flex;
+  height: 100vh;
+  width: 100vw;
+  overflow: hidden;
+}
+
+/* Main area */
+.main-area {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  height: 100vh; /* fill full viewport */
+  overflow: hidden; /* prevent main area scroll */
+}
+
+
+/* Content area scrollable only */
+.content-area {
+  flex: 1;
+  overflow-y: auto;
+  padding: 2px;
+  /* background: #f1f5f9; */
+}
+
+
