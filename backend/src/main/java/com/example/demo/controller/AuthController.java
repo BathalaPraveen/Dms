@@ -9,6 +9,7 @@ import org.springframework.web.bind.annotation.*;
 
 import java.util.HashMap;
 import java.util.Map;
+import com.example.demo.dto.LoginResponse;
 
 @RestController
 @RequestMapping("/api/auth")
@@ -21,19 +22,12 @@ public class AuthController {
     @PostMapping("/login")
     public ResponseEntity<Map<String, Object>> login(@RequestBody Map<String, String> loginData) {
         System.out.println("Received login data: " + loginData);
-        User user = authService.login(loginData);
 
-        if (user == null) {
-            // Login failed
-            Map<String, Object> errorResponse = new HashMap<>();
-            errorResponse.put("message", "Invalid email or password");
-            return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body(errorResponse);
-        }
+        LoginResponse loginResponse = authService.login(loginData);
 
-        // Login successful
         Map<String, Object> response = new HashMap<>();
-        response.put("user", user);  // user object never null
-        response.put("token", "dummy-token"); // replace with JWT later
+        response.put("user", loginResponse.getUser());
+        response.put("token", loginResponse.getToken());
 
         return ResponseEntity.ok(response);
     }

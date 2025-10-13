@@ -1,3 +1,4 @@
+import org.springframework.boot.gradle.tasks.run.BootRun
 plugins {
     java
     id("org.springframework.boot") version "3.5.6"
@@ -12,8 +13,9 @@ java {
         languageVersion.set(JavaLanguageVersion.of(25))
     }
 }
-
-
+tasks.withType<BootRun> {
+    mainClass.set("com.example.demo.DemoApplication")
+}
 configurations {
     compileOnly {
         extendsFrom(configurations.annotationProcessor.get())
@@ -28,6 +30,7 @@ dependencies {
     implementation("org.springframework.boot:spring-boot-starter")
     implementation("org.springframework.boot:spring-boot-starter-web")
     implementation("org.springframework.boot:spring-boot-starter-data-jpa")
+
     compileOnly("org.projectlombok:lombok")
     developmentOnly("org.springframework.boot:spring-boot-devtools")
     runtimeOnly("com.mysql:mysql-connector-j")
