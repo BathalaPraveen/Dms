@@ -36,7 +36,7 @@ const EmployeeAdd = () => {
   ];
   const zoneOptions = [{ value: "East Malaysia", label: "East Malaysia" }];
   const countryOptions = [{ value: "Malaysia", label: "Malaysia" }];
-  const stateOptions = {
+  const state Options = {
     Malaysia: [
       { value: "Sabah", label: "Sabah" },
       { value: "Sarawak", label: "Sarawak" },
@@ -111,7 +111,7 @@ const handleSave = () => {
   const supplierIndexNum = supplierIndex;
 
   if (!suppliers[supplierIndexNum]) {
-    toast.error(t("employee.supplierNotExist"));
+    toast.error(t("employee.supplierNotExist")); // translated
     return;
   }
   const supplier = suppliers[supplierIndexNum];

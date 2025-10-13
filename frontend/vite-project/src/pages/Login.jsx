@@ -38,7 +38,7 @@ export default function Login() {
     setErrors({});
 
     try {
-      const res = await axios.post("http://localhost:5000/api/auth/login", {
+      const res = await axios.post("http://localhost:8080/api/auth/login", {
         email,
         password,
       });
@@ -90,10 +90,11 @@ export default function Login() {
         },
       });
 
-      toast.fire({
-        icon: "error",
-        title: err.response?.data?.msg || "Login failed!",
-      });
+     toast.fire({
+       icon: "error",
+       title: err.response?.data?.message || "Login failed!",
+     });
+
     }
   };
 

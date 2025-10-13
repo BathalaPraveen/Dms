@@ -13,7 +13,15 @@ import React from "react";
 
 export default function Layout({ children }) {
   const navigate = useNavigate();
-  const user = JSON.parse(localStorage.getItem("user"));
+  let user = null;
+  try {
+    const userString = localStorage.getItem("user");
+    user = userString && userString !== "undefined" ? JSON.parse(userString) : null;
+  } catch (e) {
+    console.warn("Failed to parse user from localStorage:", e);
+    user = null;
+  }
+
   const { darkMode } = useTheme();
 
   const [activeItem, setActiveItem] = useState("");
@@ -37,7 +45,7 @@ export default function Layout({ children }) {
       />
       <div className="main-area">
         <Header toggleSidebar={toggleSidebar} user={user} />
-        <div className={'content-area p-3 ${darkMode ? "dark-mode" : "light-mode"}'}>
+        <div className={`content-area p-3 ${darkMode ? "dark-mode" : "light-mode"}`}>
           <Breadcrumb collapsed={isSidebarCollapsed}/>
           {children && React.cloneElement(children, { collapsed: isSidebarCollapsed })}
         </div>
