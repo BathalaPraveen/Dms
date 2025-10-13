@@ -8,20 +8,8 @@ import org.springframework.security.web.SecurityFilterChain;
 
 @SpringBootApplication
 public class DemoApplication {
-
-    public static void main(String[] args) {               // ✅ Main method added
+    public static void main(String[] args) {
         SpringApplication.run(DemoApplication.class, args);
     }
-
-    @Bean
-    public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
-        http
-                .csrf(csrf -> csrf.disable())
-                .authorizeHttpRequests(auth -> auth
-                        .requestMatchers("/api/auth/login").permitAll() // Allow login
-                        .anyRequest().authenticated()                  // Secure others
-                );
-
-        return http.build();
-    }
 }
+
