@@ -13,7 +13,7 @@ import com.example.demo.dto.LoginResponse;
 
 @RestController
 @RequestMapping("/api/auth")
-@CrossOrigin(origins = "http://localhost:3000")
+@CrossOrigin(origins = "http://localhost:5173")
 public class AuthController {
 
     @Autowired
