@@ -77,7 +77,6 @@ const HolidayView = () => {
                                 <th style={{ width: "200px" }}>{t("holiday.state")}</th>
                                 <td>{holiday.state}</td>
                                 <th style={{ width: "200px" }}>{t("common.date")}</th>
-                     
                                 <td>
                                     {holiday.holidayDate
                                         ? format(new Date(holiday.holidayDate), "dd-MM-yyyy")
